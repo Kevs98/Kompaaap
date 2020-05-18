@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar color = "primary">
     <ion-title>
-      Kompa CRUD Test
+      Kompa Hogar 
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +13,7 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let Kompa of Kompas" col-6 no-padding>
-        <ion-card button [routerLink]="['/details', Kompa.id]" class="fixline">
+        <ion-card button [routerLink]="['/employees']" class="fixline">
           <img src="{{Kompa.imgUrl}}"/>
         </ion-card>
       </ion-col>

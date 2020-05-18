@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary"> 
+    <ion-title>Categorias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" *ngFor="let category of categories" col-4 no-padding>
+        <ion-card button [routerLink]="['/home']" class="fixline">
+          <img src="{{category.imgURL}}"/>
+          <ion-card-title class="test">{{category.name}}</ion-card-title>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
