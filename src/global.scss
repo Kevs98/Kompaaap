@@ -24,3 +24,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.ion-color-primary {
+    --ion-color-base: rgb(253,139,0)!important;
+}
