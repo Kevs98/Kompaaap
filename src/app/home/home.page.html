@@ -13,16 +13,11 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let Kompa of Kompas" col-6 no-padding>
-        <ion-card button [routerLink]="['/employees']" class="fixline">
+        <ion-card button routerLink="/service-details/{{Kompa.id}}" class="fixline">
           <img src="{{Kompa.imgUrl}}"/>
           <ion-card-subtitle>{{Kompa.nombre_servicio}}</ion-card-subtitle>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/details" routerDirection="forward">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

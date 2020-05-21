@@ -23,6 +23,7 @@ export class KompaDetailPage implements OnInit {
     this.KompaId = this.route.snapshot.params['id'];
     if(this.KompaId){
       this.loadKompa();
+      // console.log(this.KompaId);
     }
   }
 

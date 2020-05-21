@@ -1,0 +1,78 @@
+ion-label{
+    color: white;
+    // text-align: center;
+    // margin-top: -5%;
+    // font-size: 80%;
+    font-family: 'Poppins', sans-serif!important;
+    // text-transform: none;
+    // font-weight: 300;
+  }
+
+  ion-label#ion-sel-0-lbl{
+    font-family: 'Poppins', sans-serif;
+  }
+  ion-select{ 
+    font-family: 'Poppins', sans-serif;
+  }
+
+  ion-input{
+    font-family: 'Poppins', sans-serif;
+  }
+
+  ion-button{
+    width: 100%;
+    height: 70%;
+    font-family: 'Poppins', sans-serif!important;
+    text-transform: uppercase;
+  }
+
+  ion-icon{
+      margin-right: 2%;
+  }
+
+  .fixline{
+    display: flex;
+    background-image: url(../../../assets/icon/base.png);
+    background-size: cover;
+    margin-bottom: 0%;
+    height: 100%;
+}
+img {
+    width: 70%;
+    margin: auto;
+}
+ion-list{
+    margin-top: 5%;
+}
+
+label {
+  cursor: pointer;
+  display: inherit;
+  margin: auto;
+  /* Style as you please, it will become the visible UI component. */
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload{
+  margin: auto;
+}
+
+.image-upload img
+{
+    width: 90px;
+    cursor: pointer;
+}
+
+.upload{
+  margin: auto;
+}

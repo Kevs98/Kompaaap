@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Trabajo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" col-4 no-padding>
+        <ion-card class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/El%20Kompa-logo__2.svg?alt=media&token=6a8b3a21-8d01-465f-850e-a93cba11ab0e"/>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Describa su problema
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <ion-label>Complejidad</ion-label>
+      <ion-select placeholder="Dificultad">
+        <ion-select-option value="bajo">Baja</ion-select-option>
+        <ion-select-option value="medio">Media</ion-select-option>
+        <ion-select-option value="alto">Alta</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <ion-input type="text-area" placeholder="Descripción del trabajo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-center">Imagen del problema</ion-label>
+    </ion-item>
+    <ion-item class="imagensubida">
+      <!-- <label for="upload-photo"><ion-icon name="images-outline"></ion-icon>IMAGEN</label>
+      <input type="file" name="photo" id="upload-photo"/> -->
+      <div class="image-upload">
+        <label for="file-input">
+          <ion-label class="upload">
+            <img src="../../../assets/icon/addImage.svg"/>
+          </ion-label>
+        </label>
+        <input id="file-input" type="file" name="Imagen"/>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="block">Enviar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
