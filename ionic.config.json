@@ -1,5 +1,7 @@
 {
   "name": "KompaFirebase",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

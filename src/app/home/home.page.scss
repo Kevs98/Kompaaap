@@ -31,14 +31,14 @@ ion-content ion-toolbar {
 }
 
 .fixline {
-    height: 100px;
+    height: 100%;
     margin-bottom: 7px;
-    width: 74px;
+    width: 85%;
     // background-color: rgb(236, 112, 0);
     background-image: url(../../assets/icon/base_vert.png);
     background-size: cover;
-    margin-left: 7px;
-}
+    margin: auto;
+  }
 
 img {
   margin-top: 10%;

@@ -23,6 +23,7 @@ export class KompaService {
       return actions.map(a => {
         const data = a.payload.doc.data();
         const id = a.payload.doc.id;
+        console.log(data.nombre_servicio);
         return {id, ...data};
       });
     }
@@ -66,5 +67,4 @@ export class KompaService {
   //  guardar(file: FileI){
   //    this.uploadImage(file);
   //  }
-   
 }

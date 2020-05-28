@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FileI } from 'src/app/models/file.interface';
-import { KompaService } from 'src/app/services/kompa.service';
+import { UploadService } from '../../services/upload.service';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NavController, LoadingController } from '@ionic/angular';
+import { FormI } from 'src/app/models/form.interface';
+
 
 @Component({
   selector: 'app-service-details',
@@ -11,26 +12,42 @@ import { NavController, LoadingController } from '@ionic/angular';
 })
 export class ServiceDetailsPage implements OnInit {
 
+  forms: FormI[];
   private image: any;
   KompaId = null;
 
-  constructor(private service: KompaService, private route: ActivatedRoute, private nav: NavController, private loading: LoadingController) { }
+  CreateFormGroup(){
+    return new FormGroup({
+      difficult: new FormControl(''),
+      description: new FormControl(''),
+      image: new FormControl('')
+    });
+  }
+
+  problemForm: FormGroup;
+
+  constructor(private route: ActivatedRoute, private formService: UploadService) { 
+    this.problemForm = this.CreateFormGroup();
+  }
 
   ngOnInit() {
-    this.KompaId = this.route.snapshot.params['id'];
-    if(this.KompaId){
-      this.loadKompa();
-      console.log(this.KompaId);
-    }
+    // this.KompaId = this.route.snapshot.params['id'];
+    //   console.log(this.KompaId);
+
+    //   if(this.KompaId == 'AJfc7rElVk5nYewVAIQv'){
+    //     console.log('Test Works');
+    //   }
+    //   else {
+    //     console.log('Another Category of service');
+    //   }
   }
-  async loadKompa(){
-    const carga = await this.loading.create({
-      message: 'Cargando...'
-    });
-    await carga.present();
-    this.service.getKompa(this.KompaId).subscribe(res => {
-      carga.dismiss();
-    });
+
+  onResetForm(){
+    this.problemForm.reset();
+  }
+
+  onSave(data: FormI){
+    this.formService.uploadForm(data, this.image);
   }
 
   handleImage(event:any): void{
@@ -38,8 +55,6 @@ export class ServiceDetailsPage implements OnInit {
     console.log('Imagen', this.image);
   }
 
-  // saveImage(data: FileI){
-  //   this.service.guardar(this.image);
-  // }
+
 
 }
