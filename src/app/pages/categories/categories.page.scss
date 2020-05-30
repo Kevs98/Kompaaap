@@ -11,8 +11,8 @@ img {
     left: 65%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 130%;
-    font-weight: 100;
+    font-size: 170%;
+    font-weight: 300;
     font-family: 'Poppins', sans-serif;
 }
  .fixline{
@@ -25,5 +25,9 @@ img {
 
  ion-col.ios.hydrated {
     margin-bottom: -10%;
+}
+
+ion-title{
+    font-family: 'Poppins', sans-serif;
 }
 

@@ -1,0 +1,18 @@
+<ion-menu side="end" menuId="first" contentId="main">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title><ion-icon name="hammer"></ion-icon> Kompa App</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list *ngFor="let page of pages">
+      <ion-item [routerLink]="page.url" routerDirection="forward" [class.active-item]="selectedPath === page.url">
+        <ion-icon name="{{page.icon}}"></ion-icon> &nbsp; {{page.title}}
+      </ion-item>
+      <!-- <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item>
+      <ion-item>Menu Item</ion-item> -->
+    </ion-list>
+  </ion-content>
+</ion-menu>

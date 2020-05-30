@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormI } from 'src/app/models/form.interface';
 
 
+
 @Component({
   selector: 'app-service-details',
   templateUrl: './service-details.page.html',
@@ -31,15 +32,15 @@ export class ServiceDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.KompaId = this.route.snapshot.params['id'];
-    //   console.log(this.KompaId);
+    this.KompaId = this.route.snapshot.params['id'];
+      console.log(this.KompaId);
 
-    //   if(this.KompaId == 'AJfc7rElVk5nYewVAIQv'){
-    //     console.log('Test Works');
-    //   }
-    //   else {
-    //     console.log('Another Category of service');
-    //   }
+      if(this.KompaId == 'AJfc7rElVk5nYewVAIQv'){
+        console.log('Test Works');
+      }
+      else {
+        console.log('Another Category of service');
+      }
   }
 
   onResetForm(){

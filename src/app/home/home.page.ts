@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { kompasI } from '../models/kompa.interface';
 import { KompaService } from '../services/kompa.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',

@@ -31,13 +31,12 @@
   }
   
   .fixline {
-      height: 100px;
-      margin-bottom: 7px;
-      width: 74px;
-      // background-color: rgb(236, 112, 0);
-      background-image: url(../../../assets/icon/base_vert.png);
-      background-size: cover;
-      margin-left: 7px;
+    height: 100%;
+    margin-bottom: 7px;
+    width: 85%;
+    background-image: url(../../../assets/icon/base_vert.png);
+    background-size: cover;
+    margin: auto;
   }
   
   img {
@@ -48,8 +47,12 @@
     color: white;
     text-align: center;
     margin-top: -5%;
-    font-size: 80%;
+    font-size: 100%;
     font-family: 'Poppins', sans-serif;
     text-transform: none;
     font-weight: 300;
+  }
+
+  ion-title{ 
+    font-family: 'Poppins', sans-serif;
   }

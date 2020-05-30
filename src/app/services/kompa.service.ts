@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage'
 import { Observable } from 'rxjs';
-import { map, finalize } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { kompasI } from '../models/kompa.interface';
 import { FileI } from '../models/file.interface';
 

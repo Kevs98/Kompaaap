@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Kompas Disponibles</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let people of peoples">
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="{{people.imgUrl}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{people.name}}</h2>
+        <h3>Puntuación: {{people.estrellas}} <ion-icon name="star"></ion-icon></h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

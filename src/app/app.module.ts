@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ComponentsModule } from  '../app/components/menu/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFirestoreModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
-    FormsModule
+    FormsModule,
+    ComponentsModule
   ],
   providers: [
     StatusBar,

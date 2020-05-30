@@ -6,7 +6,8 @@ const routes: Routes = [
     path: '', redirectTo: 'categories', pathMatch: 'full' 
   },
   { 
-    path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'home', 
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'details/:id',
@@ -35,6 +36,22 @@ const routes: Routes = [
   {
     path: 'service-details',
     loadChildren: () => import('./pages/service-details/service-details.module').then( m => m.ServiceDetailsPageModule)
+  },
+  {
+    path: 'peoplein/:id',
+    loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule)
+  },
+  {
+    path: 'peoplein',
+    loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule)
+  },
+  {
+    path: 'menu',
+    loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'people-detail',
+    loadChildren: () => import('./pages/people-detail/people-detail.module').then( m => m.PeopleDetailPageModule)
   }
 ];
 
