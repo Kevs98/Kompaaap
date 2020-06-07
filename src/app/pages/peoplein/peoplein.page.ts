@@ -22,6 +22,14 @@ import { LlanteraService } from 'src/app/services/llantera.service';
 import { MecanicaService } from 'src/app/services/mecanica.service';
 import { PinturaService } from 'src/app/services/pintura.service';
 import { TaxiService } from 'src/app/services/taxi.service';
+import { AsistHogarService } from 'src/app/services/asist-hogar.service';
+import { AparatosService } from 'src/app/services/aparatos.service';
+import { FloristeriaService } from 'src/app/services/floristeria.service';
+import { ReparacionesHogarService } from 'src/app/services/reparaciones-hogar.service';
+import { MensajeriaService } from 'src/app/services/mensajeria.service';
+import { FletesService } from 'src/app/services/fletes.service';
+import { AsistenciaCarreteraService } from 'src/app/services/asistencia-carretera.service';
+import { DeliveryService } from 'src/app/services/delivery.service';
 
 
 @Component({
@@ -54,7 +62,15 @@ export class PeopleinPage implements OnInit {
     private llanteraService : LlanteraService,
     private mecanicaService : MecanicaService,
     private pinturaService : PinturaService,
-    private taxiService : TaxiService
+    private taxiService : TaxiService,
+    private asistH : AsistHogarService,
+    private  aparatoService : AparatosService,
+    private FloreService : FloristeriaService,
+    private reparacioneService : ReparacionesHogarService,
+    private mensajeriaService : MensajeriaService,
+    private fleteService : FletesService,
+    private ACAService : AsistenciaCarreteraService,
+    private deliveryService : DeliveryService
     ) { }
 
   ngOnInit() {
@@ -174,9 +190,57 @@ export class PeopleinPage implements OnInit {
         this.taxiService.getTaxis().subscribe( res => {
           this.peoples = res;
         });
-      }else {
+      }
+      else if (this.KompaId == 'DmAaFKw0SIr3vPwYA3pw'){
+        console.log('Asistencia Hogar');
+        this.asistH.getASH().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else if (this.KompaId == 'N2jQeyhAdIvfc8WTSIDb'){
+        console.log('Aparatos');
+        this.aparatoService.getAparato().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else if (this.KompaId == 'epg9wPolhJQqUl6fLvdd'){
+        console.log('Floristería');
+        this.FloreService.getFlor().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else if (this.KompaId == 'wnz6QHZVYiq7hs4bBQyI'){
+        console.log('Reparaciones del Hogar');
+        this.reparacioneService.getReparacion().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else if (this.KompaId == '5RflyA4cF66xDuUXYCI6'){
+        console.log('Mensajeria de Motocicleta');
+        this.mensajeriaService.getMensaje().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else if (this.KompaId == 'FYMzqqSAU3yLIRZANujq'){
+        console.log('Fletes');
+        this.fleteService.getFlete().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else if (this.KompaId == 'GGNLWz8gfrMuJ6rfLynp'){
+        console.log('Asistencia en Carretera');
+        this.ACAService.getACA().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else if (this.KompaId == 'ZKpFpM3rj22tGzhGmeAm'){
+        console.log('Delivery');
+        this.deliveryService.getDelivery().subscribe( res => {
+          this.peoples = res;
+        });
+      }
+      else {
         console.log('Esta categoria no Existe');
       }
   }
-
 }

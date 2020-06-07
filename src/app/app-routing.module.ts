@@ -52,6 +52,14 @@ const routes: Routes = [
   {
     path: 'people-detail',
     loadChildren: () => import('./pages/people-detail/people-detail.module').then( m => m.PeopleDetailPageModule)
+  },
+  {
+    path: 'people-detail/:id',
+    loadChildren: () => import('./pages/people-detail/people-detail.module').then( m => m.PeopleDetailPageModule)
+  },
+  {
+    path: 'active-service',
+    loadChildren: () => import('./pages/active-service/active-service.module').then( m => m.ActiveServicePageModule)
   }
 ];
 

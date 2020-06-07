@@ -3,8 +3,9 @@ export interface PeopleI {
     name?: string;
     phone?: string;
     imgUrl?: string;
+    imgCar?: string;
     distancia?: string;
     estrellas?: string;
-    vehculo?: string;
+    vehiculo?: string;
     placa?: string;
 }

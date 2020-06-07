@@ -13,7 +13,7 @@
       <ion-avatar slot="start">
         <img src="{{people.imgUrl}}">
       </ion-avatar>
-      <ion-label>
+      <ion-label routerLink="/people-detail/{{people.id}}">
         <h2>{{people.name}}</h2>
         <h3>Puntuación: {{people.estrellas}} <ion-icon name="star"></ion-icon></h3>
       </ion-label>

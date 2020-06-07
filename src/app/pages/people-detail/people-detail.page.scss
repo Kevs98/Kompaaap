@@ -1,0 +1,42 @@
+
+ion-card{
+    border-radius: 15px;
+    background-color: white;
+    height: 14%;
+    box-shadow: 2px 2px 5px #999;
+}
+
+.name{
+    margin-left: 40%;
+    position: relative;
+    top: 10px;
+    font-weight: bold;
+}
+
+.peopleImage{
+    margin-top: -30%;
+}
+
+.stars{
+    position: relative;
+    top: 35px;
+    margin-left: -68px;
+}
+
+.icon{
+    position: relative;
+    top: 1.5px;
+}
+
+.placa{
+    position: relative;
+    top: 10px;
+    margin-left: 10%;
+    font-weight: bold;
+}
+
+.carro {
+    position: absolute;
+    top: 40px;
+    margin-left: -85px;
+}

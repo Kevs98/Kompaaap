@@ -1,9 +1,50 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>people-detail</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Detalles</ion-title>
   </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
+  <img src="https://image.freepik.com/vector-gratis/mapa-ruta-punteros-estilo-plano_23-2147789378.jpg" alt="">
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label class="name">
+            {{peoples.name}}
+          </ion-label>
+          <ion-label class="stars">
+            {{peoples.estrellas}} <ion-icon name="star" class="icon"></ion-icon>
+          </ion-label>
+          <ion-avatar>
+            <img src="{{peoples.imgUrl}}" alt="" class="peopleImage">
+          </ion-avatar>
+        </ion-col>
+        <ion-col>
+          <ion-label class="placa">
+            {{peoples.placa}}
+          </ion-label>
+          <ion-label class="carro">
+            {{peoples.vehiculo}}
+          </ion-label>
+          <ion-avatar class="ion-float-end">
+            <img src="{{peoples.imgCar}}" alt="" class="car">
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="call" (click)="prueba()">
+      <ion-icon name="call"></ion-icon>
+      <ion-label>Llamar</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
 
 </ion-content>
