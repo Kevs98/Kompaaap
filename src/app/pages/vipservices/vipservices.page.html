@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Kompa VIP</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let Servicio of Servicios" col-6 no-padding>
+        <ion-card button routerLink="/deliverydetail/{{Servicio.id}}" class="fixline">
+          <img src="{{Servicio.imgUrl}}"/>
+          <ion-card-subtitle>{{Servicio.nombre_servicio}}</ion-card-subtitle>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

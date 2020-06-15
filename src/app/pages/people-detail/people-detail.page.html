@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Detalles</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button></ion-back-button>
-  </ion-buttons>
 </ion-header>
 
 <ion-content>
-  <img src="https://image.freepik.com/vector-gratis/mapa-ruta-punteros-estilo-plano_23-2147789378.jpg" alt="">
+  <app-mapa></app-mapa>
   <ion-card>
     <ion-grid>
       <ion-row>
@@ -37,14 +37,19 @@
       </ion-row>
     </ion-grid>
   </ion-card>
+  
 
-<ion-tabs>
+<!-- <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="call" (click)="prueba()">
+    <ion-tab-button tab="call" (click)="prueba('96487664')">
       <ion-icon name="call"></ion-icon>
       <ion-label>Llamar</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-</ion-tabs>
+</ion-tabs>  -->
+
+<div class="container">
+  <ion-button class="llamar" (click)="prueba('96487764')"> <ion-icon name="call"></ion-icon> &nbsp; Llamar</ion-button>
+</div>
 
 </ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" col-4 no-padding>
+        <ion-card class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/El%20Kompa-logo__2.svg?alt=media&token=6a8b3a21-8d01-465f-850e-a93cba11ab0e"/>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <div class="container">
+    <ion-item>
+      <ion-label>
+        Email:
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Contraseña:
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <div class="container2">
+      <ion-button  (click)="onLogin()"><ion-icon name="log-in"></ion-icon> &nbsp; Iniciar Sesión</ion-button>
+      <ion-button  routerLink="/register"><ion-icon name="person-add"></ion-icon> &nbsp; Registrarse</ion-button>
+    </div>
+    <ion-label class="paswordForgot">¿Olvidaste tu contraseña?</ion-label>
+  </div> -->
+  <ion-label class="paswordForgot">Iniciar secion con:</ion-label>
+  <div class="container2">
+    <ion-button class="google" (click)="loginGoogle()">
+      <ion-icon name="logo-google"></ion-icon> &nbsp; Iniciar con Google
+    </ion-button>
+    <ion-button class="facebook" (click)="loginFacebook()">
+      <ion-icon name="logo-facebook"></ion-icon> &nbsp; Iniciar con Facebook
+    </ion-button>
+  </div>
+</ion-content>

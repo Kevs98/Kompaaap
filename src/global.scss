@@ -29,9 +29,17 @@
     --ion-color-base: rgb(253,139,0)!important;
 }
  ion-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif!important;
  }
 
  ion-label{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif!important;
  }
+
+ html, body {
+   font-family: 'Poppins', sans-serif!important;
+ }
+
+ ion-searchbar{
+   font-family: 'Poppins', sans-serif!important;
+}

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registrase en Kompa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeXs="12" col-4 no-padding>
+          <ion-card class="fixline">
+            <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/El%20Kompa-logo__2.svg?alt=media&token=6a8b3a21-8d01-465f-850e-a93cba11ab0e"/>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label>
+        Email:
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Contraseña:
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+  <div class="container2">
+    <ion-button  routerLink="/login"><ion-icon name="close"></ion-icon> Cancelar</ion-button>
+    <ion-button  (click)="onRegister()"><ion-icon name="checkmark"></ion-icon> Aceptar</ion-button>
+  </div>
+</div>
+</ion-content>

@@ -1,0 +1,27 @@
+.container{
+    margin: auto;
+    width: 95%;
+    // background-color: orange;
+}
+
+.fixline{
+    display: flex;
+    background-image: url(../../../assets/icon/base.png);
+    background-size: cover;
+    margin-bottom: 0%;
+    height: 100%;
+}
+
+img {
+    width: 70%;
+    margin: auto;
+}
+
+.container2{
+    display: grid;
+    margin-top: 1%;
+}
+
+ion-row{
+    margin-bottom: 5%;
+}

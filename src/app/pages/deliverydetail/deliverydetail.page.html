@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detalles del Servicio</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-mapa></app-mapa>
+  <div class="container">
+    <ion-item>
+      <ion-label>Precio:</ion-label>
+      <ion-label class="price">{{precio}} &nbsp; Lps</ion-label>
+    </ion-item>
+  </div>
+  <div class="botones">
+    <ion-button><ion-icon name="card"></ion-icon> &nbsp; Efectuar Pago</ion-button>
+  </div>
+</ion-content> 

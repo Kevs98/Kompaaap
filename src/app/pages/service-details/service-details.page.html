@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Servicio</ion-title>
+    <ion-title>Servicios Disponibles</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="problemForm" (ngSubmit)="onSave(problemForm.value)">
+  <!-- <form [formGroup]="problemForm" (ngSubmit)="onSave(problemForm.value)">
     <ion-grid>
       <ion-row>
         <ion-col sizeXs="12" col-4 no-padding>
@@ -41,8 +41,6 @@
         <ion-label class="ion-text-center">Imagen del problema</ion-label>
       </ion-item>
       <ion-item class="imagensubida">
-        <!-- <label for="upload-photo"><ion-icon name="images-outline"></ion-icon>IMAGEN</label>
-        <input type="file" name="photo" id="upload-photo"/> -->
         <div class="image-upload">
           <label for="file-input">
             <ion-label class="upload">
@@ -56,5 +54,41 @@
         <ion-button type="submit" expand="block" routerLink="/peoplein/{{KompaId}}">Enviar</ion-button>
       </ion-item>
     </ion-list>
-  </form>
+  </form> -->
+
+  <ion-list>
+    <!-- <ion-list-header>Servicios Disponibles</ion-list-header> -->
+    <ion-item>
+      <ion-label button routerLink="/peoplein/{{KompaId}}">
+        Item 1
+      </ion-label>
+      <ion-item>
+        0 Lps
+      </ion-item>
+    </ion-item>
+    <ion-item>
+      <ion-label button routerLink="/peoplein/{{KompaId}}">
+        Item 2
+      </ion-label>
+      <ion-item>
+        0 Lps
+      </ion-item>
+    </ion-item>
+    <ion-item>
+      <ion-label button routerLink="/peoplein/{{KompaId}}">
+        Item 3
+      </ion-label>
+      <ion-item>
+        0 Lps
+      </ion-item>
+    </ion-item>
+    <ion-item>
+      <ion-label button routerLink="/peoplein/{{KompaId}}">
+        Item 4
+      </ion-label>
+      <ion-item>
+        0 Lps
+      </ion-item>
+    </ion-item>
+  </ion-list>
 </ion-content>  

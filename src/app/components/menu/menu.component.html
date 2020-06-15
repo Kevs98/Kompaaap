@@ -5,6 +5,12 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
+    <ion-avatar class="profile">
+      <img src="{{ photo }}" alt="">
+    </ion-avatar>
+    <div class="container">
+      <ion-label class="profileName">{{name}}</ion-label>
+    </div>
     <ion-list *ngFor="let page of pages">
       <ion-item [routerLink]="page.url" routerDirection="forward" [class.active-item]="selectedPath === page.url">
         <ion-icon name="{{page.icon}}"></ion-icon> &nbsp; {{page.title}}
@@ -14,5 +20,10 @@
       <ion-item>Menu Item</ion-item>
       <ion-item>Menu Item</ion-item> -->
     </ion-list>
+    <ion-item>
+      <ion-button (click)="onLogout()">
+        <ion-icon name="log-out"></ion-icon> &nbsp; Cerrar Sesión
+      </ion-button>
+    </ion-item>
   </ion-content>
 </ion-menu>
