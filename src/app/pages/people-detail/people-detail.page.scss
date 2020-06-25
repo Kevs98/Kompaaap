@@ -20,7 +20,7 @@ ion-card{
 .stars{
     position: relative;
     top: 35px;
-    margin-left: -68px;
+    margin-left: -37%
 }
 
 .icon{
@@ -38,7 +38,7 @@ ion-card{
 .carro {
     position: absolute;
     top: 40px;
-    margin-left: -85px;
+    margin-left: -43%;
 }
 
 .llamar {
@@ -49,6 +49,25 @@ ion-card{
     width: 100%;
     text-align: center;
 }
+
+#map {
+    height: 70%;
+    // position: unset!important;
+  }
+  .gm-style-iw-d{
+    color: black!important;
+    font-weight: bold!important;
+  }
+  
+  ion-searchbar {
+    background: white;
+    color: black;
+  }
+  
+  div {
+    color: black!important;
+  }
+    
 
 
 

@@ -5,31 +5,6 @@
     </ion-title>
   </ion-toolbar>
   
-  <ion-row>  
-    <ion-col  size="6">
-      <ion-button (click)="loadMap()">
-        <!-- <ion-icon slot="start" name="locate"></ion-icon>
-          Where I Am -->
-        </ion-button>
-    </ion-col>
-  </ion-row>  
-</ion-header>
-<ion-content> 
-  <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="UpdateSearchResults()" placeholder="Search for a place"  (ionClear)="ClearAutocomplete()"></ion-searchbar>
-  <ion-list [hidden]="autocompleteItems.length == 0">
-    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
-      <ion-icon name="location"></ion-icon> &nbsp; <ion-label>{{ item.description }}</ion-label>
-    </ion-item>
-  </ion-list>
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button (click)="ShowCords()" ion-fab color="tertiary">
-      <ion-icon name="information-circle-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  <div class="map-wrapper" style="height: 100%;">      
-    <div id="map_center">
-      <ion-icon name="pin" size="large" color="danger"></ion-icon>      
-    </div>
-    <div #map id="map"  style="height: 100%;"></div>
-  </div>   
-</ion-content>
+  <ion-content [fullscreen]="true"> 
+    <div #map id="map"></div>
+  </ion-content>

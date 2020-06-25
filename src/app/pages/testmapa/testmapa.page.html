@@ -1,14 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Detalles del Servicio</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+    <ion-title>Mapa Ejemplo Tipo Uber</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div #map id="map">
+  <!-- <div #map id="map">
     <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="¿Donde quieres ir?" [hidden]="destination"></ion-searchbar>
     <ion-button class="ion-margin-top" (click)="back()" color="light" fill="clear" size="small" [hidden]="!destination">
       <ion-icon slot="icon-only" name="arrow-back">
@@ -17,17 +14,9 @@
     </ion-button>
     <ion-list [hidden]="!search.length">
       <ion-item (click)="calcRoute(result)" *ngFor="let result of searchResults">
-        <ion-icon name="location"></ion-icon> &nbsp; <ion-label>{{ result.description }}</ion-label>
+        {{ result.description }}
       </ion-item>
     </ion-list>
-  </div>
-  <div class="container">
-    <ion-item>
-      <ion-label>Precio:</ion-label>
-      <ion-label class="price">{{precio}} &nbsp; Lps</ion-label>
-    </ion-item>
-  </div>
-  <div class="botones">
-    <ion-button><ion-icon name="card"></ion-icon> &nbsp; Efectuar Pago</ion-button>
-  </div>
-</ion-content> 
+  </div> -->
+  <app-mapa></app-mapa>
+</ion-content>

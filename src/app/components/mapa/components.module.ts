@@ -6,6 +6,8 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { MapaComponent } from './mapa.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -15,6 +17,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
         MapaComponent
     ],
     imports: [
+        FormsModule,
+        ReactiveFormsModule,
         CommonModule,
         IonicModule,
     ],

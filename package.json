@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.1.0",
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
     "@angular/forms": "~8.2.14",
@@ -55,6 +56,7 @@
     "@angular/language-service": "~8.2.14",
     "@ionic/angular-toolkit": "^2.1.1",
     "@ionic/lab": "3.1.3",
+    "@types/googlemaps": "^3.39.7",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -90,8 +92,7 @@
       "cordova-plugin-ionic-keyboard": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.118750362205-gt66htm42girlqbg63qdvaocskgrbc35",
-        "WEB_APPLICATION_CLIENT_ID": "118750362205-vsl73b9s9k59uaiqrdc42ji7rpjfj9ce.apps.googleusercontent.com"
+        "118750362205-7r6cnjk3tnh86mi5853e15h977h1k9ri.apps.googleusercontent.com": "myreversedclientid"
       },
       "cordova-plugin-facebook4": {
         "APP_ID": "261301318481030",

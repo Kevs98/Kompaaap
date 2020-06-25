@@ -25,7 +25,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 
-import { GoogleMaps } from '@ionic-native/google-maps/ngx';
+import { GoogleMaps } from '@ionic-native/google-maps';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({

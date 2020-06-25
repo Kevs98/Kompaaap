@@ -6,11 +6,11 @@ import { MyLocation } from '@ionic-native/google-maps';
 declare var google : any;
 
 @Component({
-  selector: 'app-mapa',
-  templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.scss'],
+  selector: 'app-testmapa',
+  templateUrl: './testmapa.page.html',
+  styleUrls: ['./testmapa.page.scss'],
 })
-export class MapaComponent {
+export class TestmapaPage  {
 
   @ViewChild('map', {read : ElementRef, static : false }) mapElement : ElementRef;
   private loading : any;
@@ -143,4 +143,5 @@ export class MapaComponent {
       
     }
   }
+
 }

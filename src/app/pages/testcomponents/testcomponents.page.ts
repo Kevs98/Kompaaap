@@ -1,124 +1,97 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 
-declare var google;
+
+
+declare var google : any;
+
 
 @Component({
   selector: 'app-testcomponents',
   templateUrl: './testcomponents.page.html',
   styleUrls: ['./testcomponents.page.scss'],
 })
-export class TestcomponentsPage implements OnInit {
+export class TestcomponentsPage{
 
-  @ViewChild('map',  {static: false}) mapElement: ElementRef;
   map: any;
-  address:string;
-  lat: string;
-  long: string;  
-  autocomplete: { input: string; };
-  autocompleteItems: any[];
-  location: any;
-  placeid: any;
-  GoogleAutocomplete: any;
+  @ViewChild('map',{ read : ElementRef, static : false }) mapRef: ElementRef;
 
-  constructor( private geolocation : Geolocation, private nativeGeocoder : NativeGeocoder, private zone : NgZone) {
-    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-    this.autocomplete = {input: ''};
-    this.autocompleteItems = [];
+  infoWindows: any = [];
+  markers : any = [
+    {
+      title: "National Galery Art",
+      latitude: "-17.824991",
+      longitude: "31.049295"
+    },
+    {
+      title: "West End Hospital",
+      latitude: "-17.820987",
+      longitude: "31.039682"
+    },
+    {
+      title: "Dominican Convent School",
+      latitude: "-17.822647",
+      longitude: "31.052042"
+    }
+  ];
+
+
+  constructor(  ) {
+    
    }
 
-   //cargar mapa
-  ngOnInit() {
-    this.loadMap();  
-  }
+   ionViewDidEnter(){
+     this.showMap();
+   }
 
-  //cargar mapa 
-  loadMap(){
-      //localizacion del dispositivo
-      this.geolocation.getCurrentPosition().then(( resp ) => {
-        let latLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-        let mapOptions = {
-          center: latLng,
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
+   addMarkersToMap( markers ){
+     for (let marker of markers) {
+       let position = new google.maps.LatLng(marker.latitude, marker.longitude);
+       let mapMarker = new google.maps.Marker({
+         position: position,
+         title: marker.title,
+         latitude: marker.latitude,
+         longitude: marker.longitude
+       });
 
-        //cargar con los valores previos
-      this.getAddressFromCoords(resp.coords.latitude, resp.coords.longitude);
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.map.addListener('tilesloaded', () => {
-        console.log('accuracy', this.map, this.map.center.lng())
-        this.lat = this.map.center.lat();
-        this.long = this.map.center.lng();
-      });
-    }).catch((error) => {
-      console.log('Error getting location', error);
+       mapMarker.setMap(this.map);
+       this.addInfoWindowToMarker(mapMarker);
+     }
+   }
+
+   addInfoWindowToMarker(marker){
+     let infoWindowContent = '<div id="content" style="color: black!important;">' +
+                                '<h2 id="firstHeading" classs="firstHeading">' + marker.title + '</h2>' +
+                                '<p>Latitude: ' + marker.latitude + '</p>' +
+                                '<p>Longitude: ' + marker.longitude + '</p>' +
+                              '</div>';
+                              
+    let infoWindow = new google.maps.InfoWindow({
+      content: infoWindowContent
     });
-  }
 
-  getAddressFromCoords( lattitude, longitude){
-    console.log("getAddressFromCoords "+lattitude+" "+longitude);
-    let options : NativeGeocoderOptions = {
-      useLocale: true,
-      maxResults: 5
-    };
-    this.nativeGeocoder.reverseGeocode(lattitude,longitude,options)
-      .then((result: NativeGeocoderResult[]) => {
-        this.address = "";
-        let responseAddress = [];
-        for (let [key, value] of Object.entries(result[0])) {
-          if (value.length > 0)
-          responseAddress.push(value);
-        }
-        responseAddress.reverse();
-        for (let value of responseAddress) {
-          this.address += value+", ";
-        }
-        this.address = this.address.slice(0, -2);
-      })
-      .catch(( error: any) => {
-        this.address = 'Address not Available';
-      });
-  }
-
-  //Mostrar coordenadas en el centro del Mapa
-  ShowCords(){
-    alert('lat' +this.lat+', long'+this.long)
-  }
-
-  //Autocompletar usando predicciones de Google
-  UpdateSearchResults(item){
-    if (this.autocomplete.input == '') {
-      this.autocompleteItems = [];
-      return;
-    }
-    this.GoogleAutocomplete.getPlacePredictions( { input: this.autocomplete.input },
-    (predictions, status) => {
-      this.autocompleteItems = [];
-      this.zone.run(() => {
-        predictions.forEach((prediction) => {
-          this.autocompleteItems.push(prediction);
-        });
-      });
+    marker.addListener('click', () => {
+      this.closeAllInfoWindows();
+      infoWindow.open(this.map, marker);
     });
-  }
+    this.infoWindows.push(infoWindow);
+   }
 
-  //Llamar para cada Item
-  SelectSearchResult(item){
-    alert(JSON.stringify(item))
-    this.placeid = item.place_id
-  }
+   closeAllInfoWindows(){
+     for (let window of this.infoWindows){
+       window.close();
+     }
+   }
 
-  //Limpiar barra despues de buscar
-  ClearAutocomplete(){
-    this.autocompleteItems = []
-    this.autocomplete.input = ''
-  }
+   showMap(){
+     const location = new google.maps.LatLng(-17.824858, 31.053028);
+     const options = {
+       center: location,
+       zoom: 15,
+       disableDefaultUI: true
+     }
+     this.map = new google.maps.Map(this.mapRef.nativeElement, options);
+     this.addMarkersToMap(this.markers);
+   }
 
-  //ejemplo
-  GoTo(){
-    return window.location.href = 'https://www.google.com/maps/search/?api=1&query=Google&query_place_id='+this.placeid;
-  }
 
 }

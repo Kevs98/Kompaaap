@@ -9,6 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { PeopleDetailPageRoutingModule } from './people-detail-routing.module';
 
 import { PeopleDetailPage } from './people-detail.page';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { PeopleDetailPage } from './people-detail.page';
     IonicModule,
     PeopleDetailPageRoutingModule
   ],
-  declarations: [PeopleDetailPage]
+  declarations: [PeopleDetailPage],
+  providers: [
+    GoogleMaps
+  ]
 })
 export class PeopleDetailPageModule {}

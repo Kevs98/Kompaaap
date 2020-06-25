@@ -1,5 +1,16 @@
-<ion-searchbar placeholder="Donde quieres Ir" (ionChange)="searchLocation()" [debounce]="250"id="buscar"></ion-searchbar>
-<div id="map"></div>
+<div #map id="map">
+  <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="¿Donde quieres ir?" [hidden]="destination"></ion-searchbar>
+  <ion-button class="ion-margin-top" (click)="back()" color="light" fill="clear" size="small" [hidden]="!destination">
+    <ion-icon slot="icon-only" name="arrow-back">
+      Haz Click
+    </ion-icon>
+  </ion-button>
+  <ion-list [hidden]="!search.length">
+    <ion-item (click)="calcRoute(result)" *ngFor="let result of searchResults">
+      {{ result.description }}
+    </ion-item>
+  </ion-list>
+</div>
 
 
 

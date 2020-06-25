@@ -107,6 +107,10 @@ const routes: Routes = [
   {
     path: 'testcomponents',
     loadChildren: () => import('./pages/testcomponents/testcomponents.module').then( m => m.TestcomponentsPageModule)
+  },
+  {
+    path: 'testmapa',
+    loadChildren: () => import('./pages/testmapa/testmapa.module').then( m => m.TestmapaPageModule)
   }
   
 ];

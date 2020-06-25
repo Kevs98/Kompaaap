@@ -8,7 +8,19 @@
 </ion-header>
 
 <ion-content>
-  <app-mapa></app-mapa>
+  <div #map id="map">
+    <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="¿Donde quieres ir?" [hidden]="destination"></ion-searchbar>
+    <ion-button class="ion-margin-top" (click)="back()" color="light" fill="clear" size="small" [hidden]="!destination">
+      <ion-icon slot="icon-only" name="arrow-back">
+        Haz Click
+      </ion-icon>
+    </ion-button>
+    <ion-list [hidden]="!search.length">
+      <ion-item (click)="calcRoute(result)" *ngFor="let result of searchResults">
+        <ion-icon name="location"></ion-icon> &nbsp; <ion-label>{{ result.description }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
   <ion-card>
     <ion-grid>
       <ion-row>

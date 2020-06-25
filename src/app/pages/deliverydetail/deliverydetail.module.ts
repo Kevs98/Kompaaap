@@ -9,6 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { DeliverydetailPageRoutingModule } from './deliverydetail-routing.module';
 
 import { DeliverydetailPage } from './deliverydetail.page';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { DeliverydetailPage } from './deliverydetail.page';
     IonicModule,
     DeliverydetailPageRoutingModule
   ],
-  declarations: [DeliverydetailPage]
+  declarations: [DeliverydetailPage],
+  providers: [ GoogleMaps ]
 })
 export class DeliverydetailPageModule {}
