@@ -12,9 +12,22 @@ export class FontaneriaService {
   private fontaneriaCollection : AngularFirestoreCollection<PeopleI>;
   private fontanero : Observable<PeopleI[]>;
 
+  private fontaneriaList : AngularFirestoreCollection<PeopleI>;
+  private Lista : Observable<PeopleI[]>;
+
   constructor(db : AngularFirestore) {
     this.fontaneriaCollection = db.collection<PeopleI>('Fontaneria');
     this.fontanero = this.fontaneriaCollection.snapshotChanges().pipe(map( actions => {
+      return actions.map( a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      });
+    }
+    ));
+
+    this.fontaneriaList = db.collection<PeopleI>('Fontaneria List');
+    this.Lista = this.fontaneriaList.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
         const id = a.payload.doc.id;
@@ -26,5 +39,14 @@ export class FontaneriaService {
 
    getFontaneros(){
      return this.fontanero;
+   }
+
+   getLista(){
+     return this.Lista;
+   }
+
+   getOne(id: string){
+    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
+    return this.fontaneriaCollection.doc<PeopleI>(id).valueChanges();
    }
 }

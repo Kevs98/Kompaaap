@@ -64,7 +64,7 @@ export class PeopleinPage implements OnInit {
     private pinturaService : PinturaService,
     private taxiService : TaxiService,
     private asistH : AsistHogarService,
-    private  aparatoService : AparatosService,
+    private aparatoService : AparatosService,
     private FloreService : FloristeriaService,
     private reparacioneService : ReparacionesHogarService,
     private mensajeriaService : MensajeriaService,

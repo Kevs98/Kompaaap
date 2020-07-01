@@ -111,7 +111,11 @@ const routes: Routes = [
   {
     path: 'testmapa',
     loadChildren: () => import('./pages/testmapa/testmapa.module').then( m => m.TestmapaPageModule)
+  },  {
+    path: 'pagos',
+    loadChildren: () => import('./pages/pagos/pagos.module').then( m => m.PagosPageModule)
   }
+
   
 ];
 

@@ -11,6 +11,7 @@ export class AsistenciaCarreteraService {
 
   private asistentecarCollection : AngularFirestoreCollection<PeopleI>;
   private asistente : Observable<PeopleI[]>;
+  
 
   constructor(db : AngularFirestore) {
     this.asistentecarCollection = db.collection<PeopleI>('Asistencia Carretera');

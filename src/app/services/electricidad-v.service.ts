@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PeopleI } from '../models/people.interface';
+import { ListI } from '../models/list.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ export class ElectricidadVService {
 
   private electricidadCollection : AngularFirestoreCollection<PeopleI>;
   private electrico : Observable<PeopleI[]>;
+
+  private electricidadList : AngularFirestoreCollection<ListI>;
+  private Lista : Observable<ListI[]>;
 
   constructor(db : AngularFirestore) {
     this.electricidadCollection = db.collection<PeopleI>('Electricidad Automovil');
@@ -26,5 +30,10 @@ export class ElectricidadVService {
 
    getElectricos(){
      return this.electrico;
+   }
+
+   getOne(id: string){
+    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
+    return this.electricidadCollection.doc<PeopleI>(id).valueChanges();
    }
 }

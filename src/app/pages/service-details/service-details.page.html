@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- <form [formGroup]="problemForm" (ngSubmit)="onSave(problemForm.value)">
+  <form [formGroup]="problemForm" (ngSubmit)="onSave(problemForm.value)" *ngIf="KompaId == '8idjZF9Iyc6anqttSHXC' || KompaId == '8NrJCXGzTxYPI5tYVjpO'">
     <ion-grid>
       <ion-row>
         <ion-col sizeXs="12" col-4 no-padding>
@@ -18,7 +18,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-list>
+    <ion-list class="lista">
       <ion-list-header>
         <ion-label>
           Describa su problema
@@ -54,40 +54,15 @@
         <ion-button type="submit" expand="block" routerLink="/peoplein/{{KompaId}}">Enviar</ion-button>
       </ion-item>
     </ion-list>
-  </form> -->
+  </form>
 
   <ion-list>
-    <!-- <ion-list-header>Servicios Disponibles</ion-list-header> -->
-    <ion-item>
-      <ion-label button routerLink="/peoplein/{{KompaId}}">
-        Item 1
+    <ion-item *ngFor="let servicio of servicios" button routerLink="/peoplein/{{KompaId}}">
+      <ion-label>
+        {{servicio.nombre}}
       </ion-label>
       <ion-item>
-        0 Lps
-      </ion-item>
-    </ion-item>
-    <ion-item>
-      <ion-label button routerLink="/peoplein/{{KompaId}}">
-        Item 2
-      </ion-label>
-      <ion-item>
-        0 Lps
-      </ion-item>
-    </ion-item>
-    <ion-item>
-      <ion-label button routerLink="/peoplein/{{KompaId}}">
-        Item 3
-      </ion-label>
-      <ion-item>
-        0 Lps
-      </ion-item>
-    </ion-item>
-    <ion-item>
-      <ion-label button routerLink="/peoplein/{{KompaId}}">
-        Item 4
-      </ion-label>
-      <ion-item>
-        0 Lps
+        {{servicio.precio}} Lps
       </ion-item>
     </ion-item>
   </ion-list>

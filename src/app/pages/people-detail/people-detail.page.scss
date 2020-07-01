@@ -8,19 +8,22 @@ ion-card{
 
 .name{
     margin-left: 40%;
-    position: relative;
-    top: 10px;
+    position: absolute;
+    top: 20%;
     font-weight: bold;
+    width: 80%;
 }
 
 .peopleImage{
-    margin-top: -30%;
+    // margin-top: -30%;
 }
 
 .stars{
-    position: relative;
-    top: 35px;
-    margin-left: -37%
+    position: absolute;
+    top: 40px;
+    margin-left: 40%;
+    width: 15%;
+    text-align: center;
 }
 
 .icon{
@@ -28,21 +31,29 @@ ion-card{
     top: 1.5px;
 }
 
+.ion-float-end{
+    margin-top: -2%;
+}
+
 .placa{
-    position: relative;
-    top: 10px;
-    margin-left: 10%;
+    position: absolute;
+    top: 20%;
+    margin-left: 5%;
+    width: 50%;
     font-weight: bold;
+    text-align: end;
 }
 
 .carro {
     position: absolute;
     top: 40px;
-    margin-left: -43%;
+    margin-left: 2%;
+    width: 101px;
+    text-align: end;
 }
 
 .llamar {
-    width: 95%!important;
+    width: 45%!important;
 }
 
 .container {

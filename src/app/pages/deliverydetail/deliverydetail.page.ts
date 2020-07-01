@@ -26,7 +26,7 @@ export class DeliverydetailPage {
   private destinoMarker : Marker;
   public destination : any;
   private googleDirectionsService = new google.maps.DirectionsService();
-  destino = {lat: 15.5060634, lng: -88.0404834};
+  destino = {lat: 15.5060634, lng: -88.03829470000001};
   private test : any;
   public origen : any = '';
   public precio : number;
@@ -37,7 +37,14 @@ export class DeliverydetailPage {
   directionService = new google.maps.DirectionsService();
   directionDisplay = new google.maps.DirectionsRenderer();
 
-  constructor( private platform : Platform, private loadindCtrl : LoadingController, private ngZone : NgZone, private service : DeliveryjobsService, private route : ActivatedRoute, private geolocation : Geolocation ) { 
+  constructor( 
+    private platform : Platform, 
+    private loadindCtrl : LoadingController, 
+    private ngZone : NgZone, 
+    private service : DeliveryjobsService, 
+    private route : ActivatedRoute, 
+    private geolocation : Geolocation 
+  ) { 
 
   }
 
@@ -77,19 +84,19 @@ export class DeliverydetailPage {
       console.log('KM',distancia);
 
       if (distancia <= 1.5){
-        this.precio = Math.trunc(distancia * 50)
+        this.precio = 50;
       } else if (distancia <= 4){
-        this.precio = Math.trunc(distancia * 60)
+        this.precio = 60;
       } else if (distancia <= 6.5){
-        this.precio = Math.trunc(distancia * 70)
+        this.precio = 70;
       } else if (distancia <= 9){
-        this.precio = Math.trunc(distancia * 80)
-      } else if (distancia > 9 || distancia <= 10){
-        this.precio = Math.trunc(distancia * 90)
-      } else if (distancia > 10 || distancia >=12){
-        this.precio = Math.trunc(distancia * 150)
+        this.precio = 80;
+      } else if (distancia > 9 && distancia <= 10){
+        this.precio = 90;
+      } else if (distancia > 10 && distancia <=12){
+        this.precio = 100;
       } else if (distancia > 12){
-        this.precio = Math.trunc(distancia * 100)
+        this.precio = 150;
       } 
 
       console.log('price',this.precio);
@@ -146,7 +153,7 @@ export class DeliverydetailPage {
       }
     };
     this.map = GoogleMaps.create(this.mapElement, mapOptions);
-    
+
     try {
       await this.map.one(GoogleMapsEvent.MAP_READY);
       this.addOriginMarker();
@@ -155,7 +162,7 @@ export class DeliverydetailPage {
         this.addDestMarker();
       }
       console.log('despues de funcion',this.origen);
-      
+
     } catch(error) {
       console.error(error);
       
@@ -277,19 +284,19 @@ export class DeliverydetailPage {
       console.log('KM',distancia);
 
       if (distancia <= 1.5){
-        this.precio = Math.trunc(distancia * 50)
-      } else if (distancia <= 4){
-        this.precio = Math.trunc(distancia * 60)
-      } else if (distancia <= 6.5){
-        this.precio = Math.trunc(distancia * 70)
+        this.precio =  50;
+      } else if (distancia >= 4 && distancia <= 6.5){
+        this.precio = 60;
+      } else if (distancia >= 6.5 && distancia <= 9){
+        this.precio = 70;
       } else if (distancia <= 9){
-        this.precio = Math.trunc(distancia * 80)
-      } else if (distancia > 9 || distancia <= 10){
-        this.precio = Math.trunc(distancia * 90)
-      } else if (distancia > 10 || distancia >=12){
-        this.precio = Math.trunc(distancia * 150)
+        this.precio = 80;
+      } else if (distancia > 9 && distancia <= 10){
+        this.precio = 90;
+      } else if (distancia > 10 && distancia <=12){
+        this.precio = 100;
       } else if (distancia > 12){
-        this.precio = Math.trunc(distancia * 100)
+        this.precio = 150;
       } 
 
       console.log('price',this.precio);
