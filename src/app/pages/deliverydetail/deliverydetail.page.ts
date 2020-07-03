@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Platform, LoadingController } from '@ionic/angular';
-import { Environment, GoogleMap, GoogleMaps, GoogleMapOptions, GoogleMapsEvent, GoogleMapsAnimation, Marker, Geocoder, ILatLng } from '@ionic-native/google-maps';
-import { MyLocation } from '@ionic-native/google-maps';
+import { Environment, GoogleMap, GoogleMaps, GoogleMapOptions, GoogleMapsEvent, GoogleMapsAnimation, Marker, Geocoder, ILatLng } from '@ionic-native/google-maps/ngx';
+import { MyLocation } from '@ionic-native/google-maps/ngx';
 import { servicesI } from '../../models/serivices.interface';
 import { DeliveryjobsService } from '../../services/deliveryjobs.service';
 import { Router, ActivatedRoute } from '@angular/router';

@@ -9,7 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { PeopleDetailPageRoutingModule } from './people-detail-routing.module';
 
 import { PeopleDetailPage } from './people-detail.page';
-import { GoogleMaps } from '@ionic-native/google-maps';
+import { GoogleMaps } from '@ionic-native/google-maps/ngx';
 
 @NgModule({
   imports: [

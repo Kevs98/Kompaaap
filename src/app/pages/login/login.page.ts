@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     this.authService.loginWithGoogle().then(() => {
       this.router.navigate(['/categories']);
     }).catch( err => {
-      alert('Algo salio mal');
+      alert(err);
     })
   }
 
@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
     this.authService.loginWithFacebook().then( res => {
       this.router.navigate(['/categories']);
     }).catch( err => {
-      alert('Algo salio mal');
+      alert(err);
     })
   }
 

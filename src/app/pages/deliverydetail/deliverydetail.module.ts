@@ -9,7 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { DeliverydetailPageRoutingModule } from './deliverydetail-routing.module';
 
 import { DeliverydetailPage } from './deliverydetail.page';
-import { GoogleMaps } from '@ionic-native/google-maps';
+import { GoogleMaps } from '@ionic-native/google-maps/ngx';
 
 @NgModule({
   imports: [

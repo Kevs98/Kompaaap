@@ -12,4 +12,8 @@ export class PagosPage implements OnInit {
   ngOnInit() {
   }
 
+  prueba(){
+    alert('Muy pronto');
+  }
+
 }

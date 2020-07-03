@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { Platform, LoadingController } from '@ionic/angular';
-import { Environment, GoogleMap, GoogleMaps, GoogleMapOptions, GoogleMapsEvent, GoogleMapsAnimation, Marker, Geocoder, ILatLng } from '@ionic-native/google-maps';
-import { MyLocation } from '@ionic-native/google-maps';
+import { Environment, GoogleMap, GoogleMaps, GoogleMapOptions, GoogleMapsEvent, GoogleMapsAnimation, Marker, Geocoder, ILatLng } from '@ionic-native/google-maps/ngx';
+import { MyLocation } from '@ionic-native/google-maps/ngx';
 import { ACHogarService } from 'src/app/services/achogar.service';
 import { UploadService } from 'src/app/services/upload.service';
 import { AlbañileriaService } from 'src/app/services/albañileria.service';
@@ -424,5 +424,9 @@ export class PeopleDetailPage {
       console.error(error);
       
     }
+  }
+
+  pagar(){
+    alert('Muy pronto');
   }
 }
