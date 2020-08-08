@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Historial de Trabajos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col sizeXs="12" col-4 no-padding>
+      <div class="container-test">
+        <ion-card class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Fstatus.svg?alt=media&token=7040bff1-728b-41f0-bc0f-de02235da790"/>
+          <ion-card-title class="test">Procesando Trabajo</ion-card-title>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+  <div class="container">
+    <ion-item>
+      <ion-label>Nombre de la Orden: &nbsp; {{order.nombre}}</ion-label>
+    </ion-item>
+    <ion-list  *ngFor="let oc of orderCart">
+      <ion-item>
+        <ion-label>Nombre del Menu: &nbsp; {{oc.nombre}}</ion-label>
+      </ion-item>
+      <ion-item>Cantidad: &nbsp; {{oc.cantidad}}</ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-label>Cantidad: &nbsp; {{order.cantidad}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Cobro: &nbsp; {{order.precio}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Entregar a: &nbsp; {{order.cliente}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Teléfono: &nbsp; {{order.phone}}</ion-label>
+      <ion-button (click)="llamar()" color="success"><ion-icon name="call"></ion-icon>&nbsp;Llamar</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ubicación: </ion-label>
+      <ion-button (click)="navigate()" color="primary"><ion-icon name="navigate"></ion-icon>&nbsp;Ir a la Ubicación</ion-button>
+    </ion-item>
+
+    <ion-button (click)="jobDone()" expand="block" class="done"><ion-icon name="checkmark-done-circle"></ion-icon>&nbsp;Completar Trabajo</ion-button>
+  </div>
+</ion-content>

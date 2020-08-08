@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="fixline">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Fuser.svg?alt=media&token=b7bc6465-6fc9-4c7a-89f6-9e1fd90629f1"/>
+    <ion-card-title class="title">Editar Perfil</ion-card-title>
+  </ion-card>
+  <hr class="separator">
+  <form [formGroup]="EditProfile" (ngSubmit)="onSave(EditProfile.value)">
+    <div class="container">
+      <ion-item>
+        <ion-label>Nombre: </ion-label>
+        <ion-input type="text" formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Apellido: </ion-label>
+        <ion-input type="text" formControlName="apellido"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phone: </ion-label>
+        <ion-input type="text" formControlName="phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Foto de perfil: </ion-label>
+        <ion-input type="file" formControlName="profilePhoto" (change)="handleImage($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Foto del vehiculo: </ion-label>
+        <ion-input type="file" formControlName="carPhoto" (change)="handleImage2($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Placa: </ion-label>
+        <ion-input type="text" formControlName="placa"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Modelo de Vehiculo: </ion-label>
+        <ion-input type="text" formControlName="modelo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Elige tu categoria: </ion-label>
+        <ion-select formControlName="tipo">
+          <ion-select-option value="Delivery">Delivery</ion-select-option>
+          <ion-select-option value="Transporte VIP">Transporte VIP</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="botonenviar">
+        <ion-button type="submit" class="enviar"><ion-icon name="push" routerLink="/kdashboard"></ion-icon>&nbsp; Actualizar Perfil</ion-button>
+      </div>
+    </div>
+  </form>
+</ion-content>

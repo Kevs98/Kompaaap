@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ingresos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col sizeXs="12" col-4 no-padding>
+      <div class="container-test">
+        <ion-card class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Fincrease.svg?alt=media&token=53bf20b4-cf78-4257-aa34-03688fc15ad7"/>
+          <ion-card-title class="test">Ingresos</ion-card-title>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+  <div class="container">
+    <ion-list *ngFor="let o of order">
+      <ion-item>
+        <ion-label class="izquierda">{{o.nombre}}</ion-label>
+        <ion-label class="derecha">{{o.precio}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-item color="primary" class="total">
+      <ion-label class="izquierda">Total Generado:</ion-label>
+      <ion-label class="derecha">{{suma}}</ion-label>
+    </ion-item>
+  </div>
+</ion-content>

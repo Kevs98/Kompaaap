@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Método de Pago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="fixline">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/money.svg?alt=media&token=3956254f-8f2a-4f76-b873-314d3bbb3846" class="imagen"/>
+    <ion-card-title class="title">Formas de Pago</ion-card-title>
+  </ion-card>
+  <hr class="separator">
+  <ion-item>
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/money%20(1).svg?alt=media&token=625a3ca1-1502-4f5c-8ed8-61fd08afec4b" class="efectivoimg">
+    <ion-label routerLink="/p-efectivo/{{KompaId}}/{{rid}}/{{precio}}/{{cantidad}}">
+      Efectivo
+    </ion-label>
+    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item>
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/credit-card.svg?alt=media&token=03348b12-0486-471c-8124-e1c56247867c" class="efectivoimg">
+    <ion-label (click)="prox()">
+      Tarjeta de Crédito
+    </ion-label>
+    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+</ion-content>

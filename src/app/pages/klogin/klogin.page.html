@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="test">
+    <div class="containerP">
+      <ion-grid>
+        <ion-row>
+          <ion-col sizeXs="12" col-4 no-padding>
+            <div class="img">
+              <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/El%20Kompa-logo__2.svg?alt=media&token=6a8b3a21-8d01-465f-850e-a93cba11ab0e"/>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item color="white">
+        <ion-label>
+          Email:
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
+      <ion-item color="white">
+        <ion-label>
+          Contraseña:
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+      </ion-item>
+      <div class="container2">
+        <ion-button (click)="onLogin()">
+          <ion-icon name="log-in"></ion-icon> &nbsp; Iniciar Sesión
+        </ion-button>
+        <ion-button routerLink="/register">
+          <ion-icon name="person-add"></ion-icon> &nbsp; Registrarse
+        </ion-button>
+      </div>
+    </div>
+</div>
+</ion-content>

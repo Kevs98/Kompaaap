@@ -1,0 +1,36 @@
+img {
+    max-width: 25%;
+    border: 0;
+    border-radius: 10px;
+    margin: 6% 13%;
+}
+
+.test {
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 170%;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+ .fixline{
+    display: flex;
+    // background-color: rgb(253,139,0)!important;
+    background-image: url(../../../assets/icon/base.png);
+    background-size: cover;
+    margin-bottom: 0%;
+}
+
+ ion-col.ios.hydrated {
+    margin-bottom: -10%;
+}
+
+ion-title{
+    font-family: 'Poppins', sans-serif;
+}
+
+
+

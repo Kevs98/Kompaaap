@@ -1,3 +1,8 @@
+import { map } from 'rxjs/operators';
+import { DriversI } from './../../models/drivers.interface';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { TaxiService } from './../../services/taxi.service';
+import { DeliveryService } from 'src/app/services/delivery.service';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Platform, LoadingController } from '@ionic/angular';
 import { Environment, GoogleMap, GoogleMaps, GoogleMapOptions, GoogleMapsEvent, GoogleMapsAnimation, Marker, Geocoder, ILatLng } from '@ionic-native/google-maps/ngx';
@@ -6,6 +11,13 @@ import { servicesI } from '../../models/serivices.interface';
 import { DeliveryjobsService } from '../../services/deliveryjobs.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { PeopleI } from 'src/app/models/people.interface';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
+import { OrderI } from 'src/app/models/order.interface';
+import { NichasmenuService } from 'src/app/services/nichasmenu.service';
+import { MenuI } from 'src/app/models/menu.interface';
 
 declare var google : any;
 
@@ -17,52 +29,133 @@ declare var google : any;
 export class DeliverydetailPage {
 
   @ViewChild('map', {read : ElementRef, static : false }) mapElement : ElementRef;
-  private loading : any;
-  private map : GoogleMap;
-  public search : string = '';
-  private googleAutocomplete = new google.maps.places.AutocompleteService();
-  public searchResults = new Array<any>();
-  private originMarker : Marker;
-  private destinoMarker : Marker;
-  public destination : any;
+  private loading                 : any;
+  private map                     : GoogleMap;
+  public search                   : string = '';
+  private googleAutocomplete      = new google.maps.places.AutocompleteService();
+  public searchResults            = new Array<any>();
+  private originMarker            : Marker;
+  private destinoMarker           : Marker;
+  public destination              : any;
   private googleDirectionsService = new google.maps.DirectionsService();
-  destino = {lat: 15.5060634, lng: -88.03829470000001};
-  private test : any;
-  public origen : any = '';
-  public precio : number;
+  destino                         = {lat: 15.5060634, lng: -88.03829470000001};
+  olat                            = 15.5060634;
+  olng                            = -88.03829470000001;
+  private test                    : any;
+  public origen                   : any = '';
+  public precio                   : number;
 
-  jobs : servicesI[];
-  id = null;
+  jobs    : servicesI[];
+  Peoples : DriversI = {};
+  id      = null;
+  rid     = null;
+  orderid = null;
+  menu    : MenuI = {};
+  oPrecio = null;
+  cantidad= null;
+  from    = null;
+  tipo    = null;
+
+  locateOrder = "";
+  restOrder   = "";
 
   directionService = new google.maps.DirectionsService();
   directionDisplay = new google.maps.DirectionsRenderer();
+  private orderCollection : AngularFirestoreCollection<OrderI>
+  private orders          : Observable<any>
+  usuario = firebase.auth().currentUser;
 
   constructor( 
-    private platform : Platform, 
+    private platform    : Platform, 
     private loadindCtrl : LoadingController, 
-    private ngZone : NgZone, 
-    private service : DeliveryjobsService, 
-    private route : ActivatedRoute, 
-    private geolocation : Geolocation 
+    private ngZone      : NgZone, 
+    private service     : DeliveryjobsService, 
+    private route       : ActivatedRoute, 
+    private geolocation : Geolocation ,
+    private dservice    : DeliveryService,
+    private tService    : TaxiService,
+    private callNumber  : CallNumber,
+    private bd          : AngularFirestore,
+    private nichas     : NichasmenuService
   ) { 
 
   }
 
   ionViewDidEnter(){
-    this.id = this.route.snapshot.params['id'];
-    this.mapElement = this.mapElement.nativeElement;
+    this.id      = this.route.snapshot.params['id'];
+    this.rid     = this.route.snapshot.params['rid'];
+    this.orderid = this.route.snapshot.params['oid'];
+    this.oPrecio = this.route.snapshot.params['precio'];
+    this.cantidad= this.route.snapshot.params['cant'];
+    this.from    = this.route.snapshot.params['from'];
+    this.tipo    = this.route.snapshot.params['tipo'];
 
+    if(this.rid == 'VIP'){
+      console.log('taxi');
+    }else if( this.tipo == 'delivery'){
+      console.log('delivery');
+    }
+
+    console.log('id', this.id);
+    this.orderCollection = this.bd.collection<OrderI>('Order');
+    this.orders = this.orderCollection.snapshotChanges().pipe( map( actions => {
+      return actions.map( a => {
+        const data = a.payload.doc.data() as OrderI;
+        const id   = a.payload.doc.id;
+        return {id, ...data};
+      });
+    }
+    ));
+
+    this.mapElement = this.mapElement.nativeElement;
+    // if(tis.tipo == 'delivery'){
+      this.loadPeople();
+    // }else if(this.rid == 'VIP'){
+      this.loadTaxi();
+    // }
     this.loadMap();
     this.service.getDeliveryJobs().subscribe( res => {
       this.jobs = res;
     });
 
-    if ( this.id == '645ReJeOxbCh04AbWp0f') {
+    if ( this.rid == '645ReJeOxbCh04AbWp0f') {
       console.log('correcto');
+      this.loadPlato();
       this.getposition();
     }
 
     console.log('vamos a ver', this.origen);
+  }
+
+  loadPeople(){
+    this.dservice.getOne(this.id).subscribe( res => {
+      this.Peoples = res;
+      console.log(res);
+      
+    });
+  }
+
+  loadTaxi(){
+    this.tService.getOne(this.id).subscribe( res => {
+      this.Peoples = res;
+      console.log(res);
+      
+    });
+  }
+
+  llamar(){
+    this.callNumber.callNumber(this.Peoples.phone , true)
+      .then(res => console.log('Launched Dialer', res))
+      .catch( err => console.log('Error Launching Dialer', err));
+      console.log('Tel: ',this.Peoples.phone);
+      
+  }
+
+  loadPlato(){
+    this.nichas.getOne(this.orderid).subscribe( res => {
+      this.menu = res;
+      console.log('menu',res);
+    });
   }
 
   async getposition(){
@@ -101,6 +194,10 @@ export class DeliverydetailPage {
 
       console.log('price',this.precio);
       
+      if (this.rid == '645ReJeOxbCh04AbWp0f'){
+        const itemH = document.getElementById('testI');
+        itemH.style.display = 'none';
+      }
 
        
       
@@ -158,8 +255,39 @@ export class DeliverydetailPage {
       await this.map.one(GoogleMapsEvent.MAP_READY);
       this.addOriginMarker();
 
-      if (this.id == '645ReJeOxbCh04AbWp0f' ){
+      if (this.rid == '645ReJeOxbCh04AbWp0f'){
         this.addDestMarker();
+        this.restOrder = this.olat.toString() + ',' + this.olng.toString();
+        console.log('exito',this.from);
+        console.log('exio',this.cantidad);
+
+        if (this.cantidad == 'carrito'){
+          const order = {
+            nombre    : 'Varias Ordenes',
+            precio    : this.oPrecio,
+            driverId  : this.Peoples.userId,
+            cliente   : this.usuario.displayName,
+            ubicacion : this.restOrder,
+            phone     : "97544506",
+            estado    : 0
+          }
+          console.log('restOrder',order);
+          this.orderCollection.add(order);
+        } else {
+          const order = {
+            nombre    : this.menu.nombre,
+            precio    : this.oPrecio,
+            cantidad  : this.from,
+            driverId  : this.Peoples.userId,
+            cliente   : this.usuario.displayName,
+            ubicacion : this.restOrder,
+            phone     : "97544506",
+            estado    : 0
+          }
+          console.log('restOrder',order);
+          this.orderCollection.add(order);
+        }
+
       }
       console.log('despues de funcion',this.origen);
 
@@ -300,7 +428,25 @@ export class DeliverydetailPage {
       } 
 
       console.log('price',this.precio);
-      
+
+      const latO = info[0].position.lat;
+      const lngO = info[0].position.lng;
+
+      this.locateOrder = latO.toString() + ',' + lngO.toString();
+      console.log('ubimed',this.locateOrder);
+
+      const order = {
+        nombre    : "Delivery / VIP",
+        precio    : this.precio,
+        driverId  : this.Peoples.userId,
+        cliente   : this.usuario.displayName,
+        ubicacion : this.locateOrder,
+        phone     : "96487764",
+        estado    : 0
+      }
+
+      console.log('objOrder', order);
+      this.orderCollection.add(order);
 
     });
 
@@ -315,6 +461,10 @@ export class DeliverydetailPage {
       console.error(error);
       
     }
+  }
+
+  Payment(){
+    alert('Esta funcion aun no esta disponible');
   }
 
 }

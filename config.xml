@@ -290,4 +290,7 @@
     <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyCPtK1KCnD_dRdoqU3LxOupROGVdAddzJE" />
     <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyCPtK1KCnD_dRdoqU3LxOupROGVdAddzJE" />
     <allow-navigation href="http://localhost:8100" sessionid="5a262be6" />
+    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm">
+        <variable name="GOOGLE_API_KEY_FOR_ANDROID" value="{AIzaSyCPtK1KCnD_dRdoqU3LxOupROGVdAddzJE}" />
+    </plugin>
 </widget>

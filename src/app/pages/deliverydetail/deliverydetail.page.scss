@@ -9,6 +9,10 @@ h6{
     margin-top: 15%;
 }
 
+ion-list{
+  background-color: white!important;
+}
+
 
   .fixline{
     display: flex;
@@ -17,10 +21,10 @@ h6{
     margin-bottom: 0%;
     height: 100%;
 }
-img {
-    width: 70%;
-    margin: auto;
-}
+// img {
+//     width: 70%;
+//     margin: auto;
+// }
 // ion-list{
 //     margin-top: 5%;
 // }
@@ -40,7 +44,7 @@ img {
   }
 
   #map {
-    height: 80%;
+    height: 65%!important;
     // position: unset!important;
   }
   .gm-style-iw-d{
@@ -56,3 +60,91 @@ img {
   div {
     color: black!important;
   }
+
+
+  ion-card{
+    border-radius: 15px;
+    background-color: white;
+    height: 14%;
+    box-shadow: 2px 2px 5px #999;
+}
+
+.name{
+    margin-left: 40%;
+    position: absolute;
+    top: 20%;
+    font-weight: bold;
+    width: 80%;
+}
+
+.peopleImage{
+    // margin-top: -30%;
+}
+
+.stars{
+    position: absolute;
+    top: 40px;
+    margin-left: 40%;
+    width: 15%;
+    text-align: center;
+}
+
+.icon{
+    position: relative;
+    top: 1.5px;
+}
+
+.ion-float-end{
+    margin-top: -2%;
+}
+
+.placa{
+    position: absolute;
+    top: 20%;
+    margin-left: 5%;
+    width: 50%;
+    font-weight: bold;
+    text-align: end;
+}
+
+.carro {
+    position: absolute;
+    top: 40px;
+    margin-left: -3%;
+    width: 101px;
+    text-align: end;
+}
+
+.llamar {
+    width: 45%!important;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+}
+
+#map {
+    height: 70%;
+    // position: unset!important;
+  }
+  .gm-style-iw-d{
+    color: black!important;
+    font-weight: bold!important;
+  }
+  
+  ion-searchbar {
+    background: white;
+    color: black;
+  }
+  
+  div {
+    color: black!important;
+  }
+    
+
+
+
+
+
+

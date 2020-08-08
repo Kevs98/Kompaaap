@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Historial de Trabajos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col sizeXs="12" col-4 no-padding>
+      <div class="container-test">
+        <ion-card button routerLink="/jhistorydetail/{{o.id}}" class="fixline" *ngFor="let o of order">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Fbox.svg?alt=media&token=d2c2716b-31a9-4462-8ab5-1d6b1877f713"/>
+          <ion-card-title class="test">{{o.nombre}}</ion-card-title>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

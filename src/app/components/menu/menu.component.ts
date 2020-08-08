@@ -21,16 +21,6 @@ export class MenuComponent implements OnInit {
       icon: 'copy'
     },
     {
-      title: 'Hogar',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Vehículo',
-      url: '/automovil',
-      icon: 'car-sport'
-    },
-    {
       title: 'Delivery',
       url: '/delivery',
       icon: 'paper-plane'
@@ -40,6 +30,11 @@ export class MenuComponent implements OnInit {
       url: '/vipservices',
       icon: 'glasses'
     }
+    // {
+    //   title: 'Carrito de Compras',
+    //   url: '/carrito',
+    //   icon: 'cart'
+    // }
   ];
 
   selectedPath = '';
@@ -62,5 +57,4 @@ export class MenuComponent implements OnInit {
      this.afAuth.auth.signOut();
      this.router.navigateByUrl('login');
    }
-
 }

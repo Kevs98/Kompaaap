@@ -13,7 +13,7 @@ export class DeliveryService {
   private deliveries : Observable<PeopleI[]>;
 
   constructor(db : AngularFirestore) {
-    this.deliveryCollection = db.collection<PeopleI>('Delivery');
+    this.deliveryCollection = db.collection<PeopleI>('Drivers', ref => ref.where('tipo','==', 'Delivery').where('estado','==',1));
     this.deliveries = this.deliveryCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -26,5 +26,10 @@ export class DeliveryService {
 
    getDelivery(){
      return this.deliveries;
+   }
+
+   getOne(id: string){
+    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
+    return this.deliveryCollection.doc<PeopleI>(id).valueChanges();
    }
 }

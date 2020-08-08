@@ -15,11 +15,17 @@ export class LoginPage implements OnInit {
   constructor( private authService : AuthService, private router : Router) { }
 
   ngOnInit() {
-    this.authService.getUserAuth().subscribe(user => console.log(user));
+    this.authService.getUserAuth().subscribe(user => {
+      if (user.photoURL == null){
+        this.router.navigateByUrl('/kdashboard');
+      } else if( user != null){
+        this.router.navigateByUrl('/categories');
+      }
+    });
   }
 
   async onLogin(){
-    const user = await this.authService.Login(this.user);
+    const user = await this.authService.loginWithGoogle();
 
     if ( user ){
       console.log('Usuario Logeado con Exito');
@@ -36,11 +42,12 @@ export class LoginPage implements OnInit {
   }
 
   loginFacebook(){
-    this.authService.loginWithFacebook().then( res => {
-      this.router.navigate(['/categories']);
-    }).catch( err => {
-      alert(err);
-    })
+    // this.authService.loginWithFacebook().then( res => {
+    //   this.router.navigate(['/categories']);
+    // }).catch( err => {
+    //   alert(err);
+    // })
+    alert('Próximamente');
   }
 
   

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="prox()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Orden</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="fixline">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/bell.svg?alt=media&token=cdb6f364-0998-44a2-86e9-aeb40e5d2873"/>
+    <ion-card-title class="title">Tomando tu Orden</ion-card-title>
+  </ion-card>
+  <hr class="separator">
+  <div class="label">
+    <ion-row>
+      <ion-col class="izquierda">
+        <ion-label>{{menu.nombre}}</ion-label>
+      </ion-col>
+      <ion-col class="derecha">
+        <ion-label>L.&nbsp;{{precio}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="text-center">
+    <ion-label>
+      Cantidad
+    </ion-label>
+  </div>
+  <form>
+    <div class="container">
+      <input type="text" value="1" id="item" disabled>
+    </div>
+    <div class="buttons">
+      <button class="cant" (click)="incrementar()"><ion-icon name="add"></ion-icon></button>
+      <button class="cant2" (click)="decrementar()"><ion-icon name="remove"></ion-icon></button>
+    </div>
+  </form>
+  <div class="pagos">
+    <ion-button expand="block" (click)="addToCart()"><ion-icon name="cart"></ion-icon>&nbsp;Agregar al Carrito</ion-button>
+    <ion-button expand="block" routerLink="/pagando/{{kompaId}}/{{rid}}/{{precio}}/{{cantidad}}"><i class="fas fa-cash-register"></i>&nbsp;Procesar Orden</ion-button>
+    <!-- <ion-button expand="block" color="primary"><i class="fas fa-money-bill"></i> &nbsp;Pagar en Efectivo</ion-button>
+    <ion-button expand="block" color="primary" (click)="prox()"><i class="fas fa-credit-card"></i> &nbsp; Pagar con Tarjeta</ion-button> -->
+  </div>
+</ion-content>

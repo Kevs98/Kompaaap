@@ -14,6 +14,7 @@ img {
     font-size: 170%;
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
 }
  .fixline{
     display: flex;
@@ -23,6 +24,12 @@ img {
     margin-bottom: 0%;
 }
 
+
+.prox{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)) , url(../../../assets/icon/base.png)!important;
+    background-size: cover!important;
+}
+
  ion-col.ios.hydrated {
     margin-bottom: -10%;
 }
@@ -30,4 +37,6 @@ img {
 ion-title{
     font-family: 'Poppins', sans-serif;
 }
+
+
 

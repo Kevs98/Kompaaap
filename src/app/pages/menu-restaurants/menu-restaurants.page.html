@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="prox()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Menu del Restaurante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let menu of Menu" routerLink="/detalle-producto/{{menu.id}}/{{id}}">
+      <ion-label>
+        <h1 class="nombre">{{menu.nombre}}</h1> <br>
+        <p class="nombre2">{{menu.descripcion}}</p> <br>
+        L. {{menu.precio}}
+      </ion-label>
+      <ion-avatar slot="end" class="imgComida">
+        <img src="{{menu.imgUrl}}">
+      </ion-avatar>
+    </ion-item>
+  </ion-list>
+</ion-content>

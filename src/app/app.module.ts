@@ -21,7 +21,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ComponentsModule } from  '../app/components/menu/components.module';
 import { ComponentModule } from  '../app/components/mapa/components.module';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-
+import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 
@@ -46,6 +46,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
   providers: [
     NativeGeocoder,
     Geolocation,
+    LaunchNavigator,
     Facebook,
     GooglePlus,
     StatusBar,

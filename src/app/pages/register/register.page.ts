@@ -22,7 +22,7 @@ export class RegisterPage implements OnInit {
 
     if( user ){
       console.log('Usuario registrado bajo el nombre de', user);
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/klogin');
     }
   }
 

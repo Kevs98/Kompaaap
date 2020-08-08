@@ -10,6 +10,7 @@ import { kompasI } from '../../models/kompa.interface';
 export class VipservicesPage implements OnInit {
 
   Servicios : kompasI[];
+  tipo = 'VIP';
 
   constructor( private vipService : VIPservicesService) { }
 
@@ -17,6 +18,14 @@ export class VipservicesPage implements OnInit {
     this.vipService.getMethods().subscribe( res => {
       this.Servicios = res;
     });
+  }
+
+  test(){
+    alert('test succesfull');
+  }
+
+  vipUnable(){
+    alert('Esta categoria estará disponible próximamente');
   }
 
 }

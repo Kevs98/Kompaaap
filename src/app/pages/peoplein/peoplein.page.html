@@ -8,15 +8,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let people of peoples" routerLink="/people-detail/{{people.id}}">
+  <ion-list *ngFor="let people of peoples" routerLink="/deliverydetail/{{people.id}}/{{rid}}/{{KompaId}}/{{precio}}/{{cantidad}}/{{tipo}}">
+    <ion-item *ngIf="people.estado == 0">
+      <ion-label>En este momento no hay conductores disponibles</ion-label>
+    </ion-item>
     <ion-item>
       <ion-avatar slot="start">
         <img src="{{people.imgUrl}}">
       </ion-avatar>
       <ion-label>
-        <h2>{{people.name}}</h2>
+        <h2>{{people.nombre}}&nbsp;{{people.apellido}}</h2>
         <h3>Puntuación: {{people.estrellas}} <ion-icon name="star"></ion-icon></h3>
       </ion-label>
-    </ion-item>
+    </ion-item> 
   </ion-list>
 </ion-content>

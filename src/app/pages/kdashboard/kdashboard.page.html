@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button routerLink="/editprofile"><i class="fas fa-user-edit"></i></ion-button>
+    </ion-buttons>
+    <ion-title>Kompa App Drivers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Disponible: </ion-label>
+    <ion-button class="active" color="success" (click)="available()">Si</ion-button>
+    <ion-button class="active" color="danger" (click)="unavailable()">No</ion-button>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" col-4 no-padding>
+        <div class="container-test">
+          <ion-card class="fixline" button routerLink="/jobscurrent">
+            <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Ftrip.svg?alt=media&token=2287d429-0e7f-4faf-a2b3-e54820fc1ae1"/>
+            <ion-card-title class="test">Servicios Activos</ion-card-title>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" col-4 no-padding>
+        <ion-card button routerLink="/jobhistory" class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Fanalysis.svg?alt=media&token=0159aa5b-2bef-47e5-b0a2-7a555d4c331d"/>
+          <ion-card-title class="test">Historial de Servicios</ion-card-title>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" col-4 no-padding>
+        <ion-card button [routerLink]="['/profits']" class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Fmoney%20(2).svg?alt=media&token=f948cda1-d3f7-4d11-b825-784a3913327a"/>
+          <ion-card-title class="test">Ingresos Generados</ion-card-title>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -14,7 +14,11 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let Servicio of Servicios" col-6 no-padding>
-        <ion-card button routerLink="/deliverydetail/{{Servicio.id}}" class="fixline">
+        <ion-card button (click)="vipUnable()" class="fixline" *ngIf="Servicio.id != 'LthsXwOEqEVPtn46p4Jp'" [ngClass]="{'prox' : Servicio.id != 'LthsXwOEqEVPtn46p4Jp'}">
+          <img src="{{Servicio.imgUrl}}"/>
+          <ion-card-subtitle>{{Servicio.nombre_servicio}}</ion-card-subtitle>
+        </ion-card>
+        <ion-card button routerLink="/peoplein/{{Servicio.id}}/{{tipo}}" class="fixline" *ngIf="Servicio.id == 'LthsXwOEqEVPtn46p4Jp'" [ngClass]="{'prox' : Servicio.id != 'LthsXwOEqEVPtn46p4Jp'}">
           <img src="{{Servicio.imgUrl}}"/>
           <ion-card-subtitle>{{Servicio.nombre_servicio}}</ion-card-subtitle>
         </ion-card>

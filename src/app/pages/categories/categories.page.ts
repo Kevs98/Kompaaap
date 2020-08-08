@@ -24,4 +24,12 @@ export class CategoriesPage implements OnInit {
     this.menuCrl.toggle();
   }
 
+  prox(){
+    alert('Esta categoria estará disponible próximamente');
+  }
+
+  carrito(){
+    console.log('Carrito Abierto');    
+  }
+
 }

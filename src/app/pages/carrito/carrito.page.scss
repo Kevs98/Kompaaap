@@ -1,0 +1,116 @@
+.plato{
+    height: 23%;
+    border-radius: 8px;
+}
+
+.fixline{
+    display: flex;
+    // background-color: rgb(253,139,0)!important;
+    background-image: url(../../../assets/icon/base.png);
+    background-size: cover;
+    margin-bottom: 0%;
+    border-radius: 15px;
+}
+
+.title {
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 170%;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+img {
+    max-width: 25%;
+    border: 0;
+    border-radius: 10px;
+    margin: 6% 13%;
+}
+
+.separator{
+    background-color: gray;
+    width: 95%;
+    margin-top: 5%;
+}
+
+.container{
+    text-align: center!important;
+}
+
+.buttons{
+    text-align: center!important;
+    margin-top: -10px;
+}
+
+#item{
+    width: 32.5%;
+    height: 95px;
+    text-align: center;
+    border-color: rgb(253,139,0);
+    background-color: transparent;
+    border-radius: 12px;
+    border-width: thin;
+    border-bottom: transparent;
+    border-bottom-right-radius: unset;
+    border-bottom-left-radius: unset;
+}
+
+.cant{
+    border: 1px solid rgb(253,139,0)!important;
+    width: 15%;
+    height: 30px;
+    background-color: transparent;
+    // border-top: transparent!important;
+    border-bottom-left-radius: 8px;
+    border-right: transparent!important;
+}
+
+.cant2{
+    border: 1px solid rgb(253,139,0)!important;
+    width: 15%;
+    height: 30px;
+    background-color: transparent;
+    // border-top: transparent!important;
+    border-left: transparent!important;
+    border-bottom-right-radius: 8px;
+}
+
+.text-center{
+    text-align: center!important;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    font-size: 150%;
+}
+
+.label {
+    width: 80%;
+    margin: auto;
+}
+
+.derecha {
+    text-align: end;
+}
+
+.izquierda {
+    text-align: initial;
+}
+
+ion-row{
+    font-size: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.pagos{
+    width: 90%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.continue{
+    margin-top: 40%;
+}

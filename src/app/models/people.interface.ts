@@ -1,6 +1,8 @@
 export interface PeopleI {
     id?: string;
-    name?: string;
+    nombre?: string;
+    apellido?: string;
+    estado?: number;
     phone?: string;
     imgUrl?: string;
     imgCar?: string;

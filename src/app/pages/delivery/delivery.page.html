@@ -14,7 +14,7 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeLg="4" sizeMd="4" sizeXs="4" *ngFor="let service of Services" col-6 no-padding>
-        <ion-card button routerLink="/deliverydetail/{{service.id}}" class="fixline">
+        <ion-card  button routerLink="{{service.urlRouter}}" class="fixline" >
           <img src="{{service.imgUrl}}"/>
           <ion-card-subtitle>{{service.nombre_servicio}}</ion-card-subtitle>
         </ion-card>

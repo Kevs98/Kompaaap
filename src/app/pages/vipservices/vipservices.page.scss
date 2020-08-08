@@ -38,6 +38,11 @@
     background-size: cover;
     margin: auto;
   }
+
+  .prox{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)) , url(../../../assets/icon/base_vert.png)!important;
+    background-size: cover!important;
+}
   
   img {
     margin-top: 10%;

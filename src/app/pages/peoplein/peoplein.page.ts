@@ -41,6 +41,11 @@ export class PeopleinPage implements OnInit {
 
   peoples : PeopleI[];
   KompaId = null;
+  rid     = null;
+  precio  = null;
+  cantidad= null;
+  from    = null;
+  tipo    = null;
 
   constructor(
     private achService : ACHogarService,  
@@ -75,6 +80,11 @@ export class PeopleinPage implements OnInit {
 
   ngOnInit() {
     this.KompaId = this.route.snapshot.params['id'];
+    this.rid     = this.route.snapshot.params['rid'];
+    this.precio  = this.route.snapshot.params['precio'];
+    this.cantidad= this.route.snapshot.params['cant'];
+    this.from    = this.route.snapshot.params['from'];
+    this.tipo    = this.route.snapshot.params['tipo'];
       console.log(this.KompaId);
 
       if(this.KompaId == 'AJfc7rElVk5nYewVAIQv'){
@@ -185,7 +195,7 @@ export class PeopleinPage implements OnInit {
           this.peoples = res;
         });
       }
-      else if (this.KompaId == 'Xj1AzS4H0R2uuh3gb5qt'){
+      else if (this.KompaId == 'LthsXwOEqEVPtn46p4Jp'){
         console.log('Taxi');
         this.taxiService.getTaxis().subscribe( res => {
           this.peoples = res;
@@ -233,7 +243,7 @@ export class PeopleinPage implements OnInit {
           this.peoples = res;
         });
       }
-      else if (this.KompaId == 'ZKpFpM3rj22tGzhGmeAm'){
+      else if (this.KompaId == 'Yi6YGwJGFykzzbCcmErN' || this.rid == '645ReJeOxbCh04AbWp0f'){
         console.log('Delivery');
         this.deliveryService.getDelivery().subscribe( res => {
           this.peoples = res;

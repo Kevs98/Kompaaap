@@ -21,13 +21,42 @@
       </ion-item>
     </ion-list>
   </div>
-  <div class="container">
-    <ion-item>
+  <div>
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label class="name">
+              {{Peoples.nombre}}&nbsp;{{Peoples.apellido}}
+            </ion-label>
+            <ion-label class="stars">
+              {{Peoples.estrellas}} <ion-icon name="star" class="icon"></ion-icon>
+            </ion-label>
+            <ion-avatar>
+              <img src="{{Peoples.imgUrl}}" alt="" class="peopleImage">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-label class="placa">
+              {{Peoples.placa}}
+            </ion-label>
+            <ion-label class="carro">
+              {{Peoples.modelo}}
+            </ion-label>
+            <ion-avatar class="ion-float-end">
+              <img src="{{Peoples.imgCar}}" alt="" class="car">
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-item id="testI">
       <ion-label>Precio:</ion-label>
       <ion-label class="price">{{precio}} &nbsp; Lps</ion-label>
     </ion-item>
   </div>
   <div class="botones">
-    <ion-button><ion-icon name="card"></ion-icon> &nbsp; Efectuar Pago</ion-button>
+    <ion-button (click)="llamar()"><ion-icon name="call"></ion-icon> &nbsp; Llamar</ion-button>
+    <ion-button color="danger" (click)="llamar('89220953')"><ion-icon name="alert-circle"></ion-icon> &nbsp; Emergencia</ion-button>
   </div>
 </ion-content> 
