@@ -1,0 +1,102 @@
+import { Geocoder } from '@ionic-native/google-maps/ngx';
+import { Component, NgZone, OnInit } from '@angular/core';
+import * as firebase from 'firebase'
+import { LatLng } from '@ionic-native/google-maps';
+
+declare var google : any;
+
+@Component({
+  selector: 'app-mandaditos',
+  templateUrl: './mandaditos.page.html',
+  styleUrls: ['./mandaditos.page.scss'],
+})
+export class MandaditosPage implements OnInit {
+
+  public search               : string = '';
+  public dest                 : string = '';
+  public searchDest           : string = '';
+  public searchResults        = new Array<any>();
+  public searchResultsDest    = new Array<any>();
+  private googleAutocomplete  = new google.maps.places.AutocompleteService();
+  public destination          : any;
+  public destinationD         : any;
+  Label1                      = '';
+  Label2                      = '';
+  origen                      = '';
+  origenlat                   = '';
+  origenlng                   = '';
+  destinolat                  = '';
+  destinolng                  = '';
+  destino                     = '';
+  user                        = firebase.auth().currentUser;
+  nombre                      = null;
+  descripcion                 = '';
+
+  constructor( private ngZone : NgZone) { }
+
+  ngOnInit() {
+    this.nombre = this.user.displayName;
+    this.obtenerDesc();
+  }
+
+  searchChanged(){
+    if (!this.search.trim().length) return;
+
+    this.googleAutocomplete.getPlacePredictions({ input: this.search }, predictions => {
+      this.ngZone.run(() => {
+        this.searchResults = predictions;
+      });
+    });
+  }
+  searchChangedDest(){
+    if (!this.searchDest.trim().length) return;
+
+    this.googleAutocomplete.getPlacePredictions({ input: this.searchDest }, predictions => {
+      this.ngZone.run(() => {
+        this.searchResultsDest = predictions;
+      });
+    });
+  }
+
+  async calcRoute(Item : any){
+    this.search       = '';
+    this.destination  = Item;
+
+    console.log('destino', this.destination.description);
+    this.Label1 = this.destination.description;
+    console.log('data', this.destination);
+
+    const info : any = await Geocoder.geocode({ address: this.destination.description });
+    console.log('información', info);
+    this.origenlat = info[0].position.lat;
+    this.origenlng = info[0].position.lng;
+    this.origen    = this.origenlat + ',' + this.origenlng;
+    console.log('coords', this.origen);
+    
+  }
+
+  async calcRouteDest(Item : any){
+    this.searchDest   = '';
+    this.destinationD = Item;
+
+    console.log('destinoD', this.destinationD.description);
+    this.Label2 = this.destinationD.description;
+
+    const info : any = await Geocoder.geocode({ address : this.destinationD.description });
+    console.log('información', info);
+    this.destinolat = info[0].position.lat;
+    this.destinolng = info[0].position.lng;
+    this.destino    = this.destinolat + ',' + this.destinolng;
+  }
+
+  obtenerDesc(){
+    var test =  document.getElementById("test");
+
+    test.addEventListener('click', () => {
+      this.descripcion = (<HTMLInputElement>document.getElementById("desc")).value;
+      alert('Su orden es: ' +this.descripcion);
+    });
+  }
+
+  }
+

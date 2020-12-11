@@ -4,20 +4,21 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PeopleI } from '../models/people.interface';
 import { ListI } from '../models/list.interface';
+import { DriversI } from '../models/drivers.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BellezaService {
 
-  private bellezaCollection : AngularFirestoreCollection<PeopleI>;
-  private belleza : Observable<PeopleI[]>;
+  private bellezaCollection : AngularFirestoreCollection<DriversI>;
+  private belleza : Observable<DriversI[]>;
 
   private BellezaList : AngularFirestoreCollection<ListI>;
   private Lista : Observable<ListI[]>;
 
   constructor(db : AngularFirestore) {
-    this.bellezaCollection = db.collection<PeopleI>('Belleza');
+    this.bellezaCollection = db.collection<DriversI>('Belleza');
     this.belleza = this.bellezaCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -26,7 +27,7 @@ export class BellezaService {
       });
     }
     ));
-    this.BellezaList = db.collection<PeopleI>('Belleza List');
+    this.BellezaList = db.collection<DriversI>('Belleza List');
     this.Lista = this.BellezaList.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -46,7 +47,7 @@ export class BellezaService {
    }
 
    getOne(id: string){
-    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
-    return this.bellezaCollection.doc<PeopleI>(id).valueChanges();
+    // console.log('ver',this.acaCollection.doc<DriversI>(id).valueChanges());
+    return this.bellezaCollection.doc<DriversI>(id).valueChanges();
    }
 }

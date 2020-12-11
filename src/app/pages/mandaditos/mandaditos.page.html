@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mandaditos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col sizeXs="12" col-4 no-padding>
+      <div class="container-test">
+        <ion-card class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Supermercado%2Fdelivery.svg?alt=media&token=c2d2cb17-6114-4edb-8557-bf88f0db3772"/>
+          <ion-card-title class="test">¿Dinos que hacer?</ion-card-title>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+  <hr class="separator">
+  <div class="nota" [hidden]="destination">
+    <ion-card>
+      <div class="add">
+        <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Supermercado%2Fpost-it.svg?alt=media&token=c90abb01-1086-4794-9198-dd812bf3dc97" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>Nota:</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Asegurate de colocar la dirección correcta para evitar errores.
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="container">
+    <ion-label class="title">Lugar:</ion-label><br>
+    <ion-searchbar id="search" [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="¿Donde quieres que vayamos?" [hidden]="destination"></ion-searchbar>
+    <ion-input class="place" [hidden]="!destination" disabled><ion-icon class="icon" name="map"></ion-icon>&nbsp;{{Label1}}</ion-input>
+    <ion-list [hidden]="!search.length">
+      <ion-item (click)="calcRoute(result)" *ngFor="let result of searchResults">
+        <ion-icon name="location"></ion-icon> &nbsp; <ion-label>{{ result.description }}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-label class="title">Destino:</ion-label><br>
+    <ion-searchbar id="searchDest" [(ngModel)]="searchDest" (ionChange)="searchChangedDest()" placeholder="¿Donde te lo entregamos?" [hidden]="destinationD"></ion-searchbar>
+    <ion-input class="place" [hidden]="!destinationD" disabled><ion-icon class="icon" name="navigate"></ion-icon>&nbsp;{{Label2}}</ion-input>
+    <ion-list [hidden]="!searchDest.length">
+      <ion-item (click)="calcRouteDest(result)" *ngFor="let result of searchResultsDest">
+        <ion-icon name="location"></ion-icon> &nbsp; <ion-label>{{ result.description }}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-label class="title">Describe tu mandadito:</ion-label>
+    <ion-textarea id="desc" value="" placeholder="Escriba detalladamente, procure revisar su ortografía."></ion-textarea>
+  </div>
+  <div class="containerbtn">
+    <ion-button id="test" expand="block">Comprobar Orden</ion-button>
+    <ion-button expand="block" routerLink="/peoplein/super/{{origen}}/{{destino}}/{{descripcion}}">Continuar</ion-button>
+  </div>
+
+</ion-content>

@@ -9,132 +9,152 @@ const routes: Routes = [
   { 
     path: 'home', 
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'details/:id',
     loadChildren: () => import('./pages/kompa-detail/kompa-detail.module').then( m => m.KompaDetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'details', 
     loadChildren: () => import('./pages/kompa-detail/kompa-detail.module').then( m => m.KompaDetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'categories',
     loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'employees',
     loadChildren: () => import('./pages/employees/employees.module').then( m => m.EmployeesPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'automovil',
     loadChildren: () => import('./pages/automovil/automovil.module').then( m => m.AutomovilPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'peoplein/:id/:rid',
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
-    path: 'peoplein/:id/:rid/:from',
+    path: 'peoplein/:id/:rid/:suma/:from/:name', 
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'peoplein/:id/:rid/:precio/:cant/:tipo/:from/:name',
+    loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'peoplein/:id/:rid/:precio/:cant/:tipo',
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'peoplein/:id/:rid/:precio',
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'peoplein/:id/:tipo',
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'peoplein/:id',
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'peoplein/:id/:origin/:destination/:desc',
+    loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'peoplein',
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'menu',
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'people-detail',
     loadChildren: () => import('./pages/people-detail/people-detail.module').then( m => m.PeopleDetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'people-detail/:id',
     loadChildren: () => import('./pages/people-detail/people-detail.module').then( m => m.PeopleDetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'active-service',
     loadChildren: () => import('./pages/active-service/active-service.module').then( m => m.ActiveServicePageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'delivery',
     loadChildren: () => import('./pages/delivery/delivery.module').then( m => m.DeliveryPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'vipservices',
     loadChildren: () => import('./pages/vipservices/vipservices.module').then( m => m.VipservicesPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'service-details',
     loadChildren: () => import('./pages/service-details/service-details.module').then( m => m.ServiceDetailsPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'service-details/:id',
     loadChildren: () => import('./pages/service-details/service-details.module').then( m => m.ServiceDetailsPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'deliverydetail',
     loadChildren: () => import('./pages/deliverydetail/deliverydetail.module').then( m => m.DeliverydetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'deliverydetail/:id/:rid/:oid/:precio/:cant',
     loadChildren: () => import('./pages/deliverydetail/deliverydetail.module').then( m => m.DeliverydetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
-    path: 'deliverydetail/:id/:rid/:oid/:precio/:from/:tipo',
+    path: 'deliverydetail/:id/:rid/:oid/:precio/:from/:tipo/:name',
     loadChildren: () => import('./pages/deliverydetail/deliverydetail.module').then( m => m.DeliverydetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'deliverydetail/:id/:rid/:oid/:suma/:from/:name',
+    loadChildren: () => import('./pages/deliverydetail/deliverydetail.module').then( m => m.DeliverydetailPageModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'deliverydetail/:id/:rid/:tipo',
     loadChildren: () => import('./pages/deliverydetail/deliverydetail.module').then( m => m.DeliverydetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'deliverydetail/:id/:rid',
     loadChildren: () => import('./pages/deliverydetail/deliverydetail.module').then( m => m.DeliverydetailPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'deliverydetail/:id/:pid/:origin/:destination',
+    loadChildren: () => import('./pages/deliverydetail/deliverydetail.module').then( m => m.DeliverydetailPageModule),
+    // canActivate: [AuthGuard]
   },
   {
     path: 'register',
@@ -181,7 +201,23 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
   },
   {
+    path: 'pagando/:id',
+    loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
+  },
+  {
+    path: 'pagando/:id/:super/:origen/:dest/:desc',
+    loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
+  },
+  {
     path: 'pagando/:id/:rid/:precio/:cant',
+    loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
+  },
+  {
+    path: 'pagando/:pid/:id/:origin/:destination',
+    loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
+  },
+  {
+    path: 'pagando/:id/:rid/:precio/:from/:name',
     loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
   },
   {
@@ -189,7 +225,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
   },
   {
+    path: 'p-efectivo/:id',
+    loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
+  },
+  {
     path: 'p-efectivo/:id/:rid/:precio/:cant',
+    loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
+  },
+  {
+    path: 'p-efectivo/:id/:rid/:precio/:from/:name',
     loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
   },
   {
@@ -228,7 +272,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/jobdetail/jobdetail.module').then( m => m.JobdetailPageModule)
   },
   {
-    path: 'jobdetail/:id/:ubi/:phone',
+    path: 'jobdetail/:id/:ubi/:phone/:cub',
     loadChildren: () => import('./pages/jobdetail/jobdetail.module').then( m => m.JobdetailPageModule)
   },
   {
@@ -246,7 +290,39 @@ const routes: Routes = [
   {
     path: 'profits',
     loadChildren: () => import('./pages/profits/profits.module').then( m => m.ProfitsPageModule)
+  },
+  {
+    path: 'activeorders',
+    loadChildren: () => import('./pages/activeorders/activeorders.module').then( m => m.ActiveordersPageModule)
+  },
+  {
+    path: 'cartdetail',
+    loadChildren: () => import('./pages/cartdetail/cartdetail.module').then( m => m.CartdetailPageModule)
+  },
+  {
+    path: 'cartdetail/:id',
+    loadChildren: () => import('./pages/cartdetail/cartdetail.module').then( m => m.CartdetailPageModule)
+  },
+  {
+    path: 'superdetails',
+    loadChildren: () => import('./pages/superdetails/superdetails.module').then( m => m.SuperdetailsPageModule)
+  },
+  {
+    path: 'thanks/:id/:pid/:name',
+    loadChildren: () => import('./pages/thanks/thanks.module').then( m => m.ThanksPageModule)
+  },
+  {
+    path: 'thanks/:id/:pid/:name/:origin/:destination',
+    loadChildren: () => import('./pages/thanks/thanks.module').then( m => m.ThanksPageModule)
+  },
+  {
+    path: 'mandaditos',
+    loadChildren: () => import('./pages/mandaditos/mandaditos.module').then( m => m.MandaditosPageModule)
   }
+
+
+
+
 
 
 

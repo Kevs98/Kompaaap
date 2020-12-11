@@ -24,6 +24,10 @@ export class LoginPage implements OnInit {
     });
   }
 
+  prox(){
+    alert('Aun no disponible');
+  }
+
   async onLogin(){
     const user = await this.authService.loginWithGoogle();
 
@@ -42,12 +46,12 @@ export class LoginPage implements OnInit {
   }
 
   loginFacebook(){
-    // this.authService.loginWithFacebook().then( res => {
-    //   this.router.navigate(['/categories']);
-    // }).catch( err => {
-    //   alert(err);
-    // })
-    alert('Próximamente');
+    this.authService.loginWithFacebook().then( res => {
+      this.router.navigate(['/categories']);
+    }).catch( err => {
+      alert(JSON.stringify(err));
+    })
+    // alert('Próximamente');
   }
 
   

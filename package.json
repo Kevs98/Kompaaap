@@ -23,10 +23,10 @@
     "@ionic-native/call-number": "^5.26.0",
     "@ionic-native/core": "^5.26.0",
     "@ionic-native/crop": "^5.26.0",
-    "@ionic-native/facebook": "^5.26.0",
+    "@ionic-native/facebook": "^5.29.0",
     "@ionic-native/geolocation": "^5.26.0",
     "@ionic-native/google-maps": "^5.5.0",
-    "@ionic-native/google-plus": "^5.26.0",
+    "@ionic-native/google-plus": "^5.29.0",
     "@ionic-native/image-picker": "^5.26.0",
     "@ionic-native/launch-navigator": "^5.27.0",
     "@ionic-native/native-geocoder": "^5.26.0",
@@ -35,7 +35,7 @@
     "@ionic/angular": "^5.0.0",
     "angularfire2": "^5.4.2",
     "call-number": "^1.0.1",
-    "cordova-android": "8.1.0",
+    "cordova": "^10.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-actionsheet": "^2.3.3",
     "cordova-plugin-add-swift-support": "^2.0.2",
@@ -67,6 +67,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cordova-android": "^9.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
@@ -98,13 +99,12 @@
       "cordova-plugin-ionic-keyboard": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-googleplus": {
-        "118750362205-7r6cnjk3tnh86mi5853e15h977h1k9ri.apps.googleusercontent.com": "myreversedclientid"
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.118750362205-gt66htm42girlqbg63qdvaocskgrbc35",
+        "WEB_APPLICATION_CLIENT_ID": "118750362205-7r6cnjk3tnh86mi5853e15h977h1k9ri.apps.googleusercontent.com"
       },
       "cordova-plugin-facebook4": {
         "APP_ID": "261301318481030",
-        "APP_NAME": "KompaApp",
-        "FACEBOOK_HYBRID_APP_EVENTS": "false",
-        "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
+        "APP_NAME": "KompaApp"
       },
       "cordova-plugin-geolocation": {},
       "cordova-plugin-googlemaps": {
@@ -118,7 +118,6 @@
       }
     },
     "platforms": [
-      "android",
       "browser"
     ]
   }

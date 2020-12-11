@@ -24,10 +24,14 @@
         <ion-label class="izquierda">{{o.nombre}}</ion-label>
         <ion-label class="derecha">{{o.precio}}</ion-label>
       </ion-item>
+      <ion-item color="tertiary">
+        <ion-label class="izquierda">Kompa App</ion-label>
+        <ion-label class="derecha">{{(o.precio *0.3)}}</ion-label>
+      </ion-item>
     </ion-list>
     <ion-item color="primary" class="total">
       <ion-label class="izquierda">Total Generado:</ion-label>
-      <ion-label class="derecha">{{suma}}</ion-label>
+      <ion-label class="derecha">{{suma - (suma * 0.3)}}</ion-label>
     </ion-item>
   </div>
 </ion-content>

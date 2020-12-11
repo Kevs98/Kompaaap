@@ -4,20 +4,21 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PeopleI } from '../models/people.interface';
 import { ListI } from '../models/list.interface';
+import { DriversI } from '../models/drivers.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BarberiaService {
 
-  private barberiaCollection : AngularFirestoreCollection<PeopleI>;
-  private barbero : Observable<PeopleI[]>;
+  private barberiaCollection : AngularFirestoreCollection<DriversI>;
+  private barbero : Observable<DriversI[]>;
 
   private barberiaList : AngularFirestoreCollection<ListI>;
   private lista : Observable<ListI[]>;
 
   constructor(db : AngularFirestore) {
-    this.barberiaCollection = db.collection<PeopleI>('Barberia');
+    this.barberiaCollection = db.collection<DriversI>('Barberia');
     this.barbero = this.barberiaCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -26,7 +27,7 @@ export class BarberiaService {
       });
     }
     ));
-    this.barberiaList = db.collection<PeopleI>('Barbería List');
+    this.barberiaList = db.collection<DriversI>('Barbería List');
     this.lista = this.barberiaList.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -46,7 +47,7 @@ export class BarberiaService {
    }
 
    getOne(id: string){
-    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
-    return this.barberiaCollection.doc<PeopleI>(id).valueChanges();
+    // console.log('ver',this.acaCollection.doc<DriversI>(id).valueChanges());
+    return this.barberiaCollection.doc<DriversI>(id).valueChanges();
    }
 }

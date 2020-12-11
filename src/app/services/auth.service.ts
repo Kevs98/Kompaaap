@@ -5,6 +5,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { auth } from 'firebase';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
 
   public isLogged : any = false;
 
-  constructor( public afAuth : AngularFireAuth, private gPlus : GooglePlus, private fb : Facebook, public platform : Platform) {
+  constructor( private router : Router, public afAuth : AngularFireAuth, private gPlus : GooglePlus, private fb : Facebook, public platform : Platform) {
     afAuth.authState.subscribe( user => (this.isLogged = user));
    }
 
@@ -62,5 +63,12 @@ export class AuthService {
       return this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider);
     }
     
+   }
+   
+   logout(){
+     this.afAuth.auth.signOut().then(() => {
+       this.gPlus.disconnect();
+       this.router.navigate(['/login']);
+     })
    }
 }

@@ -4,8 +4,8 @@ export interface DriversI {
     nombre?: string;
     apellido?: string;
     phone?: string;
-    profilePhoto?: any;
-    carPhoto?: any;
+    imgUrl?: any;
+    imgCar?: any;
     placa?: string;
     tipo?: string;
     estrellas?: string;

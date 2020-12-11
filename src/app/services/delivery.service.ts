@@ -1,3 +1,4 @@
+import { DriversI } from 'src/app/models/drivers.interface';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -9,11 +10,11 @@ import { PeopleI } from '../models/people.interface';
 })
 export class DeliveryService {
 
-  private deliveryCollection : AngularFirestoreCollection<PeopleI>;
-  private deliveries : Observable<PeopleI[]>;
+  private deliveryCollection : AngularFirestoreCollection<DriversI>;
+  private deliveries : Observable<DriversI[]>;
 
   constructor(db : AngularFirestore) {
-    this.deliveryCollection = db.collection<PeopleI>('Drivers', ref => ref.where('tipo','==', 'Delivery').where('estado','==',1));
+    this.deliveryCollection = db.collection<DriversI>('Drivers', ref => ref.where('tipo','==', 'Delivery').where('estado','==',1));
     this.deliveries = this.deliveryCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -29,7 +30,7 @@ export class DeliveryService {
    }
 
    getOne(id: string){
-    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
-    return this.deliveryCollection.doc<PeopleI>(id).valueChanges();
+    // console.log('ver',this.acaCollection.doc<DriversI>(id).valueChanges());
+    return this.deliveryCollection.doc<DriversI>(id).valueChanges();
    }
 }

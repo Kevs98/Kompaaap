@@ -15,9 +15,9 @@
     <ion-row>
       <ion-col sizeXs="12" col-4 no-padding>
         <div class="container-test">
-          <ion-card button (click)="prox()" class="fixline" class="prox">
-            <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Hogar%2Fhouse-254px-01.svg?alt=media&token=406e7dff-1f4a-4ee2-b86c-502678023b76"/>
-            <ion-card-title class="test">Hogar</ion-card-title>
+          <ion-card button routerLink="/superdetails" class="fixline">
+            <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Hogar%2Fasistente%20compras.svg?alt=media&token=a32e7885-57be-4553-bb97-51be02196075"/>
+            <ion-card-title class="test">Compras en Supermercados</ion-card-title>
           </ion-card>
         </div>
       </ion-col>
@@ -26,9 +26,9 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeXs="12" col-4 no-padding>
-        <ion-card button (click)="prox()" class="fixline" class="prox">
-          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Hogar%2Fcar-254px-01.svg?alt=media&token=8315ba1a-41fc-4591-b3b0-2faca33ac436"/>
-          <ion-card-title class="test">Vehículo</ion-card-title>
+        <ion-card button routerLink="/mandaditos" class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Vehiculo%2Fdelivery.svg?alt=media&token=137f1c97-72a0-4aa9-9b05-bcc79f399f10"/>
+          <ion-card-title class="test">Mandaditos</ion-card-title>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -36,9 +36,9 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeXs="12" col-4 no-padding>
-        <ion-card button [routerLink]="['/delivery']" class="fixline">
-          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Vehiculo%2Fdelivery.svg?alt=media&token=137f1c97-72a0-4aa9-9b05-bcc79f399f10"/>
-          <ion-card-title class="test">Delivery</ion-card-title>
+        <ion-card (click)="prox()" class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Vehiculo%2Fasistencia%20de%20carretera.svg?alt=media&token=f330d5b0-8467-4347-85c4-4a6837309b94"/>
+          <ion-card-title class="test">Asistencia en Carretera</ion-card-title>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -3,6 +3,9 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
     <ion-title>Método de Pago</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,9 +16,23 @@
     <ion-card-title class="title">Formas de Pago</ion-card-title>
   </ion-card>
   <hr class="separator">
-  <ion-item>
+  <ion-item *ngIf="rid != 'super' && super != 'super'">
     <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/money%20(1).svg?alt=media&token=625a3ca1-1502-4f5c-8ed8-61fd08afec4b" class="efectivoimg">
-    <ion-label routerLink="/p-efectivo/{{KompaId}}/{{rid}}/{{precio}}/{{cantidad}}">
+    <ion-label routerLink="/p-efectivo/{{KompaId}}/{{rid}}/{{precio}}/{{cantidad}}/{{from}}/{{name}}">
+      Efectivo
+    </ion-label>
+    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item *ngIf="super == 'super'" routerLink="/thanks/{{super}}/{{KompaId}}/{{nombre}}">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/money%20(1).svg?alt=media&token=625a3ca1-1502-4f5c-8ed8-61fd08afec4b" class="efectivoimg">
+    <ion-label>
+      Efectivo
+    </ion-label>
+    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item *ngIf="rid == 'super'">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/money%20(1).svg?alt=media&token=625a3ca1-1502-4f5c-8ed8-61fd08afec4b" class="efectivoimg">
+    <ion-label routerLink="/thanks/{{KompaId}}/{{rid}}/{{nombre}}/{{precio}}/{{cantidad}}">
       Efectivo
     </ion-label>
     <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>

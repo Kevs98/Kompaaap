@@ -1,3 +1,5 @@
+import { DriverMarketService } from './../../services/driver-market.service';
+import { MarketListService } from './../../services/market-list.service';
 import { Component, OnInit } from '@angular/core';
 import { ACHogarService } from '../../services/achogar.service';
 import { AlbañileriaService } from '../../services/albañileria.service';
@@ -30,6 +32,7 @@ import { MensajeriaService } from 'src/app/services/mensajeria.service';
 import { FletesService } from 'src/app/services/fletes.service';
 import { AsistenciaCarreteraService } from 'src/app/services/asistencia-carretera.service';
 import { DeliveryService } from 'src/app/services/delivery.service';
+import { DriversI } from 'src/app/models/drivers.interface';
 
 
 @Component({
@@ -39,13 +42,19 @@ import { DeliveryService } from 'src/app/services/delivery.service';
 })
 export class PeopleinPage implements OnInit {
 
-  peoples : PeopleI[];
+  peoples : DriversI[];
   KompaId = null;
   rid     = null;
   precio  = null;
   cantidad= null;
   from    = null;
   tipo    = null;
+  flag    = '';
+  name    = null;
+  suma    = null;
+  origen  = null;
+  destino = null;
+  desc    = null;
 
   constructor(
     private achService : ACHogarService,  
@@ -75,16 +84,24 @@ export class PeopleinPage implements OnInit {
     private mensajeriaService : MensajeriaService,
     private fleteService : FletesService,
     private ACAService : AsistenciaCarreteraService,
-    private deliveryService : DeliveryService
+    private deliveryService : DeliveryService,
+    private driverMarket : DriverMarketService
     ) { }
 
   ngOnInit() {
     this.KompaId = this.route.snapshot.params['id'];
     this.rid     = this.route.snapshot.params['rid'];
     this.precio  = this.route.snapshot.params['precio'];
+    this.suma    = this.route.snapshot.params['suma'];
     this.cantidad= this.route.snapshot.params['cant'];
     this.from    = this.route.snapshot.params['from'];
     this.tipo    = this.route.snapshot.params['tipo'];
+    this.name    = this.route.snapshot.params['name'];
+    this.origen  = this.route.snapshot.params['origin'];
+    this.destino = this.route.snapshot.params['destination'];
+    this.desc    = this.route.snapshot.params['desc'];
+    console.log('probando', this.desc);
+    console.log('tiop', this.precio);
       console.log(this.KompaId);
 
       if(this.KompaId == 'AJfc7rElVk5nYewVAIQv'){
@@ -199,6 +216,14 @@ export class PeopleinPage implements OnInit {
         console.log('Taxi');
         this.taxiService.getTaxis().subscribe( res => {
           this.peoples = res;
+          console.log('flag', this.peoples);
+          if (this.peoples.length > 0){
+            this.flag = 'si';
+            console.log('fg',this.flag);
+          } else {
+            this.flag = 'no';
+            console.log('ng',this.flag);
+          }
         });
       }
       else if (this.KompaId == 'DmAaFKw0SIr3vPwYA3pw'){
@@ -243,14 +268,35 @@ export class PeopleinPage implements OnInit {
           this.peoples = res;
         });
       }
-      else if (this.KompaId == 'Yi6YGwJGFykzzbCcmErN' || this.rid == '645ReJeOxbCh04AbWp0f'){
+      else if (this.KompaId == 'Yi6YGwJGFykzzbCcmErN' || this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv'){
         console.log('Delivery');
         this.deliveryService.getDelivery().subscribe( res => {
           this.peoples = res;
+          console.log('flag', this.peoples);
+          if (this.peoples.length > 0){
+            this.flag = 'si';
+            console.log('fg',this.flag);
+          } else {
+            this.flag = 'no';
+            console.log('ng',this.flag);
+          }
         });
+      }
+      else if(this.KompaId == 'super'){
+        this.driverMarket.getDrivers().subscribe( res => {
+          this.peoples = res;
+          console.log('flag', this.peoples);
+          if (this.peoples.length > 0){
+            this.flag = 'si';
+            console.log('fg',this.flag);
+          } else {
+            this.flag = 'no';
+            console.log('ng',this.flag);
+          }
+        })
       }
       else {
         console.log('Esta categoria no Existe');
       }
-  }
+    }
 }

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle de Orden</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="fixline">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/settings.svg?alt=media&token=0a698db9-ce1e-49a9-b5b2-a296b2dbefe8"/>
+    <ion-card-title class="title">Información del Pedido</ion-card-title>
+  </ion-card>
+  <hr class="separator">
+  <ion-item>
+    <ion-label>Nombre: {{orders.nombre}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Cantidad: {{orders.cantidad}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>Precio: {{orders.precio}}</ion-label>
+  </ion-item>
+  <div class="container">
+    <ion-button expand="block" (click)="delete()" color="danger" class="delete"><ion-icon name="trash"></ion-icon> &nbsp;Eliminar Orden</ion-button>
+  </div>
+</ion-content>

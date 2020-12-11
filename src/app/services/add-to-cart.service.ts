@@ -34,4 +34,16 @@ export class AddToCartService{
   obtenerCarrito(){
     return this.cart;
   }
+  
+  test(){
+    return this.cartCollection = this.bd.collection<CartI>('Cart', ref => ref.where('userid', '==', this.uid).where('completo', '==', 1));
+  }
+
+  getOne(id : string){
+    return this.cartCollection.doc<CartI>(id).valueChanges();
+  }
+
+  delete( id : string){
+    let deleteDoc = this.bd.collection('Cart').doc(id).delete();
+  }
 }

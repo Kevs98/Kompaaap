@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-buttons slot="end">
+    <ion-menu-button menu="first"></ion-menu-button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content>
+  <div class="test">
+    <div class="container">
+      <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Principales%2FKompa%20Icon.png?alt=media&token=ea0885e8-0d48-46cf-bc0d-3c77f9537674" alt="">
+      <ion-label class="title">¡ Gracias !</ion-label><br>
+      <ion-label class="title">{{nombre}}</ion-label><br>
+      <ion-label>Tu orden será entregada por un Kompa. Esperamos que te guste nuestro servicio.</ion-label><br>
+        <ion-button *ngIf="origen == null" color="tertiary" class="home" expand="block" routerLink="/categories"><ion-icon name="home"></ion-icon>&nbsp;Volver a inicio</ion-button>
+        <ion-button *ngIf="origen != null" color="tertiary" class="home" expand="block" routerLink="/deliverydetail/{{pid}}/{{KompaId}}/{{origen}}/{{destino}}"><ion-icon name="locate"></ion-icon>&nbsp;Ir al mapa</ion-button>
+    </div>
+  </div>
+</ion-content>

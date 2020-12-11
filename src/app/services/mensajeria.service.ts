@@ -1,3 +1,4 @@
+import { DriversI } from 'src/app/models/drivers.interface';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -9,11 +10,11 @@ import { PeopleI } from '../models/people.interface';
 })
 export class MensajeriaService {
 
-  private mensajeriaCollection : AngularFirestoreCollection<PeopleI>;
-  private mensajeros : Observable<PeopleI[]>;
+  private mensajeriaCollection : AngularFirestoreCollection<DriversI>;
+  private mensajeros : Observable<DriversI[]>;
 
   constructor(db : AngularFirestore) {
-    this.mensajeriaCollection = db.collection<PeopleI>('Mensajeria Moto');
+    this.mensajeriaCollection = db.collection<DriversI>('Mensajeria Moto');
     this.mensajeros = this.mensajeriaCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();

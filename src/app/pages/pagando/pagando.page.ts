@@ -1,7 +1,14 @@
+import { map } from 'rxjs/operators';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { DriversService } from './../../services/drivers.service';
+import { DriversI } from './../../models/drivers.interface';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NichasmenuService } from 'src/app/services/nichasmenu.service';
 import { MenuI } from 'src/app/models/menu.interface';
+import * as firebase from 'firebase';
+import { OrderI } from 'src/app/models/order.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pagando',
@@ -10,20 +17,63 @@ import { MenuI } from 'src/app/models/menu.interface';
 })
 export class PagandoPage implements OnInit {
 
-  KompaId = null;
-  rid = null;
+  KompaId  = null;
+  Peoples  : DriversI = {};
+  cancelar    = 0;
+  rid      = null;
   cantidad = null;
-  precio = null;
-  menu : MenuI = {};
+  precio   = null;
+  name     = null;
+  from     = null;
+  menu     : MenuI = {};
+  user     = firebase.auth().currentUser;
+  nombre   = null;
+  origen   = null;
+  destino  = null;
+  super    = null;
+  desc     = null;
+  org      = null;
+  dest     = null;
+  private orderCollection : AngularFirestoreCollection<OrderI>
+  private orders          : Observable<any>
 
-  constructor( private route : ActivatedRoute, private nichas : NichasmenuService) { }
+
+  constructor( private route : ActivatedRoute,
+     private nichas : NichasmenuService,
+     private driverService : DriversService,
+     private bd : AngularFirestore) { }
 
   ngOnInit() {
-    this.KompaId = this.route.snapshot.params['id'];
-    this.rid = this.route.snapshot.params['rid'];
-    this.precio = this.route.snapshot.params['precio'];
+    this.KompaId  = this.route.snapshot.params['id'];
+    this.rid      = this.route.snapshot.params['rid'];
+    this.precio   = this.route.snapshot.params['precio'];
     this.cantidad = this.route.snapshot.params['cant'];
+    this.name     = this.route.snapshot.params['name'];
+    this.from     = this.route.snapshot.params['from'];
+    this.origen   = this.route.snapshot.params['origin'];
+    this.destino  = this.route.snapshot.params['destination'];
+    this.super    = this.route.snapshot.params['super'];
+    this.desc     = this.route.snapshot.params['desc'];
+    this.org      = this.route.snapshot.params['origen'];
+    this.dest     = this.route.snapshot.params['dest'];
+    this.nombre   = this.user.displayName;
     console.log('Kompa', this.KompaId);
+    console.log('test', this.super);
+    console.log('origen', this.desc);   
+    console.log('dest', this.cantidad);
+
+    this.loadPeoples();
+    
+    this.orderCollection = this.bd.collection<OrderI>('Order');
+    this.orders = this.orderCollection.snapshotChanges().pipe( map( actions => {
+      return actions.map( a => {
+        const data = a.payload.doc.data();
+        const id   = a.payload.doc.id;
+        return {id, ...data};
+      });
+    }
+    ));
+
   }
 
 
@@ -36,6 +86,29 @@ export class PagandoPage implements OnInit {
       this.menu = res;  
       console.log(res.precio);
     });
-}
+  }
+
+  loadPeoples(){
+    this.driverService.getDriver(this.KompaId).subscribe( res => {
+      this.Peoples = res;
+      const order = {
+        nombre    : this.desc,
+        precio    : null,
+        cancelado : this.cancelar,
+        cantidad  : null,
+        driverId  : this.Peoples.userId,
+        DName     : this.Peoples.nombre + '' + this.Peoples.apellido,
+        cliente   : this.user.displayName,
+        clienteID : this.user.uid,
+        clienteub : this.org,
+        ubicacion : this.dest,
+        phone     : "97544506",
+        estado    : 0
+      }
+      console.log('restOrder',order);
+      this.orderCollection.add(order);
+      console.log('DRIVER', this.Peoples);
+    });
+  }
 
 }

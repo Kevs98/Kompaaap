@@ -4,20 +4,21 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PeopleI } from '../models/people.interface';
 import { ListI } from '../models/list.interface';
+import { DriversI } from '../models/drivers.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AsistHogarService {
 
-  private asistHogar : AngularFirestoreCollection<PeopleI>;
-  private ash : Observable<PeopleI[]>;
+  private asistHogar : AngularFirestoreCollection<DriversI>;
+  private ash : Observable<DriversI[]>;
 
   private asistList : AngularFirestoreCollection<ListI>;
   private Lista : Observable<ListI[]>;
 
   constructor(db : AngularFirestore) {
-    this.asistHogar = db.collection<PeopleI>('Asist Hogar');
+    this.asistHogar = db.collection<DriversI>('Asist Hogar');
     this.ash = this.asistHogar.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -26,7 +27,7 @@ export class AsistHogarService {
       });
     }
     ));
-    this.asistList = db.collection<PeopleI>('AsistenciaH List');
+    this.asistList = db.collection<DriversI>('AsistenciaH List');
     this.Lista = this.asistList.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -46,7 +47,7 @@ export class AsistHogarService {
    }
 
    getOne(id: string){
-    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
-    return this.asistHogar.doc<PeopleI>(id).valueChanges();
+    // console.log('ver',this.acaCollection.doc<DriversI>(id).valueChanges());
+    return this.asistHogar.doc<DriversI>(id).valueChanges();
    }
 }

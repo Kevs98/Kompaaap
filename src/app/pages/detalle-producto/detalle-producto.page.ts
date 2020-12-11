@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { DriversI } from 'src/app/models/drivers.interface';
 import { DriversService } from 'src/app/services/drivers.service';
 import * as firebase from 'firebase';
+import { CdrioService } from 'src/app/services/cdrio.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -35,13 +36,14 @@ export class DetalleProductoPage implements OnInit {
   usuario = firebase.auth().currentUser;
 
   constructor( 
-    private nichas : NichasmenuService,
-    private route : ActivatedRoute, 
-    private router : Router, 
+    private nichas        : NichasmenuService,
+    private route         : ActivatedRoute, 
+    private router        : Router, 
     private enviarService : AddToCartService,
-    private authService : AuthService,
-    private bd : AngularFirestore,
-    private driverService : DriversService) { }
+    private authService   : AuthService,
+    private bd            : AngularFirestore,
+    private driverService : DriversService,
+    private cdrio         : CdrioService) { }
 
   ngOnInit() {
 
@@ -65,6 +67,7 @@ export class DetalleProductoPage implements OnInit {
   }
 
   loadPlato(){
+    if( this.rid == '645ReJeOxbCh04AbWp0f'){
       this.nichas.getOne(this.kompaId).subscribe( res => {
         this.menu = res;  
         console.log(res.precio);
@@ -72,6 +75,14 @@ export class DetalleProductoPage implements OnInit {
           this.precio = res.precio;
         }
       });
+    } else if (this.rid == 'CSbCSCOhoxMNnneTOpvv'){
+      this.cdrio.getOne(this.kompaId).subscribe( res => {
+        this.menu = res;
+        if(this.inicio == 1){
+          this.precio = res.precio;
+        }
+      });
+    }
   }
 
   incrementar() {
@@ -115,13 +126,14 @@ export class DetalleProductoPage implements OnInit {
       cantidad : this.cantidad,
       descripcion: this.menu.descripcion,
       precio: this.precio,
+      rid: this.rid,
       userid: this.userid,
       completo: 1
     }
 
     console.log('obj', Carrito);
     this.cartCollection.add(Carrito);
-    this.router.navigate(['/menu-restaurants/645ReJeOxbCh04AbWp0f']);
+    this.router.navigate(['menu-restaurants',this.rid]);
 
   }
 

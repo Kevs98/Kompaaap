@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ordenes Activas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="fixline">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/tracking.svg?alt=media&token=a6f82b63-be08-452c-a2ee-8d0402820980" class="logo"/>
+    <ion-card-title class="title">Ordenes</ion-card-title>
+  </ion-card>
+  <hr class="separator">
+  <ion-card *ngIf="flag === 'no'">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Femoji.svg?alt=media&token=ecee5054-26f2-4e11-8d0a-29cf46a68955" class="img2" />
+    <ion-card-header>
+      <ion-card-subtitle>Lo sentimos</ion-card-subtitle>
+      <ion-card-title>No hay Ordenes Activas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Parece que aún no ordenas nada, anímate y pide algo por Kompa App.
+    </ion-card-content>
+  </ion-card>
+  <ion-list *ngFor="let o of order">
+    <ion-item>
+      <ion-avatar> <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/shopping-bag.svg?alt=media&token=857d85bb-3cd2-45a1-8649-d0c0eb530707" alt=""></ion-avatar>
+      <ion-label>&nbsp; {{o.nombre}}</ion-label>
+      <ion-button (click)="delete()" color="danger" class="derecha"><ion-icon name="trash"></ion-icon></ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

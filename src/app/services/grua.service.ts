@@ -1,3 +1,4 @@
+import { DriversI } from 'src/app/models/drivers.interface';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -9,11 +10,11 @@ import { PeopleI } from '../models/people.interface';
 })
 export class GruaService {
 
-  private gruaCollection : AngularFirestoreCollection<PeopleI>;
-  private grua : Observable<PeopleI[]>;
+  private gruaCollection : AngularFirestoreCollection<DriversI>;
+  private grua : Observable<DriversI[]>;
 
   constructor(db : AngularFirestore) {
-    this.gruaCollection = db.collection<PeopleI>('Grua');
+    this.gruaCollection = db.collection<DriversI>('Grua');
     this.grua = this.gruaCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();

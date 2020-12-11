@@ -20,7 +20,8 @@
         <ion-label>Cantidad:&nbsp;{{item.cantidad}}</ion-label>
       </ion-col>
       <ion-col class="derecha">
-        <ion-label>L.&nbsp;{{item.precio}}</ion-label>
+        <ion-label >L.&nbsp;{{item.precio}}</ion-label> <br>
+        <ion-button routerLink="/cartdetail/{{item.id}}" color="secondary"><ion-icon name="information-circle"></ion-icon></ion-button>
       </ion-col>
     </ion-row>
     <hr class="separator">
@@ -32,6 +33,6 @@
         <ion-label>L.&nbsp;{{total_suma}}</ion-label>
       </ion-col>
     </ion-row>
-    <ion-button expand="block" class="continue" routerLink="/peoplein/{{id}}/{{rid}}/{{total_suma}}/{{from}}">Continuar</ion-button>
+    <ion-button expand="block"routerLink="/pagando/{{id}}/{{rid}}/{{total_suma}}/{{from}}/{{test}}">Continuar</ion-button>
   </div>
 </ion-content>

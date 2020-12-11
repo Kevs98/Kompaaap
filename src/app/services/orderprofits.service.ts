@@ -15,7 +15,7 @@ export class OrderprofitsService {
   user                    = firebase.auth().currentUser;
 
   constructor( private bd : AngularFirestore) { 
-    this.orderCollection = bd.collection<OrderI>('Order', ref => ref.where('driverId', '==', this.user.uid));
+    this.orderCollection = bd.collection<OrderI>('Order', ref => ref.where('driverId', '==', this.user.uid).where('estado', '==', 1));
     this.orders = this.orderCollection.snapshotChanges().pipe( map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data() as OrderI;

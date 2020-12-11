@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class NichasmenuService {
+export class NichasmenuService { 
 
   private nichasCollection : AngularFirestoreCollection<MenuI>
   private menu : Observable<MenuI[]>

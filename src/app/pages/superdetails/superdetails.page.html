@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Que quieres comprar?</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col sizeXs="12" col-4 no-padding>
+      <div class="container-test">
+        <ion-card class="fixline">
+          <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Supermercado%2Fonline-shopping.svg?alt=media&token=bfe51900-32a0-442c-aebe-90a11c030cd7"/>
+          <ion-card-title class="test">Detalla tus Compras</ion-card-title>
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+  <hr class="separator">
+  <ion-row>
+    <form [formGroup]="SuperList" (ngSubmit)="onSave(SuperList.value)">
+      <div class="container">
+        <ion-item>
+          <ion-label>¿Que Supermercado prefiere?</ion-label>
+          <ion-select formControlName="super">
+            <ion-select-option *ngFor="let s of super" value="{{s.nombre}}">{{s.nombre}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" formControlName="otro" placeholder="¿Algun otro Lugar?"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label class="ion-text-center">Coloca la foto de tu lista de compras.</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label class="btnimagen" for="file" icon-only ion-button><ion-icon name="add-circle-outline"></ion-icon></ion-label>
+          <ion-input class="files" id="file" name="file" type="file" formControlName="list" (change)="handleImage($event)"></ion-input>
+        </ion-item>
+        <div id="preview"></div>
+      </div>
+      <div class="botonenviar">
+        <ion-button expand="block" type="submit" class="enviar"><ion-icon name="push" routerLink="/peoplein/{{id}}"></ion-icon>&nbsp; Enviar</ion-button>
+      </div>
+    </form>
+  </ion-row>
+</ion-content>

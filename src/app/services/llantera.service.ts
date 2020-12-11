@@ -4,20 +4,21 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PeopleI } from '../models/people.interface';
 import { ListI } from '../models/list.interface';
+import { DriversI } from '../models/drivers.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LlanteraService {
 
-  private llanteraCollection : AngularFirestoreCollection<PeopleI>;
-  private llantera : Observable<PeopleI[]>;
+  private llanteraCollection : AngularFirestoreCollection<DriversI>;
+  private llantera : Observable<DriversI[]>;
 
   private llanteraList : AngularFirestoreCollection<ListI>;
   private Lista : Observable<ListI[]>;
 
   constructor(db : AngularFirestore) {
-    this.llanteraCollection = db.collection<PeopleI>('Llantera');
+    this.llanteraCollection = db.collection<DriversI>('Llantera');
     this.llantera = this.llanteraCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -26,7 +27,7 @@ export class LlanteraService {
       });
     }
     ));
-    this.llanteraList = db.collection<PeopleI>('Llantera List');
+    this.llanteraList = db.collection<DriversI>('Llantera List');
     this.Lista = this.llanteraList.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -46,7 +47,7 @@ export class LlanteraService {
    }
 
    getOne(id: string){
-    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
-    return this.llanteraCollection.doc<PeopleI>(id).valueChanges();
+    // console.log('ver',this.acaCollection.doc<DriversI>(id).valueChanges());
+    return this.llanteraCollection.doc<DriversI>(id).valueChanges();
    }
 }

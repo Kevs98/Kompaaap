@@ -1,3 +1,4 @@
+import { DriversI } from 'src/app/models/drivers.interface';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -10,14 +11,14 @@ import { ListI } from '../models/list.interface';
 })
 export class AlbañileriaService {
 
-  private albaCollection : AngularFirestoreCollection<PeopleI>;
-  private albañil : Observable<PeopleI[]>;
+  private albaCollection : AngularFirestoreCollection<DriversI>;
+  private albañil : Observable<DriversI[]>;
 
   private albaservices : AngularFirestoreCollection<ListI>;
   private lista : Observable<ListI[]>;
 
   constructor(db : AngularFirestore) {
-    this.albaCollection = db.collection<PeopleI>('Albañileria');
+    this.albaCollection = db.collection<DriversI>('Albañileria');
     this.albañil = this.albaCollection.snapshotChanges().pipe(map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -50,7 +51,7 @@ export class AlbañileriaService {
    }
 
    getOne(id: string){
-    // console.log('ver',this.acaCollection.doc<PeopleI>(id).valueChanges());
-    return this.albaCollection.doc<PeopleI>(id).valueChanges();
+    // console.log('ver',this.acaCollection.doc<DriversI>(id).valueChanges());
+    return this.albaCollection.doc<DriversI>(id).valueChanges();
    }
 }

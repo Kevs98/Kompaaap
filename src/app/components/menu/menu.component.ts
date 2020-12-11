@@ -21,14 +21,24 @@ export class MenuComponent implements OnInit {
       icon: 'copy'
     },
     {
-      title: 'Delivery',
-      url: '/delivery',
-      icon: 'paper-plane'
+      title: 'Supermercado',
+      url: '/superdetails',
+      icon: 'cart-outline'
+    },
+    {
+      title: 'Mandaditos',
+      url: '/mandaditos',
+      icon: 'bicycle'
     },
     {
       title: 'Transporte VIP',
       url: '/vipservices',
       icon: 'glasses'
+    },
+    {
+      title: 'Ordenes Activas',
+      url: 'activeorders',
+      icon: 'subway'
     }
     // {
     //   title: 'Carrito de Compras',

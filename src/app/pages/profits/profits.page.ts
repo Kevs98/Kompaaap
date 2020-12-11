@@ -11,6 +11,7 @@ export class ProfitsPage implements OnInit {
 
   order : OrderI[];
   suma  : any = 0;
+  kompa = 0;
 
   constructor( private orderService : OrderprofitsService) { }
 
@@ -19,6 +20,8 @@ export class ProfitsPage implements OnInit {
       this.order = res;
       for (let i = 0; i<this.order.length; i++){
         this.suma = this.suma + Number(this.order[i].precio);
+        this.kompa = Math.round(this.order[i].precio * 0.3);
+        console.log('kompa',this.kompa);
       }
     });
   }

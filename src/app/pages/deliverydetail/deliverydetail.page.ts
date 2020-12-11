@@ -1,3 +1,4 @@
+import { DriverMarketService } from './../../services/driver-market.service';
 import { map } from 'rxjs/operators';
 import { DriversI } from './../../models/drivers.interface';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
@@ -18,6 +19,8 @@ import * as firebase from 'firebase';
 import { OrderI } from 'src/app/models/order.interface';
 import { NichasmenuService } from 'src/app/services/nichasmenu.service';
 import { MenuI } from 'src/app/models/menu.interface';
+import { CdrioService } from 'src/app/services/cdrio.service';
+import { pid } from 'process';
 
 declare var google : any;
 
@@ -39,11 +42,13 @@ export class DeliverydetailPage {
   public destination              : any;
   private googleDirectionsService = new google.maps.DirectionsService();
   destino                         = {lat: 15.5060634, lng: -88.03829470000001};
+  cerveceria                      = {lat: 15.4951258, lng: -88.0363354};
   olat                            = 15.5060634;
   olng                            = -88.03829470000001;
   private test                    : any;
   public origen                   : any = '';
   public precio                   : number;
+  
 
   jobs    : servicesI[];
   Peoples : DriversI = {};
@@ -55,9 +60,20 @@ export class DeliverydetailPage {
   cantidad= null;
   from    = null;
   tipo    = null;
-
+  name    = null;
+  suma    = null;
   locateOrder = "";
   restOrder   = "";
+  clientub    = "";
+  clienterub  = "";
+  cancelar    = 0;
+  origin      = null;
+  destinar    = null;
+  pid         = null;
+  org         = null;
+  Corigen     = null;
+  Cdestino    = null;
+  see         = null;
 
   directionService = new google.maps.DirectionsService();
   directionDisplay = new google.maps.DirectionsRenderer();
@@ -76,7 +92,9 @@ export class DeliverydetailPage {
     private tService    : TaxiService,
     private callNumber  : CallNumber,
     private bd          : AngularFirestore,
-    private nichas     : NichasmenuService
+    private nichas      : NichasmenuService,
+    private cdrio       : CdrioService,
+    private superDriver : DriverMarketService
   ) { 
 
   }
@@ -89,6 +107,19 @@ export class DeliverydetailPage {
     this.cantidad= this.route.snapshot.params['cant'];
     this.from    = this.route.snapshot.params['from'];
     this.tipo    = this.route.snapshot.params['tipo'];
+    this.name    = this.route.snapshot.params['name'];
+    this.suma    = this.route.snapshot.params['suma'];
+    this.origin  = this.route.snapshot.params['origin'];
+    this.destinar= this.route.snapshot.params['destination'];
+    this.pid     = this.route.snapshot.params['pid'];
+
+    console.log('sumatest', this.id);
+    console.log('sumatest', this.pid);
+    console.log('sumatest', this.origin);
+    console.log('sumatest', this.destinar);
+    console.log('sumatest', this.cantidad);
+    console.log('sumatest', this.from);
+
 
     if(this.rid == 'VIP'){
       console.log('taxi');
@@ -109,16 +140,21 @@ export class DeliverydetailPage {
 
     this.mapElement = this.mapElement.nativeElement;
     // if(tis.tipo == 'delivery'){
-      this.loadPeople();
+      console.log()
+      if (this.id == 'super'){
+        this.loadMarketDriver();
+      }else{
+        this.loadPeople();
+        this.loadTaxi();
+      }
     // }else if(this.rid == 'VIP'){
-      this.loadTaxi();
     // }
     this.loadMap();
     this.service.getDeliveryJobs().subscribe( res => {
       this.jobs = res;
     });
 
-    if ( this.rid == '645ReJeOxbCh04AbWp0f') {
+    if ( this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super') {
       console.log('correcto');
       this.loadPlato();
       this.getposition();
@@ -135,6 +171,14 @@ export class DeliverydetailPage {
     });
   }
 
+  loadMarketDriver(){
+    this.superDriver.getOne(this.pid).subscribe(res => {
+      this.Peoples = res;
+      console.log('gente de super', this.Peoples.userId);
+      this.see = this.Peoples.userId;
+    })
+  }
+
   loadTaxi(){
     this.tService.getOne(this.id).subscribe( res => {
       this.Peoples = res;
@@ -144,7 +188,7 @@ export class DeliverydetailPage {
   }
 
   llamar(){
-    this.callNumber.callNumber(this.Peoples.phone , true)
+    this.callNumber.callNumber('89220953' , true)
       .then(res => console.log('Launched Dialer', res))
       .catch( err => console.log('Error Launching Dialer', err));
       console.log('Tel: ',this.Peoples.phone);
@@ -152,28 +196,66 @@ export class DeliverydetailPage {
   }
 
   loadPlato(){
-    this.nichas.getOne(this.orderid).subscribe( res => {
-      this.menu = res;
-      console.log('menu',res);
-    });
+    if (this.rid == '645ReJeOxbCh04AbWp0f'){
+      this.nichas.getOne(this.orderid).subscribe( res => {
+        this.menu = res;
+        console.log('menu',res);
+      });
+    } else if (this.rid == 'CSbCSCOhoxMNnneTOpvv'){
+      this.cdrio.getOne(this.orderid).subscribe( res => {
+        this.menu = res;
+        console.log('menu', res);
+      });
+    }
   }
 
   async getposition(){
+    if(this.rid == '645ReJeOxbCh04AbWp0f'){
+      this.destino = this.destino;
+    } else if (this.rid == 'CSbCSCOhoxMNnneTOpvv'){
+      this.destino = this.cerveceria;
+    }else if(this.id  == 'super'){
+      this.destino = this.destinar;
+
+    }
     this.geolocation.getCurrentPosition().then( position => {
       let lat = position.coords.latitude;
       let lng = position.coords.longitude;
       console.log('geo test',lat, lng);
       console.log('destino pos', this.destino);
+      console.log('origindir', this.origin);
 
-      let org = { lat: lat, lng: lng };
-      console.log('origen variable', org);
+      if (this.id == 'super'){
+        const lato = parseFloat(this.origin.substring(0, 10));
+        const lngo = parseFloat(this.origin.substring(12, 29));
 
-      const testpos = new google.maps.LatLng(org);
-      const testdest = new google.maps.LatLng(this.destino);
+        this.Corigen = {lat: lato, lng: lngo}; 
+        console.log('substring',this.Corigen);
+        this.org = this.origin;
+
+        const latd = parseFloat(this.destinar.substring(0, 10));
+        const lngd = parseFloat(this.destinar.substring(12, 29));
+
+        this.Cdestino = {lat: latd, lng: lngd};
+      }else {
+         this.org = { lat: lat, lng: lng };
+      }
+      console.log('origen variable', this.org);
+      
+
+      const test = new google.maps.LatLng(this.org);
+      console.log('a ver que sale', test);
+
+      console.log('CORIGEN', this.Corigen);
+      console.log('CDESTINO', this.Cdestino);
+
+      const testpos = new google.maps.LatLng(this.Corigen);
+      const testdest = new google.maps.LatLng(this.Cdestino);
       console.log('latlng',testpos);
+      console.log('destest', testdest);
 
       const predistancia = google.maps.geometry.spherical.computeDistanceBetween(testpos,testdest);
-      const distancia = predistancia/1000;
+      const distancia = Math.round(predistancia/1000);
       console.log('KM',distancia);
 
       if (distancia <= 1.5){
@@ -194,15 +276,18 @@ export class DeliverydetailPage {
 
       console.log('price',this.precio);
       
-      if (this.rid == '645ReJeOxbCh04AbWp0f'){
-        const itemH = document.getElementById('testI');
+      if (this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super'){
+        const itemH  = document.getElementById('testI');
+        const itemL  = document.getElementById('test');
+        const search = document.getElementById('search');
+        search.style.display = 'none'; 
         itemH.style.display = 'none';
       }
 
        
       
       this.directionService.route({
-        origin: org,
+        origin: this.org,
         destination: this.destino,
         travelMode: google.maps.TravelMode.DRIVING,
       }, async (res, status) => {
@@ -254,50 +339,93 @@ export class DeliverydetailPage {
     try {
       await this.map.one(GoogleMapsEvent.MAP_READY);
       this.addOriginMarker();
+      this.geolocation.getCurrentPosition().then( position => {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        console.log('dos de una',lat,lng);
 
-      if (this.rid == '645ReJeOxbCh04AbWp0f'){
-        this.addDestMarker();
-        this.restOrder = this.olat.toString() + ',' + this.olng.toString();
-        console.log('exito',this.from);
-        console.log('exio',this.cantidad);
+        this.clienterub = lat.toString() + ',' + lng.toString();
+        console.log('done', this.clienterub);
 
-        if (this.cantidad == 'carrito'){
-          const order = {
-            nombre    : 'Varias Ordenes',
-            precio    : this.oPrecio,
-            driverId  : this.Peoples.userId,
-            cliente   : this.usuario.displayName,
-            ubicacion : this.restOrder,
-            phone     : "97544506",
-            estado    : 0
+        if (this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super'){
+          this.addDestMarker();
+          this.restOrder = this.olat.toString() + ',' + this.olng.toString();
+          console.log('exito',this.from);
+          console.log('exio',this.cantidad);
+          console.log('precioooo', this.id);
+          if (this.from == 'carrito'){
+            const order = {
+              nombre    : 'Varias Ordenes',
+              nombreV   : this.name,
+              precio    : this.suma,
+              cancelado : this.cancelar,
+              driverId  : this.Peoples.userId,
+              cliente   : this.usuario.displayName,
+              clienteID : this.usuario.uid,
+              DName     : this.Peoples.nombre + '' + this.Peoples.apellido,
+              ubicacion : this.restOrder,
+              clienteub : this.clienterub,
+              phone     : "97544506",
+              estado    : 0
+            }
+            console.log('restOrder',order);
+            this.orderCollection.add(order);
+            this.alerta();
+          } else if( this.id == 'super'){
+            console.log('AQUI ENTRÓ AL IF');
+            console.log('error', this.Peoples.userId);
+            const order = {
+              nombre    : 'Supermercado',
+              precio    : this.precio,
+              cancelado : this.cancelar,
+              driverId  : this.Peoples.userId,
+              DName     : this.Peoples.nombre + ' ' + this.Peoples.apellido,
+              cliente   : this.usuario.displayName,
+              clienteID : this.usuario.uid,
+              clienteub : this.destinar,
+              ubicacion : this.origin,
+              phone     : "97544506",
+              estado    : 0
+            }
+            console.log('AQUI PASÓ LA CONSTANTE');
+            console.log('restOrder',order);
+            console.log('Paso la constante');
+            this.orderCollection.add(order);
+
+            this.alerta();
+          }else {
+            const order = {
+              nombre    : this.menu.nombre,
+              precio    : this.suma,
+              cancelado : this.cancelar,
+              cantidad  : this.from,
+              driverId  : this.Peoples.userId,
+              DName     : this.Peoples.nombre + '' + this.Peoples.apellido,
+              cliente   : this.usuario.displayName,
+              clienteID : this.usuario.uid,
+              clienteub : this.clienterub,
+              ubicacion : this.restOrder,
+              phone     : "97544506",
+              estado    : 0
+            }
+            console.log('restOrder',order);
+            this.orderCollection.add(order);
+
+            this.alerta();
           }
-          console.log('restOrder',order);
-          this.orderCollection.add(order);
-        } else {
-          const order = {
-            nombre    : this.menu.nombre,
-            precio    : this.oPrecio,
-            cantidad  : this.from,
-            driverId  : this.Peoples.userId,
-            cliente   : this.usuario.displayName,
-            ubicacion : this.restOrder,
-            phone     : "97544506",
-            estado    : 0
-          }
-          console.log('restOrder',order);
-          this.orderCollection.add(order);
         }
-
-      }
+      });
+      
       console.log('despues de funcion',this.origen);
 
     } catch(error) {
       console.error(error);
       
     }
+  }
 
-    
-    
+  alerta(){
+    alert('su orden fue asignada el conductor se pondra en contacto con usted, gracias por usar Kompa App');
   }
 
   async addOriginMarker(){
@@ -326,6 +454,11 @@ export class DeliverydetailPage {
   }
 
   async addDestMarker(){
+    if(this.rid == '645ReJeOxbCh04AbWp0f'){
+      this.destino = this.destino;
+    } else if (this.rid == 'CSbCSCOhoxMNnneTOpvv'){
+      this.destino = this.cerveceria;
+    }
     try {
       await this.map.moveCamera({
         target: this.destino,
@@ -404,28 +537,33 @@ export class DeliverydetailPage {
       this.test = this.originMarker.getPosition();
       console.log('test', this.test);
 
+      console.log('testlat',this.test.lat);
+      console.log('testlng',this.test.lng);
+
       const org = new google.maps.LatLng(this.test);
       const dst = new google.maps.LatLng(markerDestination.getPosition());
 
       const predistancia = google.maps.geometry.spherical.computeDistanceBetween(org,dst);
-      const distancia = predistancia/1000;
+      const distancia = Math.round(predistancia/1000);
       console.log('KM',distancia);
 
-      if (distancia <= 1.5){
-        this.precio =  50;
-      } else if (distancia >= 4 && distancia <= 6.5){
-        this.precio = 60;
-      } else if (distancia >= 6.5 && distancia <= 9){
-        this.precio = 70;
-      } else if (distancia <= 9){
-        this.precio = 80;
-      } else if (distancia > 9 && distancia <= 10){
-        this.precio = 90;
-      } else if (distancia > 10 && distancia <=12){
-        this.precio = 100;
-      } else if (distancia > 12){
-        this.precio = 150;
-      } 
+      if( this.rid == 'Yi6YGwJGFykzzbCcmErN'){
+        if (distancia <= 1.5){
+          this.precio =  60;
+        } else if ( distancia > 1.5 && distancia <= 4.5 ){
+          this.precio = 75;
+        } else if (distancia > 4.5 && distancia <= 9){
+          this.precio = 90;
+        } else if (distancia > 9){
+          this.precio = 150;
+        } 
+      } else if (this.rid == 'VIP'){
+        if (distancia <= 4){
+          this.precio = 83;
+        } else if ( distancia > 4){
+          this.precio = ((distancia - 4 )* 4.50)+83;
+        }
+      }
 
       console.log('price',this.precio);
 
@@ -433,20 +571,27 @@ export class DeliverydetailPage {
       const lngO = info[0].position.lng;
 
       this.locateOrder = latO.toString() + ',' + lngO.toString();
+      this.clientub    = this.test.lat.toString() + ',' + this.test.lng.toString();
       console.log('ubimed',this.locateOrder);
 
       const order = {
         nombre    : "Delivery / VIP",
         precio    : this.precio,
+        cancelado : this.cancelar,
         driverId  : this.Peoples.userId,
+        DName     : this.Peoples.nombre + '' + this.Peoples.apellido,
         cliente   : this.usuario.displayName,
+        clienteID : this.usuario.uid,
         ubicacion : this.locateOrder,
+        clienteub : this.clientub,
         phone     : "96487764",
         estado    : 0
       }
 
       console.log('objOrder', order);
       this.orderCollection.add(order);
+
+      this.alerta();
 
     });
 

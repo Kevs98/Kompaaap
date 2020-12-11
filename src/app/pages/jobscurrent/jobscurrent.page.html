@@ -8,14 +8,24 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngIf="flag === 'no'">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Femoji.svg?alt=media&token=ecee5054-26f2-4e11-8d0a-29cf46a68955" class="imagen"/>
+    <ion-card-header>
+      <ion-card-subtitle>Lo sentimos</ion-card-subtitle>
+      <ion-card-title>No hay Trabajos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Por el momento no cuentas con trabajos activos.
+    </ion-card-content>
+  </ion-card>
     <ion-row>
       <ion-col sizeXs="12" col-4 no-padding  *ngFor="let j of job">
         <div class="container-test">
-          <ion-card button routerLink="/jobdetail/{{j.id}}/{{j.ubicacion}}/{{j.phone}}" class="fixline">
+          <ion-card button routerLink="/jobdetail/{{j.id}}/{{j.ubicacion}}/{{j.phone}}/{{j.clienteub}}" class="fixline">
             <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Kompa%20Dashboard%2Fbox.svg?alt=media&token=d2c2716b-31a9-4462-8ab5-1d6b1877f713"/>
             <ion-card-title class="test">{{j.nombre}}</ion-card-title>
           </ion-card>
         </div>
       </ion-col>
     </ion-row>
-</ion-content>
+</ion-content> 
