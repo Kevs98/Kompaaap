@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tarjetas Disponibles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="fixline">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Principales%2Fdebit-card.svg?alt=media&token=0d2d63f8-b25f-4832-8d65-4a4381daacc5" class="imagen"/>
+    <ion-card-title class="title">Trajetas Disponibles</ion-card-title>
+  </ion-card>
+  <hr class="separator">
+  <ion-list *ngFor="let cards of card">
+    <ion-item routerLink="/cardpay/{{cards.cardTokenId}}/{{desc}}/{{price}}">
+      <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Principales%2Fcredit-card%20(1).svg?alt=media&token=e183c22c-c484-4cae-9068-3b33d550ea1f" class="efectivoimg">
+      <ion-label>{{cards.cardDescription}}</ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

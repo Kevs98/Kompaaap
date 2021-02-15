@@ -16,9 +16,16 @@
     <ion-card-title class="title">Formas de Pago</ion-card-title>
   </ion-card>
   <hr class="separator">
-  <ion-item *ngIf="rid != 'super' && super != 'super'">
+  <ion-item *ngIf="rid != 'super' && super != 'super' && super != 'mandado'">
     <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/money%20(1).svg?alt=media&token=625a3ca1-1502-4f5c-8ed8-61fd08afec4b" class="efectivoimg">
     <ion-label routerLink="/p-efectivo/{{KompaId}}/{{rid}}/{{precio}}/{{cantidad}}/{{from}}/{{name}}">
+      Efectivo
+    </ion-label>
+    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item *ngIf="super == 'mandado' && super != 'super'">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/money%20(1).svg?alt=media&token=625a3ca1-1502-4f5c-8ed8-61fd08afec4b" class="efectivoimg">
+    <ion-label routerLink="/p-efectivo/{{orderid}}/{{super}}/{{price}}">
       Efectivo
     </ion-label>
     <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
@@ -37,9 +44,16 @@
     </ion-label>
     <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
   </ion-item>
-  <ion-item>
+  <ion-item *ngIf="super == 'mandado'" routerLink="/cardfn/{{desc}}/{{price}}">
     <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/credit-card.svg?alt=media&token=03348b12-0486-471c-8124-e1c56247867c" class="efectivoimg">
-    <ion-label (click)="prox()">
+    <ion-label>
+      Tarjeta de Crédito
+    </ion-label>
+    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  <ion-item *ngIf="super != 'mandado'">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/credit-card.svg?alt=media&token=03348b12-0486-471c-8124-e1c56247867c" class="efectivoimg">
+    <ion-label (click)="home()">
       Tarjeta de Crédito
     </ion-label>
     <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>

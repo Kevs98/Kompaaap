@@ -72,7 +72,7 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'peoplein/:id/:origin/:destination/:desc',
+    path: 'peoplein/:id/:origin/:destination/:desc/:preciosp',
     loadChildren: () => import('./pages/peoplein/peoplein.module').then( m => m.PeopleinPageModule),
     // canActivate: [AuthGuard]
   },
@@ -205,7 +205,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
   },
   {
-    path: 'pagando/:id/:super/:origen/:dest/:desc',
+    path: 'pagando/:id/:super',
+    loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
+  },
+  {
+    path: 'pagando/:id/:super/:origen/:dest/:desc/:price',
     loadChildren: () => import('./pages/pagando/pagando.module').then( m => m.PagandoPageModule)
   },
   {
@@ -226,6 +230,10 @@ const routes: Routes = [
   },
   {
     path: 'p-efectivo/:id',
+    loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
+  },
+  {
+    path: 'p-efectivo/:id/:super/:price',
     loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
   },
   {
@@ -318,7 +326,25 @@ const routes: Routes = [
   {
     path: 'mandaditos',
     loadChildren: () => import('./pages/mandaditos/mandaditos.module').then( m => m.MandaditosPageModule)
+  },
+  {
+    path: 'testpush',
+    loadChildren: () => import('./pages/testpush/testpush.module').then( m => m.TestpushPageModule)
+  },
+  {
+    path: 'usercard',
+    loadChildren: () => import('./pages/usercard/usercard.module').then( m => m.UsercardPageModule)
+  },
+  {
+    path: 'cardfn/:desc/:price',
+    loadChildren: () => import('./pages/cardfn/cardfn.module').then( m => m.CardfnPageModule)
+  },
+  {
+    path: 'cardpay/:token/:desc/:price',
+    loadChildren: () => import('./pages/cardpay/cardpay.module').then( m => m.CardpayPageModule)
   }
+
+
 
 
 

@@ -27,6 +27,9 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 
 import { GoogleMaps } from '@ionic-native/google-maps/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +44,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     FormsModule,
     ComponentsModule,
     ComponentModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule
   ],
   providers: [
     NativeGeocoder,
@@ -53,6 +57,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     SplashScreen,
     CallNumber,
     GoogleMaps,
+    FCM,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { DriverMarketService } from './../../services/driver-market.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DriversI } from 'src/app/models/drivers.interface';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-thanks',
@@ -17,6 +18,9 @@ export class ThanksPage implements OnInit {
   pid      = null;
   cancelar = 0;
   Peoples  : DriversI = {};
+  user     = firebase.auth().currentUser;
+  username = this.user.displayName;
+  type     = 'mandado';
 
   constructor( private route : ActivatedRoute, private superService : DriverMarketService) { 
   }
@@ -27,7 +31,11 @@ export class ThanksPage implements OnInit {
     this.origen  = this.route.snapshot.params['origin'];
     this.destino = this.route.snapshot.params['destination']; 
     this.pid     = this.route.snapshot.params['pid'];
-    console.log('id', this.pid);
+    console.log('Kompaid', this.KompaId);
+    console.log('nombre', this.nombre);
+    console.log('origen', this.origen);
+    console.log('destino', this.destino);
+    console.log('pid', this.pid);
     this.loadPeople();  
   }
 

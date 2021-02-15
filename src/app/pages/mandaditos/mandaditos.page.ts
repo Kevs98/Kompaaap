@@ -31,6 +31,7 @@ export class MandaditosPage implements OnInit {
   user                        = firebase.auth().currentUser;
   nombre                      = null;
   descripcion                 = '';
+  precio                      = 0;
 
   constructor( private ngZone : NgZone) { }
 
@@ -87,6 +88,41 @@ export class MandaditosPage implements OnInit {
     this.destinolat = info[0].position.lat;
     this.destinolng = info[0].position.lng;
     this.destino    = this.destinolat + ',' + this.destinolng;
+    this.test();
+  }
+
+  test(){
+    const olc = { lat : this.origenlat, lng: this.origenlng };
+    const dlc = { lat : this.destinolat, lng: this.destinolng };
+
+    const ol = new google.maps.LatLng(olc);
+    const dl = new google.maps.LatLng(dlc);
+
+    console.log('origen', ol);
+    console.log('destino', dl);
+    
+    const predistancia = google.maps.geometry.spherical.computeDistanceBetween(ol,dl);
+    const distancia = Math.round(predistancia/1000);
+    console.log('KM',distancia);
+
+    if (distancia <= 1.5){
+      this.precio = 50;
+    } else if (distancia <= 4){
+      this.precio = 60;
+    } else if (distancia <= 6.5){
+      this.precio = 70;
+    } else if (distancia <= 9){
+      this.precio = 80;
+    } else if (distancia > 9 && distancia <= 10){
+      this.precio = 90;
+    } else if (distancia > 10 && distancia <=12){
+      this.precio = 100;
+    } else if (distancia > 12){
+      this.precio = 150;
+    } 
+
+    console.log('price',this.precio);
+
   }
 
   obtenerDesc(){

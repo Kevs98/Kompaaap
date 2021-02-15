@@ -113,12 +113,12 @@ export class DeliverydetailPage {
     this.destinar= this.route.snapshot.params['destination'];
     this.pid     = this.route.snapshot.params['pid'];
 
-    console.log('sumatest', this.id);
-    console.log('sumatest', this.pid);
-    console.log('sumatest', this.origin);
-    console.log('sumatest', this.destinar);
-    console.log('sumatest', this.cantidad);
-    console.log('sumatest', this.from);
+    console.log('id', this.id);
+    console.log('pid', this.rid);
+    console.log('ori', this.orderid);
+    console.log('dset', this.oPrecio);
+    console.log('cant', this.cantidad);
+    console.log('from', this.from);
 
 
     if(this.rid == 'VIP'){
@@ -347,7 +347,7 @@ export class DeliverydetailPage {
         this.clienterub = lat.toString() + ',' + lng.toString();
         console.log('done', this.clienterub);
 
-        if (this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super'){
+        if (this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super' || this.id == 'mandado'){
           this.addDestMarker();
           this.restOrder = this.olat.toString() + ',' + this.olng.toString();
           console.log('exito',this.from);
@@ -393,6 +393,8 @@ export class DeliverydetailPage {
             this.orderCollection.add(order);
 
             this.alerta();
+          }else if (this.id == 'mandado'){
+            console.log('La orden ya esta añadida');
           }else {
             const order = {
               nombre    : this.menu.nombre,

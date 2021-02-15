@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>usercard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-slides pager="true" [options]="slideOpts">
+  <ion-slide>
+    <img src="../../../assets/hn-tarjeta-sinmarca-debito_0.png">
+  </ion-slide>
+</ion-slides>
+<ion-content class="ion-padding">
+  <ion-card>
+  
+  
+  <ion-card-content>
+    Aqui agrega su tarjeta de credito
+  </ion-card-content>
+  
+  <form #Formulario="ngForm" (ngSubmit)="onSubmit()">
+    <ion-list-header>
+      <ion-label>Formulario Tarjeta {{Formulario.valid}}</ion-label>
+    </ion-list-header>
+    
+    <ion-item>
+      <ion-label>Nombre:</ion-label>
+      <ion-input type="text" 
+                 placeholder="Nombre"
+                 name="nombre"
+                 required
+                 [(ngModel)]="usuario.Nombre"
+      > </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Apellido:</ion-label>
+      <ion-input type="text" 
+                 placeholder="Apellido"
+                 name="apellido"
+                 required
+                 [(ngModel)]="usuario.Apellido"
+      > </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password:</ion-label>
+      <ion-input type="password" 
+                 placeholder="Password"
+                 name="password"
+                 required
+                 [(ngModel)]="usuario.Password"
+      > </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>E-mail:</ion-label>
+      <ion-input type="email" 
+                 placeholder="E-mail"
+                 name="email"
+                 required
+                 pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                 [(ngModel)]="usuario.Email"
+      > </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telefono:</ion-label>
+      <ion-input type="text" 
+                 placeholder="Telefono Celular"
+                 name="telefono"
+                 required
+                 [(ngModel)]="usuario.Telefono"
+      > </ion-input>
+    </ion-item>
+    <ion-button  [disabled]="Formulario.invalid" type="submit" expand="block">
+      Guardar
+    </ion-button>
+  </form>
+</ion-card>
+</ion-content>

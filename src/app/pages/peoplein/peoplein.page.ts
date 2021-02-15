@@ -43,18 +43,19 @@ import { DriversI } from 'src/app/models/drivers.interface';
 export class PeopleinPage implements OnInit {
 
   peoples : DriversI[];
-  KompaId = null;
-  rid     = null;
-  precio  = null;
-  cantidad= null;
-  from    = null;
-  tipo    = null;
-  flag    = '';
-  name    = null;
-  suma    = null;
-  origen  = null;
-  destino = null;
-  desc    = null;
+  KompaId  = null;
+  rid      = null;
+  precio   = null;
+  cantidad = null;
+  from     = null;
+  tipo     = null;
+  flag     = '';
+  name     = null;
+  suma     = null;
+  origen   = null;
+  destino  = null;
+  desc     = null;
+  preciosp = null;
 
   constructor(
     private achService : ACHogarService,  
@@ -89,20 +90,22 @@ export class PeopleinPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.KompaId = this.route.snapshot.params['id'];
-    this.rid     = this.route.snapshot.params['rid'];
-    this.precio  = this.route.snapshot.params['precio'];
-    this.suma    = this.route.snapshot.params['suma'];
-    this.cantidad= this.route.snapshot.params['cant'];
-    this.from    = this.route.snapshot.params['from'];
-    this.tipo    = this.route.snapshot.params['tipo'];
-    this.name    = this.route.snapshot.params['name'];
-    this.origen  = this.route.snapshot.params['origin'];
-    this.destino = this.route.snapshot.params['destination'];
-    this.desc    = this.route.snapshot.params['desc'];
-    console.log('probando', this.desc);
-    console.log('tiop', this.precio);
-      console.log(this.KompaId);
+    this.KompaId  = this.route.snapshot.params['id'];
+    this.rid      = this.route.snapshot.params['rid'];    // origen
+    this.precio   = this.route.snapshot.params['precio']; 
+    this.suma     = this.route.snapshot.params['suma'];   // destino
+    this.cantidad = this.route.snapshot.params['cant'];
+    this.from     = this.route.snapshot.params['from'];   // descripcion
+    this.tipo     = this.route.snapshot.params['tipo'];
+    this.name     = this.route.snapshot.params['name'];   // precio
+    this.origen   = this.route.snapshot.params['origin'];
+    this.destino  = this.route.snapshot.params['destination'];
+    this.desc     = this.route.snapshot.params['desc'];
+    this.preciosp = this.route.snapshot.params['preciosp'];
+
+    console.log('probando', this.KompaId);
+    console.log('tiop', this.desc);
+      console.log(this.name); 
 
       if(this.KompaId == 'AJfc7rElVk5nYewVAIQv'){
         console.log('Albañileria');
@@ -292,6 +295,19 @@ export class PeopleinPage implements OnInit {
           } else {
             this.flag = 'no';
             console.log('ng',this.flag);
+          }
+        })
+      }
+      else if (this.KompaId == 'mandado') {
+        this.driverMarket.getDrivers().subscribe( res => {
+          this.peoples = res;
+          console.log('flag', this.peoples);
+          if ( this.peoples.length > 0){
+            this.flag = 'si';
+            console.log('fg', this.flag);
+          } else {
+            this.flag = 'no';
+            console.log('fg', this.flag);
           }
         })
       }

@@ -1,9 +1,10 @@
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { map } from 'rxjs/operators';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { DriversService } from './../../services/drivers.service';
 import { DriversI } from './../../models/drivers.interface';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NichasmenuService } from 'src/app/services/nichasmenu.service';
 import { MenuI } from 'src/app/models/menu.interface';
 import * as firebase from 'firebase';
@@ -25,6 +26,7 @@ export class PagandoPage implements OnInit {
   precio   = null;
   name     = null;
   from     = null;
+  orderid  = '';
   menu     : MenuI = {};
   user     = firebase.auth().currentUser;
   nombre   = null;
@@ -34,6 +36,9 @@ export class PagandoPage implements OnInit {
   desc     = null;
   org      = null;
   dest     = null;
+  price    = null;
+  concept  = null;
+
   private orderCollection : AngularFirestoreCollection<OrderI>
   private orders          : Observable<any>
 
@@ -41,7 +46,10 @@ export class PagandoPage implements OnInit {
   constructor( private route : ActivatedRoute,
      private nichas : NichasmenuService,
      private driverService : DriversService,
-     private bd : AngularFirestore) { }
+     private bd : AngularFirestore,
+     private geolocation : Geolocation,
+     private router : Router
+    ) { }
 
   ngOnInit() {
     this.KompaId  = this.route.snapshot.params['id'];
@@ -56,15 +64,16 @@ export class PagandoPage implements OnInit {
     this.desc     = this.route.snapshot.params['desc'];
     this.org      = this.route.snapshot.params['origen'];
     this.dest     = this.route.snapshot.params['dest'];
+    this.price    = this.route.snapshot.params['price'];
     this.nombre   = this.user.displayName;
     console.log('Kompa', this.KompaId);
     console.log('test', this.super);
     console.log('origen', this.desc);   
-    console.log('dest', this.cantidad);
+    console.log('dest', this.price);
 
     this.loadPeoples();
     
-    this.orderCollection = this.bd.collection<OrderI>('Order');
+    this.orderCollection = this.bd.collection<OrderI>('Order', ref => ref.where('nombre', '==', this.desc));
     this.orders = this.orderCollection.snapshotChanges().pipe( map( actions => {
       return actions.map( a => {
         const data = a.payload.doc.data();
@@ -74,6 +83,16 @@ export class PagandoPage implements OnInit {
     }
     ));
 
+    this.getOrders().subscribe( res => {
+      for (let i = 0; i<res.length; i++){
+        this.orderid = res[i].id;
+        console.log('id de orden', this.orderid);
+      }
+    })
+  }
+
+  getOrders(){
+    return this.orders;
   }
 
 
@@ -88,26 +107,60 @@ export class PagandoPage implements OnInit {
     });
   }
 
+  home(){
+    alert('No se puede pagar con Tarjeta');
+    this.router.navigateByUrl('/categories');
+  }
+
   loadPeoples(){
     this.driverService.getDriver(this.KompaId).subscribe( res => {
       this.Peoples = res;
-      const order = {
-        nombre    : this.desc,
-        precio    : null,
-        cancelado : this.cancelar,
-        cantidad  : null,
-        driverId  : this.Peoples.userId,
-        DName     : this.Peoples.nombre + '' + this.Peoples.apellido,
-        cliente   : this.user.displayName,
-        clienteID : this.user.uid,
-        clienteub : this.org,
-        ubicacion : this.dest,
-        phone     : "97544506",
-        estado    : 0
+      if (this.super == 'super'){
+
+        this.geolocation.getCurrentPosition().then( pos => {
+          let lat = pos.coords.latitude;
+          let lng = pos.coords.longitude;
+          console.log('coords',lat,lng);
+          this.org = lat+','+lng;
+
+          const order = {
+            nombre    : this.super,
+            precio    : null,
+            cancelado : this.cancelar,
+            cantidad  : null,
+            driverId  : this.Peoples.userId,
+            DName     : this.Peoples.nombre + '' + this.Peoples.apellido,
+            cliente   : this.user.displayName,
+            clienteID : this.user.uid,
+            clienteub : this.org,
+            ubicacion : null,
+            phone     : "97544506",
+            estado    : 0
+          }
+          console.log('restOrder',order);
+          this.orderCollection.add(order);
+          console.log('DRIVER', this.Peoples);
+
+        })
+      } else if (this.super == 'mandado'){
+        const order = {
+          nombre    : this.desc,
+          precio    : this.price,
+          cancelado : this.cancelar,
+          cantidad  : null,
+          driverId  : this.Peoples.userId,
+          DName     : this.Peoples.nombre + '' + this.Peoples.apellido,
+          cliente   : this.user.displayName,
+          clienteID : this.user.uid,
+          clienteub : this.org,
+          ubicacion : this.dest,
+          phone     : "97544506",
+          estado    : 0
+        }
+        console.log('restOrder',order);
+        this.orderCollection.add(order);
+        console.log('DRIVER', this.Peoples);
       }
-      console.log('restOrder',order);
-      this.orderCollection.add(order);
-      console.log('DRIVER', this.Peoples);
     });
   }
 

@@ -13,17 +13,21 @@
   </ion-card>
   <hr class="separator">
   <ion-title>Detalles del pedido</ion-title>
-  <ion-label *ngIf="name == ''">{{menu.nombre}}</ion-label>
+  <ion-label *ngIf="name == '' && type != 'mandado'">{{menu.nombre}}</ion-label>
+  <ion-label *ngIf="type == 'mandado'">{{header}}</ion-label>
   <br>
   <ion-row>
     <ion-col class="price">
       <ion-label>Precio:</ion-label>
     </ion-col>
-    <ion-col>
+    <ion-col *ngIf="type != 'mandado'">
       <ion-label>L. {{precio}}</ion-label>
     </ion-col>
+    <ion-col *ngIf="type == 'mandado'">
+      <ion-label>L. {{price}}</ion-label>
+    </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="type != 'mandado'">
     <ion-col class="price">
       <ion-label>Envio:</ion-label>
     </ion-col>
@@ -31,12 +35,20 @@
       <ion-label>L. {{envio}}</ion-label>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="type != 'mandado'">
     <ion-col class="price">
       <ion-label>ISV:</ion-label>
     </ion-col>
     <ion-col>
       <ion-label>L. {{ISV}}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="type == 'mandado'">
+    <ion-col class="price">
+      <ion-label>ISV:</ion-label>
+    </ion-col>
+    <ion-col>
+      <ion-label>L. {{ISVM}}</ion-label>
     </ion-col>
   </ion-row>
   <ion-row>
@@ -48,6 +60,7 @@
     </ion-col>
   </ion-row>
   <div class="containern">
-    <ion-button class="after" expand="block" routerLink="/peoplein/{{kompaId}}/{{rid}}/{{total}}/{{cantidad}}/{{tipo}}/{{from}}/{{name}}">Continuar</ion-button>
+    <ion-button *ngIf="type != 'mandado'" class="after" expand="block" routerLink="/peoplein/{{kompaId}}/{{rid}}/{{total}}/{{cantidad}}/{{tipo}}/{{from}}/{{name}}">Continuar</ion-button>
+    <ion-button *ngIf="type == 'mandado'" class="after" expand="block" routerLink="/thanks/{{kompaId}}/{{origen}}/{{destino}}/{{username}}/{{total}}"> Continuar</ion-button>
   </div>
 </ion-content>
