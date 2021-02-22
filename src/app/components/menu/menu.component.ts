@@ -39,12 +39,12 @@ export class MenuComponent implements OnInit {
       title: 'Ordenes Activas',
       url: 'activeorders',
       icon: 'subway'
+    },
+    {
+      title: 'Agregar Tarjeta',
+      url: '/addcard',
+      icon: 'card-outline'
     }
-    // {
-    //   title: 'Carrito de Compras',
-    //   url: '/carrito',
-    //   icon: 'cart'
-    // }
   ];
 
   selectedPath = '';

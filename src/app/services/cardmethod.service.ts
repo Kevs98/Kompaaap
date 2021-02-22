@@ -1,3 +1,4 @@
+import { card } from './../models/card.interface';
 import { chargeI } from './../models/chargeJSON.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
@@ -77,5 +78,20 @@ export class CardmethodService {
     }
 
     return this.http.post(this.API_URL+'/UserApplyCharge', UserApplyCharge);
+  }
+
+  UserIncludeCard( tarjeta : card){
+    const UserIncludeCard = {
+      "applicationName": "KOMPA_TEST",
+      "userName": "FTEXAMPLE", 
+      "userPassword":"1234FT%",
+      "cardDescription": tarjeta.cardDescription,
+      "primaryAccountNumber": tarjeta.cardNumber,
+      "expirationMonth": tarjeta.expirationMonth,
+      "expirationYear": tarjeta.expirationYear,
+      "verificationValue": tarjeta.verification
+    }
+
+    return this.http.post(this.API_URL+'/UserIncludeCard', UserIncludeCard);
   }
 }   

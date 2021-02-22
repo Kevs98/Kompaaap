@@ -1,7 +1,7 @@
+import { card } from './../../models/card.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CardmethodService } from './../../services/cardmethod.service';
 import { Component, OnInit } from '@angular/core';
-import { card } from '../../models/card.interface';
 
 @Component({
   selector: 'app-cardfn',
@@ -10,7 +10,8 @@ import { card } from '../../models/card.interface';
 })
 export class CardfnPage implements OnInit {
 
-  card : any;
+  card : card = {};
+  onecard = null;
   description = '';
   desc        = null;
   price       = null;
@@ -25,8 +26,9 @@ export class CardfnPage implements OnInit {
     console.log('price', this.price); 
 
     this.cardmService.UserRequestCards().subscribe( res => {
-      this.card = res.userCards;
-      for(let i = 0; i<this.card.length; i++){
+      this.card = res;
+      this.onecard = this.card.userCards;
+      for(let i = 0; i<this.onecard.length; i++){
         this.description = this.card[i].cardDescription;
         console.log(this.description);
       }

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Tarjeta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="fixline">
+    <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Principales%2Fdebit-card.svg?alt=media&token=0d2d63f8-b25f-4832-8d65-4a4381daacc5" class="imagen"/>
+    <ion-card-title class="title">Nueva Tarjeta</ion-card-title>
+  </ion-card>
+  <hr class="separator">
+  <form [formGroup]='addCard' (ngSubmit)="onSave(addCard.value)">
+    <div class="container">
+      <ion-item>
+        <ion-label>Nombre: </ion-label>
+        <ion-input type="text" formControlName="cardDescription"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Numero: </ion-label>
+        <ion-input type="text" formControlName="cardNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Mes de Expiración: </ion-label>
+        <ion-select formControlName="expirationMonth">
+          <ion-select-option value="01">01</ion-select-option>
+          <ion-select-option value="02">02</ion-select-option>
+          <ion-select-option value="03">03</ion-select-option>
+          <ion-select-option value="04">04</ion-select-option>
+          <ion-select-option value="05">05</ion-select-option>
+          <ion-select-option value="06">06</ion-select-option>
+          <ion-select-option value="07">07</ion-select-option>
+          <ion-select-option value="08">08</ion-select-option>
+          <ion-select-option value="09">09</ion-select-option>
+          <ion-select-option value="10">10</ion-select-option>
+          <ion-select-option value="11">11</ion-select-option>
+          <ion-select-option value="12">12</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Año de Expiración: </ion-label>
+        <ion-input type="text" formControlName="expirationYear"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>CSV: </ion-label>
+        <ion-input type="text" formControlName="verification"></ion-input>
+      </ion-item>
+      <div class="botonenviar">
+        <ion-button expand="block" type="submit" class="enviar"><ion-icon name="push"></ion-icon>&nbsp; Añadir Tarjeta</ion-button>
+      </div>
+    </div>
+  </form>
+</ion-content>

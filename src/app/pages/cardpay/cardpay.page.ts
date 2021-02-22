@@ -1,3 +1,4 @@
+import { card } from './../../models/card.interface';
 import { CardmethodService } from './../../services/cardmethod.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -16,8 +17,8 @@ export class CardpayPage implements OnInit {
   desc     = null;
   pay      = null;
   price    = null;
-  payment  : any;
-  charge   : any;
+  payment  : card = {};
+  charge   : card = {};
 
   constructor( 
     private route : ActivatedRoute,
@@ -39,17 +40,17 @@ export class CardpayPage implements OnInit {
   }
 
   async AppIncludeCharge(){
-    await this.cardService.AppIncludeCharge(this.desc,this.price).subscribe( res => {
+    this.cardService.AppIncludeCharge(this.desc, this.price).subscribe(res => {
       this.payment = res;
-      this.ctoken  = res.chargeTokenId;
-      this.aproved = res.isApproved;
+      this.ctoken = this.payment.chargeTokenId;
+      this.aproved = this.payment.isApproved;
       console.log('res', res);
-      if( this.aproved = true){
-        this.cardService.UserViewCharge(this.ctoken).subscribe( res2 => {
+      if (this.aproved = true) {
+        this.cardService.UserViewCharge(this.ctoken).subscribe(res2 => {
           this.charge = res2;
-          this.caproved = res2.isApproved;
+          this.caproved = this.charge.isApproved;
           console.log('charge', res2);
-        })
+        });
       } else {
         console.log('error con la tarjeta');
       }

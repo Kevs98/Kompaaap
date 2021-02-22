@@ -342,7 +342,11 @@ const routes: Routes = [
   {
     path: 'cardpay/:token/:desc/:price',
     loadChildren: () => import('./pages/cardpay/cardpay.module').then( m => m.CardpayPageModule)
+  },  {
+    path: 'addcard',
+    loadChildren: () => import('./pages/addcard/addcard.module').then( m => m.AddcardPageModule)
   }
+
 
 
 
