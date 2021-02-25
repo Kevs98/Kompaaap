@@ -233,7 +233,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
   },
   {
-    path: 'p-efectivo/:id/:super/:price',
+    path: 'p-efectivo/:did/:id/:super/:price',
     loadChildren: () => import('./pages/p-efectivo/p-efectivo.module').then( m => m.PEfectivoPageModule)
   },
   {
@@ -320,7 +320,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/thanks/thanks.module').then( m => m.ThanksPageModule)
   },
   {
-    path: 'thanks/:id/:pid/:name/:origin/:destination',
+    path: 'thanks/:did/:id/:pid/:name/:origin/:destination',
     loadChildren: () => import('./pages/thanks/thanks.module').then( m => m.ThanksPageModule)
   },
   {
@@ -336,14 +336,19 @@ const routes: Routes = [
     loadChildren: () => import('./pages/usercard/usercard.module').then( m => m.UsercardPageModule)
   },
   {
-    path: 'cardfn/:desc/:price',
+    path: 'cardfn/:did/:orderid/:desc/:price/:org/:dest',
     loadChildren: () => import('./pages/cardfn/cardfn.module').then( m => m.CardfnPageModule)
   },
   {
-    path: 'cardpay/:token/:desc/:price',
+    path: 'cardpay/:did/:orderid/:token/:desc/:price/:org/:dest',
     loadChildren: () => import('./pages/cardpay/cardpay.module').then( m => m.CardpayPageModule)
-  },  {
+  },
+  {
     path: 'addcard',
+    loadChildren: () => import('./pages/addcard/addcard.module').then( m => m.AddcardPageModule)
+  },
+  {
+    path: 'addcard/:orderid/:desc/:price',
     loadChildren: () => import('./pages/addcard/addcard.module').then( m => m.AddcardPageModule)
   }
 

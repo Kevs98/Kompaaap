@@ -34,6 +34,7 @@ export class PEfectivoPage implements OnInit {
   origen   = '';
   destino  = '';
   precio   = 0;
+  did      = null;
   envio    = 0;
   price    = null;
   type     = null;
@@ -64,8 +65,10 @@ export class PEfectivoPage implements OnInit {
     this.name    = this.route.snapshot.params['name'];
     this.price   = this.route.snapshot.params['price'];
     this.type    = this.route.snapshot.params['super'];
+    this.did     = this.route.snapshot.params['did'];
 
     console.log('from',this.kompaId);
+    console.log('did', this.did);
 
     if(this.from !=  'carrito'){
       this.tipo = 'delivery';

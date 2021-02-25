@@ -17,6 +17,7 @@ export class ThanksPage implements OnInit {
   destino  = null;
   pid      = null;
   cancelar = 0;
+  did      = null;
   Peoples  : DriversI = {};
   user     = firebase.auth().currentUser;
   username = this.user.displayName;
@@ -31,6 +32,9 @@ export class ThanksPage implements OnInit {
     this.origen  = this.route.snapshot.params['origin'];
     this.destino = this.route.snapshot.params['destination']; 
     this.pid     = this.route.snapshot.params['pid'];
+    this.did     = this.route.snapshot.params['did'];
+
+    console.log('did', this.did);
     console.log('Kompaid', this.KompaId);
     console.log('nombre', this.nombre);
     console.log('origen', this.origen);

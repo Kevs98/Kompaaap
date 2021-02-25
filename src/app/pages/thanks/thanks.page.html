@@ -11,8 +11,8 @@
       <ion-label class="title">¡ Gracias !</ion-label><br>
       <ion-label class="title">{{username}}</ion-label><br>
       <ion-label>Tu orden será entregada por un Kompa. Esperamos que te guste nuestro servicio.</ion-label><br>
-        <ion-button color="tertiary" class="home" expand="block" routerLink="/categories"><ion-icon name="home"></ion-icon>&nbsp;Volver a inicio</ion-button>
-        <!-- <ion-button *ngIf="origen != null" color="tertiary" class="home" expand="block" routerLink="/deliverydetail/{{type}}/{{pid}}/{{nombre}}/{{origen}}/{{destino}}"><ion-icon name="locate"></ion-icon>&nbsp;Ir al mapa</ion-button> -->
+        <ion-button *ngIf="origen == null" color="tertiary" class="home" expand="block" routerLink="/categories"><ion-icon name="home"></ion-icon>&nbsp;Volver a inicio</ion-button>
+        <ion-button *ngIf="origen != null" color="tertiary" class="home" expand="block" routerLink="/deliverydetail/{{did}}/{{type}}/{{pid}}/{{nombre}}/{{origen}}/{{destino}}"><ion-icon name="locate"></ion-icon>&nbsp;Ir al mapa</ion-button>
     </div>
   </div>
 </ion-content>

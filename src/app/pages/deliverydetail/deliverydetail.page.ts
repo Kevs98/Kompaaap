@@ -113,12 +113,12 @@ export class DeliverydetailPage {
     this.destinar= this.route.snapshot.params['destination'];
     this.pid     = this.route.snapshot.params['pid'];
 
-    console.log('id', this.id);
-    console.log('pid', this.rid);
-    console.log('ori', this.orderid);
-    console.log('dset', this.oPrecio);
-    console.log('cant', this.cantidad);
-    console.log('from', this.from);
+    console.log('id', this.id);         //conductor
+    console.log('pid', this.rid);       //tipo(mandado)
+    console.log('ori', this.orderid);   //destino
+    console.log('dset', this.suma);     //origen
+    console.log('cant', this.name);     //precio
+    console.log('from', this.from);     //nombre
 
 
     if(this.rid == 'VIP'){
@@ -154,7 +154,7 @@ export class DeliverydetailPage {
       this.jobs = res;
     });
 
-    if ( this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super') {
+    if ( this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super' || this.rid == 'mandado') {
       console.log('correcto');
       this.loadPlato();
       this.getposition();
@@ -216,7 +216,8 @@ export class DeliverydetailPage {
       this.destino = this.cerveceria;
     }else if(this.id  == 'super'){
       this.destino = this.destinar;
-
+    } else if (this.rid == 'mandado'){
+      this.destino = this.orderid;
     }
     this.geolocation.getCurrentPosition().then( position => {
       let lat = position.coords.latitude;
@@ -237,7 +238,20 @@ export class DeliverydetailPage {
         const lngd = parseFloat(this.destinar.substring(12, 29));
 
         this.Cdestino = {lat: latd, lng: lngd};
-      }else {
+      } else if( this.rid == 'mandado'){
+        const lato = parseFloat(this.suma.substring(0,10));
+        const lngo = parseFloat(this.suma.substring(12,29));
+
+        this.Corigen = {lat: lato, lng: lngo};
+        console.log('substring',this.Corigen);
+        this.org = this.suma;
+
+        const latd = parseFloat(this.orderid.substring(0,10));
+        const lngd = parseFloat(this.orderid.substring(12,29));
+        this.destino = this.orderid;
+
+        this.Cdestino = {lat: latd, lng: lngd};
+      } else {
          this.org = { lat: lat, lng: lng };
       }
       console.log('origen variable', this.org);
@@ -276,7 +290,7 @@ export class DeliverydetailPage {
 
       console.log('price',this.precio);
       
-      if (this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super'){
+      if (this.rid == '645ReJeOxbCh04AbWp0f' || this.rid == 'CSbCSCOhoxMNnneTOpvv' || this.id == 'super' || this.rid == 'mandado'){
         const itemH  = document.getElementById('testI');
         const itemL  = document.getElementById('test');
         const search = document.getElementById('search');
@@ -394,10 +408,8 @@ export class DeliverydetailPage {
 
             this.alerta();
           }else if (this.id == 'mandado'){
-            console.log('La orden ya esta añadida');
-          }else {
             const order = {
-              nombre    : this.menu.nombre,
+              nombre    : 'Kompa Mandadito',
               precio    : this.suma,
               cancelado : this.cancelar,
               cantidad  : this.from,
@@ -414,6 +426,8 @@ export class DeliverydetailPage {
             this.orderCollection.add(order);
 
             this.alerta();
+          }else {
+            console.log('La orden ya esta añadida');
           }
         }
       });

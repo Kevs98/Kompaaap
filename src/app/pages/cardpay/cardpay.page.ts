@@ -1,7 +1,9 @@
+import { from } from 'rxjs';
 import { card } from './../../models/card.interface';
 import { CardmethodService } from './../../services/cardmethod.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-cardpay',
@@ -16,24 +18,39 @@ export class CardpayPage implements OnInit {
   ctoken   = null;
   desc     = null;
   pay      = null;
+  org      = null;
+  dest     = null;
   price    = null;
+  did      = null;
+  orderid  = null;
   payment  : card = {};
   charge   : card = {};
+  user = firebase.auth().currentUser;
+  username = this.user.displayName;
 
   constructor( 
     private route : ActivatedRoute,
     private cardService : CardmethodService,
+    private router : Router
   ) { }
 
   ngOnInit() {
 
-    this.token = this.route.snapshot.params['token'];
-    this.desc  = this.route.snapshot.params['desc'];
-    this.price = this.route.snapshot.params['price'];
+    this.token   = this.route.snapshot.params['token'];
+    this.desc    = this.route.snapshot.params['desc'];
+    this.price   = this.route.snapshot.params['price'];
+    this.orderid = this.route.snapshot.params['orderid'];
+    this.did     = this.route.snapshot.params['did'];
+    this.org     = this.route.snapshot.params['org'];
+    this.dest    = this.route.snapshot.params['dest'];
 
+    console.log('orderid', this.orderid);
     console.log('token', this.token);
     console.log('desc', this.desc);
     console.log('price', this.price);
+    console.log('did',this.did);
+    console.log('origent', this.org);
+    console.log('destinot', this.dest);
     this.AppIncludeCharge();
     
     
@@ -65,6 +82,7 @@ export class CardpayPage implements OnInit {
             alert('Lo sentimos el pago no pudo ser procesado: '+this.pay.reasonText);
           } else {
             alert('Su pago fue procesado con Exito');
+            this.router.navigateByUrl('/thanks/'+this.did+'/'+this.orderid+'/'+this.org+'/'+this.dest+'/'+this.username+'/'+this.price);
           }
         });
       } else {

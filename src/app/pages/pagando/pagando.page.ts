@@ -60,7 +60,7 @@ export class PagandoPage implements OnInit {
     this.from     = this.route.snapshot.params['from'];
     this.origen   = this.route.snapshot.params['origin'];
     this.destino  = this.route.snapshot.params['destination'];
-    this.super    = this.route.snapshot.params['super'];
+    this.super    = this.route.snapshot.params['super']; 
     this.desc     = this.route.snapshot.params['desc'];
     this.org      = this.route.snapshot.params['origen'];
     this.dest     = this.route.snapshot.params['dest'];
@@ -70,6 +70,8 @@ export class PagandoPage implements OnInit {
     console.log('test', this.super);
     console.log('origen', this.desc);   
     console.log('dest', this.price);
+    console.log('origen',this.org);
+    console.log('destino', this.dest);
 
     this.loadPeoples();
     
@@ -109,7 +111,6 @@ export class PagandoPage implements OnInit {
 
   home(){
     alert('No se puede pagar con Tarjeta');
-    this.router.navigateByUrl('/categories');
   }
 
   loadPeoples(){

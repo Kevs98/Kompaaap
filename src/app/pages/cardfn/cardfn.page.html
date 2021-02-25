@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button routerLink="/addcard"><ion-icon name="add-outline"></ion-icon></ion-button>
+      <ion-button routerLink="/addcard/{{orderid}}/{{desc}}/{{price}}"><ion-icon name="add-outline"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>Tarjetas Disponibles</ion-title>
   </ion-toolbar>
@@ -16,8 +16,8 @@
     <ion-card-title class="title">Trajetas Disponibles</ion-card-title>
   </ion-card>
   <hr class="separator">
-  <ion-list *ngFor="let cards of onecard">
-    <ion-item routerLink="/cardpay/{{cards.cardTokenId}}/{{desc}}/{{price}}">
+  <ion-list *ngFor="let cards of card">
+    <ion-item routerLink="/cardpay/{{did}}/{{orderid}}/{{cards.cardTokenId}}/{{desc}}/{{price}}/{{org}}/{{dest}}">
       <img src="https://firebasestorage.googleapis.com/v0/b/testkompa-7b5eb.appspot.com/o/Iconos%20Principales%2Fcredit-card%20(1).svg?alt=media&token=e183c22c-c484-4cae-9068-3b33d550ea1f" class="efectivoimg">
       <ion-label>{{cards.cardDescription}}</ion-label>
       <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
