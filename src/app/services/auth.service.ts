@@ -71,4 +71,8 @@ export class AuthService {
        this.router.navigate(['/login']);
      })
    }
+
+   ResetPassword(email :string){
+    return this.afAuth.auth.sendPasswordResetEmail(email);
+   }
 }

@@ -496,7 +496,11 @@ export class DeliverydetailPage {
   searchChanged(){
     if (!this.search.trim().length) return;
 
-    this.googleAutocomplete.getPlacePredictions({ input: this.search }, predictions => {
+    const options = {
+      componentRestrictions: { country: "us" }
+    };
+
+    this.googleAutocomplete.getPlacePredictions({ input: this.search, componentRestrictions: { country: "hn" } }, predictions => {
       this.ngZone.run(() => {
         this.searchResults = predictions;
       });

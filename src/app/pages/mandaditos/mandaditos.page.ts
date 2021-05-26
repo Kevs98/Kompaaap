@@ -43,7 +43,7 @@ export class MandaditosPage implements OnInit {
   searchChanged(){
     if (!this.search.trim().length) return;
 
-    this.googleAutocomplete.getPlacePredictions({ input: this.search }, predictions => {
+    this.googleAutocomplete.getPlacePredictions({ input: this.search, componentRestrictions: { country: "hn" } }, predictions => {
       this.ngZone.run(() => {
         this.searchResults = predictions;
       });
@@ -52,7 +52,7 @@ export class MandaditosPage implements OnInit {
   searchChangedDest(){
     if (!this.searchDest.trim().length) return;
 
-    this.googleAutocomplete.getPlacePredictions({ input: this.searchDest }, predictions => {
+    this.googleAutocomplete.getPlacePredictions({ input: this.searchDest, componentRestrictions: { country: "hn" } }, predictions => {
       this.ngZone.run(() => {
         this.searchResultsDest = predictions;
       });

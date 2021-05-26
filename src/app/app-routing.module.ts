@@ -350,7 +350,11 @@ const routes: Routes = [
   {
     path: 'addcard/:orderid/:desc/:price',
     loadChildren: () => import('./pages/addcard/addcard.module').then( m => m.AddcardPageModule)
+  },  {
+    path: 'forgotpassword',
+    loadChildren: () => import('./pages/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   }
+
 
 
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { catI } from '../../models/category.interface';
 import { CategoryService } from '../../services/category.service';
@@ -12,7 +13,7 @@ export class CategoriesPage implements OnInit {
 
   categories: catI[]; 
 
-  constructor(private categoryService: CategoryService, private menuCrl : MenuController) { }
+  constructor(private categoryService: CategoryService, private menuCrl : MenuController, private router : Router) { }
 
   ngOnInit() {
     this.categoryService.getCategory().subscribe(res => {
@@ -29,7 +30,8 @@ export class CategoriesPage implements OnInit {
   }
 
   carrito(){
-    console.log('Carrito Abierto');    
+    console.log('Carrito Abierto');  
+    this.router.navigateByUrl('/activeorders');
   }
 
 }
