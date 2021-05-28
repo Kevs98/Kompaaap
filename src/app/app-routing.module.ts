@@ -353,6 +353,10 @@ const routes: Routes = [
   },  {
     path: 'forgotpassword',
     loadChildren: () => import('./pages/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
+  },
+  {
+    path: 'termsandconditions',
+    loadChildren: () => import('./pages/termsandconditions/termsandconditions.module').then( m => m.TermsandconditionsPageModule)
   }
 
 

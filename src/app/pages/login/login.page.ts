@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
       if (user.photoURL == null){
         this.router.navigateByUrl('/kdashboard');
       } else if( user != null){
-        this.router.navigateByUrl('/categories');
+        this.router.navigateByUrl('/termsandconditions');
       }
     });
   }
