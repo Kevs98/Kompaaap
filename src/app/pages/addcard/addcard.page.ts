@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AddcardService } from 'src/app/services/addcard.service';
 
+
 @Component({
   selector: 'app-addcard',
   templateUrl: './addcard.page.html',

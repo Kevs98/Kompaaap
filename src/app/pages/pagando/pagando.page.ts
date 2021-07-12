@@ -88,8 +88,8 @@ export class PagandoPage implements OnInit {
     this.getOrders().subscribe( res => {
       for (let i = 0; i<res.length; i++){
         this.orderid = res[i].id;
-        console.log('id de orden', this.orderid);
       }
+      console.log('id de orden', this.orderid);
     })
   }
 

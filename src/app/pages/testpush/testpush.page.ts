@@ -1,5 +1,6 @@
+import { oft } from './../../models/onlyfortest.interface';
+import { CardmethodService } from './../../services/cardmethod.service';
 import { Component, OnInit } from '@angular/core';
-import { FCM } from '@ionic-native/fcm/ngx';
 
 @Component({
   selector: 'app-testpush',
@@ -8,14 +9,25 @@ import { FCM } from '@ionic-native/fcm/ngx';
 })
 export class TestpushPage implements OnInit {
 
-  constructor(private fcm : FCM) { }
+  Test : oft = {};
+  uri: string;
+
+  constructor(private cardM : CardmethodService) { }
 
   ngOnInit() {
     console.log('a ver si lo imprimis');
 
-    this.fcm.getToken().then(token => {
-      console.log('TOKEN', token);
+    this.cardM.TestNewURI().subscribe(res => {
+      this.Test = res;
+      this.uri = this.Test.url;
+      console.log('res', this.uri);
     });
+  }
+
+  pay(){
+    console.log('url', this.uri);
+    window.open(this.uri,'_self');
+    
   }
 
 }

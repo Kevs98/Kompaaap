@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { card } from '../models/card.interface';
 import * as firebase from 'firebase';
 
+
 @Injectable({
   providedIn: 'root'
 })

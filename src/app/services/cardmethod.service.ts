@@ -1,7 +1,7 @@
 import { card } from './../models/card.interface';
 import { chargeI } from './../models/chargeJSON.interface';
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { HttpClient} from '@angular/common/http';
 export class CardmethodService {
 
   API_URL = 'http://www.fttserver.com:4217/api';
+  API_URI = 'https://ficohsa.pixelpay.app/sandbox/hosted/payment';
 
   cardParams = {
     "applicationName": "KOMPA_TEST",
@@ -26,6 +27,25 @@ export class CardmethodService {
   }
 
   constructor( private http : HttpClient) { }
+
+  TestNewURI(){
+    let parameter = new HttpParams()
+    .set('_key','s4ndb0x')
+    .set('_cancel','https://www.ficohsa.com/quienes-somos/')
+    .set('_complete','https://www.ficohsa.com/quienes-somos/')
+    .set('_amount','10')
+    .set('_order_id','8')
+    .set('_email','kevinpalma657@gmail.com')
+    .set('_first_name','Kevin')
+    .set('json','true');
+
+    return this.http.post(this.API_URI,parameter.toString(), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+    });   
+
+
+  }
   
   charge( charge : chargeI){
     const obj = {

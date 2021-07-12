@@ -4,7 +4,7 @@ import { AuthGuard } from '../app/guards/auth.guard';
 
 const routes: Routes = [
   { 
-    path: '', redirectTo: 'login', pathMatch: 'full' 
+    path: '', redirectTo: 'testpush', pathMatch: 'full' 
   },
   { 
     path: 'home', 
@@ -350,7 +350,8 @@ const routes: Routes = [
   {
     path: 'addcard/:orderid/:desc/:price',
     loadChildren: () => import('./pages/addcard/addcard.module').then( m => m.AddcardPageModule)
-  },  {
+  },
+  {
     path: 'forgotpassword',
     loadChildren: () => import('./pages/forgotpassword/forgotpassword.module').then( m => m.ForgotpasswordPageModule)
   },

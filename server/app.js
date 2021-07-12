@@ -20,7 +20,7 @@ router.get("/notificaciones", (req, res) => {
     var fcm = new FCM(serverkey);
 
     var message = {
-        to: 'ds3Jc5iaj0E:APA91bE7H9CBmAtgw1M8q19EmEyVkKrKU1Y1wGBQRohDu_VEfcKFqlqeXqrjdrClcWvKCBsxowQLkI3pMk7qQC1DCyJPnd2ty65WEwdAe5u7BPwdCXnPh-tQYbLVxQsx_qlHbTJYJh7o',
+        to: 'd8hwShATiek:APA91bHnufSk0ShggPAPe99M9Nc-uFSGGxcm8GNoDZRgh4Y5Gmi8I9PgvNBb7Y0oCogiJ9mH6b34vdZYjw4qkeL1HWW7wnLMbd1yoi5DOMEocDlRLiWIhrQYhsK6sBs3nB7OhiTFfnO6',
         collapse_key: 'KompaPushNotification',
 
         notification: {
@@ -37,7 +37,7 @@ router.get("/notificaciones", (req, res) => {
 
     fcm.send(message, function(err, response) {
         if (err){
-            console.log('UPS algo alió mal');
+            console.log('UPS algo alió mal', err);
         } else {
             console.log('Eviado correctamente con los datos: ', response);
         }
