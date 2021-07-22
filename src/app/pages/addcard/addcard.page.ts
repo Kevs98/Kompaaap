@@ -45,31 +45,31 @@ export class AddcardPage implements OnInit {
     this.orderid = this.route.snapshot.params['orderid'];
   }
 
-  onSave( tarjeta : card){
-    if ( this.desc == null && this.price == null){
-      this.cardmethod.UserIncludeCard(tarjeta).subscribe( res => {
-        this.cardExport = res;
-        console.log(this.cardExport);
-        if (this.cardExport.isApproved == false){
-          alert('La tarjeta no es valida favor intentar nuevamente');
-        } else {
-          this.addCardService.guardarTarjeta(tarjeta, this.cardExport.cardTokenId);
-          alert('Tarjeta agregada con exito');
-        }
-      });
-    } else if ( this.desc != null && this.price != null){
-      this.cardmethod.UserIncludeCard(tarjeta).subscribe( res => {
-        this.cardExport = res;
-        console.log(this.cardExport);
-        if (this.cardExport.isApproved == false){
-          alert('La tarjeta no es valida favor intentar nuevamente');
-        } else {
-          this.addCardService.guardarTarjeta(tarjeta, this.cardExport.cardTokenId);
-          alert('Tarjeta agregada con exito');
-          this.router.navigateByUrl('/cardfn/'+this.orderid+'/'+this.desc+'/'+this.price);
-        }
-      });
-    }
-  }
+  // onSave( tarjeta : card){
+  //   if ( this.desc == null && this.price == null){
+  //     this.cardmethod.UserIncludeCard(tarjeta).subscribe( res => {
+  //       this.cardExport = res;
+  //       console.log(this.cardExport);
+  //       if (this.cardExport.isApproved == false){
+  //         alert('La tarjeta no es valida favor intentar nuevamente');
+  //       } else {
+  //         this.addCardService.guardarTarjeta(tarjeta, this.cardExport.cardTokenId);
+  //         alert('Tarjeta agregada con exito');
+  //       }
+  //     });
+  //   } else if ( this.desc != null && this.price != null){
+  //     this.cardmethod.UserIncludeCard(tarjeta).subscribe( res => {
+  //       this.cardExport = res;
+  //       console.log(this.cardExport);
+  //       if (this.cardExport.isApproved == false){
+  //         alert('La tarjeta no es valida favor intentar nuevamente');
+  //       } else {
+  //         this.addCardService.guardarTarjeta(tarjeta, this.cardExport.cardTokenId);
+  //         alert('Tarjeta agregada con exito');
+  //         this.router.navigateByUrl('/cardfn/'+this.orderid+'/'+this.desc+'/'+this.price);
+  //       }
+  //     });
+  //   }
+  // }
 
 }

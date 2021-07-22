@@ -24,6 +24,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
+// import * as PixelPay from '@pixelpay/sdk';
 
 import { GoogleMaps } from '@ionic-native/google-maps/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';

@@ -296,7 +296,7 @@ export class PeopleinPage implements OnInit {
             this.flag = 'no';
             console.log('ng',this.flag);
           }
-        })
+        }) 
       }
       else if (this.KompaId == 'mandado') {
         this.driverMarket.getDrivers().subscribe( res => {

@@ -1,3 +1,4 @@
+import { card } from './../../models/card.interface';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { map } from 'rxjs/operators';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
@@ -10,6 +11,15 @@ import { MenuI } from 'src/app/models/menu.interface';
 import * as firebase from 'firebase';
 import { OrderI } from 'src/app/models/order.interface';
 import { Observable } from 'rxjs';
+import { CardmethodService } from 'src/app/services/cardmethod.service';
+import { oft } from 'src/app/models/onlyfortest.interface';
+// import * as PixelPay from '@pixelpay/sdk';
+
+declare global {
+  interface Window { PixelPay: any; }
+}
+
+window.PixelPay = window.PixelPay || {};
 
 @Component({
   selector: 'app-pagando',
@@ -38,6 +48,10 @@ export class PagandoPage implements OnInit {
   dest     = null;
   price    = null;
   concept  = null;
+  email    = null;
+
+  Test : oft = {};
+  uri: string;
 
   private orderCollection : AngularFirestoreCollection<OrderI>
   private orders          : Observable<any>
@@ -48,7 +62,8 @@ export class PagandoPage implements OnInit {
      private driverService : DriversService,
      private bd : AngularFirestore,
      private geolocation : Geolocation,
-     private router : Router
+     private router : Router,
+     private cardpay : CardmethodService
     ) { }
 
   ngOnInit() {
@@ -66,12 +81,18 @@ export class PagandoPage implements OnInit {
     this.dest     = this.route.snapshot.params['dest'];
     this.price    = this.route.snapshot.params['price'];
     this.nombre   = this.user.displayName;
+    this.email    = this.user.email;
     console.log('Kompa', this.KompaId);
-    console.log('test', this.super);
-    console.log('origen', this.desc);   
-    console.log('dest', this.price);
+    console.log('tipo', this.super);
+    console.log('orderid', this.orderid);   
+    console.log('precio', this.price);
     console.log('origen',this.org);
     console.log('destino', this.dest);
+    console.log('nombre', this.nombre);
+    
+
+    window.PixelPay.setup('FH3760687747', '378e73a2cff21642740370afae4ac0c9' ,'https://ficohsa.pixelpay.app');
+
 
     this.loadPeoples();
     
@@ -155,14 +176,20 @@ export class PagandoPage implements OnInit {
           clienteID : this.user.uid,
           clienteub : this.org,
           ubicacion : this.dest,
-          phone     : "97544506",
+          phone     : "97544554506",
           estado    : 0
         }
+
         console.log('restOrder',order);
         this.orderCollection.add(order);
         console.log('DRIVER', this.Peoples);
       }
     });
+  }
+
+  PaymentButton(){
+    this.cardpay.Pay();
+    window.open(this.uri, '_self');
   }
 
 }

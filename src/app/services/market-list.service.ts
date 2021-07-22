@@ -34,7 +34,7 @@ export class MarketListService {
   getMarketList(){
     return this.marketList;
   }
-
+ 
   saveMarketList( ML : SuperI){
     const SuperList = {
       super     : ML.super,

@@ -114,7 +114,7 @@ export class DeliverydetailPage {
     this.pid     = this.route.snapshot.params['pid'];
 
     console.log('id', this.id);         //conductor
-    console.log('pid', this.rid);       //tipo(mandado)
+    console.log('rid', this.rid);       //tipo(mandado)
     console.log('ori', this.orderid);   //destino
     console.log('dset', this.suma);     //origen
     console.log('cant', this.name);     //precio
@@ -217,7 +217,9 @@ export class DeliverydetailPage {
     }else if(this.id  == 'super'){
       this.destino = this.destinar;
     } else if (this.rid == 'mandado'){
-      this.destino = this.orderid;
+      this.destino = this.from;
+      console.log('destinocard', this.destino);
+      
     }
     this.geolocation.getCurrentPosition().then( position => {
       let lat = position.coords.latitude;
@@ -239,15 +241,15 @@ export class DeliverydetailPage {
 
         this.Cdestino = {lat: latd, lng: lngd};
       } else if( this.rid == 'mandado'){
-        const lato = parseFloat(this.suma.substring(0,10));
-        const lngo = parseFloat(this.suma.substring(12,29));
+        const lato = parseFloat(this.from.substring(0,10));
+        const lngo = parseFloat(this.from.substring(12,29));
 
         this.Corigen = {lat: lato, lng: lngo};
         console.log('substring',this.Corigen);
         this.org = this.suma;
 
-        const latd = parseFloat(this.orderid.substring(0,10));
-        const lngd = parseFloat(this.orderid.substring(12,29));
+        const latd = parseFloat(this.name.substring(0,10));
+        const lngd = parseFloat(this.name.substring(12,29));
         this.destino = this.orderid;
 
         this.Cdestino = {lat: latd, lng: lngd};
@@ -301,8 +303,8 @@ export class DeliverydetailPage {
        
       
       this.directionService.route({
-        origin: this.org,
-        destination: this.destino,
+        origin: this.from,
+        destination: this.name,        
         travelMode: google.maps.TravelMode.DRIVING,
       }, async (res, status) => {
         if (status === 'OK') {
@@ -310,8 +312,10 @@ export class DeliverydetailPage {
           console.log('data', res);
           
         } else {
-          alert('Imposible, algo anda mal'+ status);
+          alert('Imposible, algo anda mal '+ status);
         }
+        
+
 
         const points = new Array<ILatLng>();
         const routes = res.routes[0].overview_path;

@@ -51,43 +51,43 @@ export class CardpayPage implements OnInit {
     console.log('did',this.did);
     console.log('origent', this.org);
     console.log('destinot', this.dest);
-    this.AppIncludeCharge();
+    // this.AppIncludeCharge();
     
     
   }
 
-  async AppIncludeCharge(){
-    this.cardService.AppIncludeCharge(this.desc, this.price).subscribe(res => {
-      this.payment = res;
-      this.ctoken = this.payment.chargeTokenId;
-      this.aproved = this.payment.isApproved;
-      console.log('res', res);
-      if (this.aproved = true) {
-        this.cardService.UserViewCharge(this.ctoken).subscribe(res2 => {
-          this.charge = res2;
-          this.caproved = this.charge.isApproved;
-          console.log('charge', res2);
-        });
-      } else {
-        console.log('error con la tarjeta');
-      }
-    })
-    var button = document.getElementById('pay');
-    button.addEventListener('click', () => {
-      if (this.caproved == true){
-        this.cardService.UserApplyCharge(this.token, this.ctoken).subscribe( paym => {
-          this.pay = paym;
-          console.log('Payment', this.pay);
-          if (this.pay.isApproved == false){
-            alert('Lo sentimos el pago no pudo ser procesado: '+this.pay.reasonText);
-          } else {
-            alert('Su pago fue procesado con Exito');
-            this.router.navigateByUrl('/thanks/'+this.did+'/'+this.orderid+'/'+this.org+'/'+this.dest+'/'+this.username+'/'+this.price);
-          }
-        });
-      } else {
-        alert('error');
-      }
-    })
-  }
+  // async AppIncludeCharge(){
+  //   this.cardService.AppIncludeCharge(this.desc, this.price).subscribe(res => {
+  //     this.payment = res;
+  //     this.ctoken = this.payment.chargeTokenId;
+  //     this.aproved = this.payment.isApproved;
+  //     console.log('res', res);
+  //     if (this.aproved = true) {
+  //       this.cardService.UserViewCharge(this.ctoken).subscribe(res2 => {
+  //         this.charge = res2;
+  //         this.caproved = this.charge.isApproved;
+  //         console.log('charge', res2);
+  //       });
+  //     } else {
+  //       console.log('error con la tarjeta');
+  //     }
+  //   })
+  //   var button = document.getElementById('pay');
+  //   button.addEventListener('click', () => {
+  //     if (this.caproved == true){
+  //       this.cardService.UserApplyCharge(this.token, this.ctoken).subscribe( paym => {
+  //         this.pay = paym;
+  //         console.log('Payment', this.pay);
+  //         if (this.pay.isApproved == false){
+  //           alert('Lo sentimos el pago no pudo ser procesado: '+this.pay.reasonText);
+  //         } else {
+  //           alert('Su pago fue procesado con Exito');
+  //           this.router.navigateByUrl('/thanks/'+this.did+'/'+this.orderid+'/'+this.org+'/'+this.dest+'/'+this.username+'/'+this.price);
+  //         }
+  //       });
+  //     } else {
+  //       alert('error');
+  //     }
+  //   })
+  // }
 }
